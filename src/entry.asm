@@ -45,7 +45,7 @@ start:             ;; $0150
 
 	ld  a,[IsGBC]            ;;
 	or  a                    ;;
-	jr  z,.LAB_0189          ;; if IsGBC == false, jump
+	jr  z,.skipColorVRAMClear;; if IsGBC == false, jump
 
 	ld  a,$01                ;;
 	ldh [rVBK],a             ;;
@@ -57,7 +57,7 @@ start:             ;; $0150
 	ld  a,$00                ;;
 	ldh [rVBK],a             ;;
 
-.LAB_0189:         ;; $0189
+.skipColorVRAMClear:         ;; $0189
 	ld  hl,$C5DB             ;;
 	xor a                    ;;
 	ld  [hl+],a              ;;
@@ -84,22 +84,22 @@ start:             ;; $0150
 
 	call Unknown1            ;; =Unknown1()
 
-	xor a
-	ld  [$C58C],a
-	ld  a,[IsGBC]
-	or  a
-	jr  z,.LAB_01D3
+	xor a                    ;;
+	ld  [$C58C],a            ;;
+	ld  a,[IsGBC]            ;;
+	or  a                    ;;
+	jr  z,.LAB_01D3          ;; if isGBC == false, skip
 
-	xor a
-	ldh [rVBK],a
-	ldh [rSVBK],a
-	ldh [rRP],a
+	xor a                    ;;
+	ldh [rVBK],a             ;;
+	ldh [rSVBK],a            ;;
+	ldh [rRP],a              ;;
 
-	ld  hl,$42FA
-	ld  b,$02
-	rst $10
+	ld  hl,$42FA             ;;
+	ld  b,$02                ;;
+	rst $10                  ;; =RST10 (2, $42FA) ;; Calling FUN_ROM2_42FA
 
-	jr  .LAB_01D8
+	jr  .LAB_01D8            ;;
 
 .LAB_01D3:         ;; $01D3
 	call FUN_05E2
@@ -387,6 +387,10 @@ SECTION "0DCA", ROM0[$0DCA]
 FUN_0DCA:
 	ret
 
+SECTION "1679", ROM0[$1679]
+FUN_1679:
+	ret
+
 SECTION "255B", ROM0[$255B]
 FUN_255B:
 	ret
@@ -406,3 +410,6 @@ INCLUDE "src/VRAMClear.inc"            ;; ROM0[$0930]
 INCLUDE "src/Memset.inc"               ;; ROM0[$0949]
 
 INCLUDE "src/unknown/unknown1.inc"     ;; ROM0[$3290]
+
+
+INCLUDE "src/Bank2/unknown3.inc"       ;; ROMX[$3290], BANK[2]
