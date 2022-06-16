@@ -97,7 +97,7 @@ start:             ;; $0150
 
 	ld  hl,$42FA             ;;
 	ld  b,$02                ;;
-	rst $10                  ;; =RST10 (2, $42FA) ;; Calling FUN_ROM2_42FA
+	rst $10                  ;; =RST10 (2, $42FA) ;; Call FUN_ROM2_42FA
 
 	jr  .LAB_01D8            ;;
 
@@ -387,10 +387,6 @@ SECTION "0DCA", ROM0[$0DCA]
 FUN_0DCA:
 	ret
 
-SECTION "1679", ROM0[$1679]
-FUN_1679:
-	ret
-
 SECTION "255B", ROM0[$255B]
 FUN_255B:
 	ret
@@ -408,6 +404,8 @@ INCLUDE "src/InterruptLCD.inc"         ;; ROM0[$078D]
 INCLUDE "src/MemInitial.inc"           ;; ROM0[$08D0]
 INCLUDE "src/VRAMClear.inc"            ;; ROM0[$0930]
 INCLUDE "src/Memset.inc"               ;; ROM0[$0949]
+
+INCLUDE "src/CopyData.inc"             ;; ROM0[$1679]
 
 INCLUDE "src/unknown/unknown1.inc"     ;; ROM0[$3290]
 
