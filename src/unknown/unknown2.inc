@@ -4,7 +4,7 @@ SECTION "Unknown2", ROM0[$0355]
 
 ;; Unknown2 ()
 ;; 
-Unknown2:
+Unknown2:          ;; $0355
 	ld  a,[$C5DB]
 	rst $00
 	ld  l,e
