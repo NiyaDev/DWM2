@@ -279,7 +279,7 @@ start:             ;; $0150
 	ld  [$C52B],a
 	ld  [$C52F],a
 	ld  [$C530],a
-	Call FUN_0355
+	Call Unknown2
 
 	xor a
 	ld  [$C5DF],a
@@ -343,39 +343,6 @@ start:             ;; $0150
 
 ;---------------------------------- TODO:
 
-SECTION "FUN_0355", ROM0[$0355]
-
-;; FUN_0355 ()
-;; 
-FUN_0355:
-	ld  a,[$C5DB]
-	rst $00
-	ld  l,e
-	inc bc
-	ld  [hl],d
-	inc bc
-	ld  a,c
-	inc bc
-	add b
-	inc bc
-	add c
-	inc bc
-	adc b
-	inc bc
-	adc a
-	inc bc
-	sub [hl]
-	inc bc
-	sbc l
-	inc bc
-
-	ld  hl,$4001
-	ld  b,$01
-	rst $10
-
-	ret
-
-
 SECTION "03A4", ROM0[$03A4]
 FUN_03A4:
 	ret
@@ -430,6 +397,7 @@ FUN_256A:
 
 
 
+INCLUDE "src/unknown/unknown2.inc"     ;; ROM0[$0355]
 
 INCLUDE "src/InterruptLCD.inc"         ;; ROM0[$078D]
 
@@ -437,104 +405,4 @@ INCLUDE "src/MemInitial.inc"           ;; ROM0[$08D0]
 INCLUDE "src/VRAMClear.inc"            ;; ROM0[$0930]
 INCLUDE "src/Memset.inc"               ;; ROM0[$0949]
 
-
-
-
-;---------------------------------- TODO:
-
-SECTION "Unknown1", ROM0[$3290]
-
-
-;; Unknown1 ()
-;; Preps audio then does some audio clearing
-Unknown1:          ;; $3290
-	ld  bc,$0000           ;; 
-	call Unknown4          ;; =Unknown4($00, $00)
-
-	ld  a,$80              ;;                       ;;
-	ldh [rNR52],a          ;; [rNR52] = 1000 0000   ;;
-	xor a                  ;;                       ;;
-	ldh [rNR51],a          ;; [rNR51] = 0000 0000   ;; Preping audio
-	ld  [$DD09],a          ;;                       ;;
-	ld  a,$77              ;;                       ;;
-	ldh [rNR50],a          ;; [rNR50] = 0111 0111   ;;
-
-
-	ld  hl,$DC00           ;;
-	ld  de,$0020           ;; Preping first loop
-	ld  b,$06              ;;
-	ld  a,$FF              ;;
-.loop1:
-	ld  [hl+],a            ;;
-	ld  [hl+],a            ;; Sets the first word every $20 bytes
-	add hl,de              ;; in RAM starting at $DC00 to $FFFF
-	dec b                  ;;
-	jr  nz,.loop1          ;; if b != 0, loop
-
-
-	ld  hl,$DCC0           ;;
-	ld  b,$48              ;; Preping second loop
-	xor a                  ;;
-.loop2
-	ld  [hl+],a            ;; Sets the memory from $DCC0 to $DD08 to $00
-	dec b                  ;;
-	jr  nz,.loop2          ;; if b !0 =, loop
-
-	xor a                  ;;
-	ld  [$DD15],a          ;; Sets two variables to $00
-	ld  [$DD19],a          ;;
-	ret
-
-
-
-;---------------------------------- TODO:
-
-SECTION "Unknown2", ROM0[$32C6]
-
-
-;; Unknown2 ()
-;; Sets a variable to $00 then sets another to a seperate variable
-;; NOTE: This function hasn't been called
-;;       It was found by disassembling between functions
-Unknown2:
-	xor a
-	ld  [$DD15],a
-	ld  a,[$DD16]
-	ld  [$DD09],a
-	ret
-
-
-
-;---------------------------------- TODO:
-
-SECTION "Unknown3", ROM0[$32D1]
-
-
-;; Unknown3 ()
-;; Sets one variable to $04 and another to $00
-;; NOTE: This function hasn't been called
-;;       It was found by disassembling between functions
-Unknown3:
-	ld  a,$04
-	ld  [$DD15],a
-	xor a
-	ld  [$DD09],a
-	ret
-
-
-
-;---------------------------------- TODO:
-
-SECTION "Unknown4", ROM0[$32DB]
-
-
-;; Unknown4 (B: val1, C: val2)
-;; Sets a few values
-Unknown4:          ;; $32DB
-	ld  a,b                ;;
-	ld  [$DD12],a          ;;
-	ld  a,c                ;;
-	ld  [$DD13],a          ;;
-	xor a                  ;;
-	ld  [$DD14],a          ;;
-	ret
+INCLUDE "src/unknown/unknown1.inc"     ;; ROM0[$3290]
