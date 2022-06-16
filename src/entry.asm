@@ -17,11 +17,11 @@ SECTION "Header", ROM0[$0100]
 
 EntryPoint:
 	nop
-	jp  start
+	jp  Start
 
 		ds $150 - @, 0 ; Make room for the header
 
-start:             ;; $0150
+Start:             ;; $0150
 	cp  $11                  ;; 
 	ld  a,$00                ;; 
 	jr  nz,.DMG              ;; if console != GBC, jump
@@ -462,19 +462,19 @@ FUN_256A:
 
 
 
-INCLUDE "src/unknown/unknown2.inc"     ;; ROM0[$0355]
+INCLUDE "src/Bank0/unknown/unknown2.inc"     ;; ROM0[$0355]
 
-INCLUDE "src/Wait7000.inc"             ;; ROM0[$05D1]
+INCLUDE "src/Bank0/Wait7000.inc"             ;; ROM0[$05D1]
 
-INCLUDE "src/InterruptLCD.inc"         ;; ROM0[$078D]
+INCLUDE "src/Bank0/InterruptLCD.inc"         ;; ROM0[$078D]
 
-INCLUDE "src/MemInitial.inc"           ;; ROM0[$08D0]
-INCLUDE "src/VRAMClear.inc"            ;; ROM0[$0930]
-INCLUDE "src/Memset.inc"               ;; ROM0[$0949]
+INCLUDE "src/Bank0/MemInitial.inc"           ;; ROM0[$08D0]
+INCLUDE "src/Bank0/VRAMClear.inc"            ;; ROM0[$0930]
+INCLUDE "src/Bank0/Memset.inc"               ;; ROM0[$0949]
 
-INCLUDE "src/CopyData.inc"             ;; ROM0[$1679]
+INCLUDE "src/Bank0/CopyData.inc"             ;; ROM0[$1679]
 
-INCLUDE "src/unknown/unknown1.inc"     ;; ROM0[$3290]
+INCLUDE "src/Bank0/unknown/unknown1.inc"     ;; ROM0[$3290]
 
 
 INCLUDE "src/Bank2/unknown3.inc"       ;; ROMX[$3290], BANK[2]
