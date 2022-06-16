@@ -57,7 +57,7 @@ Start:             ;; $0150
 	ld  a,$00                ;;
 	ldh [rVBK],a             ;;
 
-.skipColorVRAMClear:         ;; $0189
+.skipColorVRAMClear:    ;; $0189
 	ld  hl,$C5DB             ;;
 	xor a                    ;;
 	ld  [hl+],a              ;;
@@ -82,10 +82,11 @@ Start:             ;; $0150
 	ld  [$C60A],a            ;; 
 	ld  [$C60B],a            ;; [$C60A-$C60B] = $FF
 
-	call Unknown1            ;; =Unknown1()
+	call Unknown1            ;; =Unknown1() ;; Audio prep?
 
 	xor a                    ;;
-	ld  [$C58C],a            ;;
+	ld  [$C58C],a            ;; [$C58C] = $00
+
 	ld  a,[IsGBC]            ;;
 	or  a                    ;;
 	jr  z,.skipColorVRAM_RST ;; if isGBC == false, skip
@@ -97,7 +98,7 @@ Start:             ;; $0150
 
 	ld  hl,$42FA             ;;
 	ld  b,$02                ;;
-	rst $10                  ;; =RST10 (2, $42FA) ;; Call FUN_ROM2_42FA
+	rst $10                  ;; =RST10 (2, $42FA) ;; Call Unknown3
 
 	jr  .LAB_01D8            ;;
 
@@ -112,14 +113,14 @@ Start:             ;; $0150
 
 .LAB_01DF:         ;; $01DF
 	ld  bc,$0C
-	call FUN_0692
+	call Wait1750_X
 
 	ld  a,$14                ;;
 	ld  [$C47C],a            ;; $C47C = $14
 	
 	ld  b,$1F                ;;
-	ld  hl,$5040             ;; =RST10
-	rst $10                  ;;
+	ld  hl,$5040             ;;
+	rst $10                  ;; =RST10 (31, $5040)
 
 	call Wait7000            ;; =Wait7000
 
@@ -127,8 +128,8 @@ Start:             ;; $0150
 	ld  [$C47C],a            ;; $C47C = $02
 
 	ld  b,$1F                ;;
-	ld  hl,$5040             ;; =RST10
-	rst $10                  ;;
+	ld  hl,$5040             ;;
+	rst $10                  ;; =RST10 (31, $5040)
 
 	call Wait7000            ;; =Wait7000
 
@@ -136,8 +137,8 @@ Start:             ;; $0150
 	ld  [$C47C],a            ;; $C47C = $03
 
 	ld  b,$1F                ;;
-	ld  hl,$5040             ;; =RST10
-	rst $10                  ;;
+	ld  hl,$5040             ;;
+	rst $10                  ;; =RST10 (31, $5040)
 
 	call Wait7000            ;; =Wait7000
 
@@ -145,8 +146,8 @@ Start:             ;; $0150
 	ld  [$C47C],a            ;; $C47C = $04
 
 	ld  b,$1F                ;;
-	ld  hl,$5040             ;; =RST10
-	rst $10                  ;;
+	ld  hl,$5040             ;;
+	rst $10                  ;; =RST10 (31, $5040)
 
 	call Wait7000            ;; =Wait7000
 
@@ -154,8 +155,8 @@ Start:             ;; $0150
 	ld  [$C47C],a            ;; $C47C = $05
 
 	ld  b,$1F                ;;
-	ld  hl,$5040             ;; =RST10
-	rst $10                  ;;
+	ld  hl,$5040             ;;
+	rst $10                  ;; =RST10 (31, $5040)
 
 	call Wait7000            ;; =Wait7000
 
@@ -163,8 +164,8 @@ Start:             ;; $0150
 	ld  [$C47C],a            ;; $C47C = $06
 
 	ld  b,$1F                ;;
-	ld  hl,$5040             ;; =RST10
-	rst $10                  ;;
+	ld  hl,$5040             ;;
+	rst $10                  ;; =RST10 (31, $5040)
 
 	call Wait7000            ;; =Wait7000
 
@@ -172,8 +173,8 @@ Start:             ;; $0150
 	ld  [$C47C],a            ;; $C47C = $07
 
 	ld  b,$1F                ;;
-	ld  hl,$5040             ;; =RST10
-	rst $10                  ;;
+	ld  hl,$5040             ;;
+	rst $10                  ;; =RST10 (31, $5040)
 
 	call Wait7000            ;; =Wait7000
 
@@ -181,8 +182,8 @@ Start:             ;; $0150
 	ld  [$C47C],a            ;; $C47C = $08
 
 	ld  b,$1F                ;;
-	ld  hl,$5040             ;; =RST10
-	rst $10                  ;;
+	ld  hl,$5040             ;;
+	rst $10                  ;; =RST10 (31, $5040)
 
 	call Wait7000            ;; =Wait7000
 
@@ -190,8 +191,8 @@ Start:             ;; $0150
 	ld  [$C47C],a            ;; $C47C = $09
 
 	ld  b,$1F                ;;
-	ld  hl,$5040             ;; =RST10
-	rst $10                  ;;
+	ld  hl,$5040             ;;
+	rst $10                  ;; =RST10 (31, $5040)
 
 	call Wait7000            ;; =Wait7000
 
@@ -419,11 +420,10 @@ FUN_05E2:          ;; $05E2
 	ret
 
 
+;---------------------------------- TODO:
 
-SECTION "0692", ROM0[$0692]
-FUN_0692:
-	ret
-	
+;---------------------------------- TODO:
+
 SECTION "06A8", ROM0[$06A8]
 FUN_06A8:
 	ret
@@ -466,6 +466,8 @@ INCLUDE "src/Bank0/unknown/unknown2.inc"     ;; ROM0[$0355]
 
 INCLUDE "src/Bank0/Wait7000.inc"             ;; ROM0[$05D1]
 
+INCLUDE "src/Bank0/Wait1750_X.inc"           ;; ROM0[$0692]
+
 INCLUDE "src/Bank0/InterruptLCD.inc"         ;; ROM0[$078D]
 
 INCLUDE "src/Bank0/MemInitial.inc"           ;; ROM0[$08D0]
@@ -479,7 +481,7 @@ INCLUDE "src/Bank0/unknown/unknown1.inc"     ;; ROM0[$3290]
 
 INCLUDE "src/Bank2/unknown3.inc"       ;; ROMX[$3290], BANK[2]
 
-;---------------------------------TODO:
+;---------------------------------- TODO:
 
 SECTION "5040", ROMX[$5040], BANK[31]
 
@@ -500,12 +502,12 @@ FUN_ROM31_5040:
 
 .LAB_ROM31_5051:
 	ld  l,a                  ;;
-	ld  h,$00                ;;
-	add hl,hl                ;;
+	ld  h,$00                ;; HL  = $00[$C47C]
+	add hl,hl                ;; HL += HL
 	ld  de,$5094             ;;
-	add hl,de                ;;
+	add hl,de                ;; HL += $5094
 	ld  e,[hl]               ;;
-	inc hl                   ;;
+	inc hl                   ;; HL++
 	ld  d,[hl]               ;;
 	push de                  ;;
 	pop hl                   ;;
