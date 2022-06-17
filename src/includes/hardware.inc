@@ -60,10 +60,10 @@ DEF _HRAM        EQU $FF80 ; $FF80->$FFFE
 
 ; *** MBC5 Equates ***
 
-DEF rRAMG        EQU $0000 ; $0000->$1fff
-DEF rROMB0       EQU $2000 ; $2000->$2fff
-DEF rROMB1       EQU $3000 ; $3000->$3fff - If more than 256 ROM banks are present.
-DEF rRAMB        EQU $4000 ; $4000->$5fff - Bit 3 enables rumble (if present)
+DEF rRAMG        EQU $0100 ; $0000->$1fff
+DEF rROMB0       EQU $2100 ; $2000->$2fff
+DEF rROMB1       EQU $3100 ; $3000->$3fff - If more than 256 ROM banks are present.
+DEF rRAMB        EQU $4100 ; $4000->$5fff - Bit 3 enables rumble (if present)
 
 
 ;***************************************************************************
