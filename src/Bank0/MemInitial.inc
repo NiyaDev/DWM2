@@ -8,6 +8,7 @@ MemInitialization:
 	ld  a,[IsGBC]          ;; 
 	or  a                  ;; 
 	jr  z,.Skip            ;; if IsGBC == false, skip
+
 	xor a                  ;; 
 	ldh [rVBK],a           ;; 
 	ldh [rSVBK],a          ;; 
@@ -36,9 +37,9 @@ MemInitialization:
 	ld  [IsGBC], a         ;;
 
 	ld  a,$0A              ;;
-	ld  [$0100],a          ;; Enables writing to Cart RAM
+	ld  [rRAMG],a          ;; Enables writing to Cart RAM
 	ld  a,$02              ;;
-	ld  [$4100],a          ;; Selects cart RAM bank 2
+	ld  [rRAMB],a          ;; Selects cart RAM bank 2
 
 	xor a                  ;; =Value      ;;
 	ld  hl,$A000           ;; =Pointer    ;; Clears memory at
@@ -46,7 +47,7 @@ MemInitialization:
 	call Memset            ;; =Memset()   ;;   (RAM Bank2)
 
 	ld  a,$00              ;;
-	ld  [$4100],a          ;; Selects Cart RAM bank 0
+	ld  [rRAMB],a          ;; Selects Cart RAM bank 0
 
 	xor a                  ;; =Value      ;;
 	ld  hl,$A000           ;; =Pointer    ;; Clears memory at
@@ -54,5 +55,5 @@ MemInitialization:
 	call Memset            ;; =Memset()   ;;   (RAM Bank0)
 
 	ld  a,$00              ;;
-	ld  [$0100],a          ;; Disable writing to Cart RAM
+	ld  [rRAMG],a          ;; Disable writing to Cart RAM
 	ret

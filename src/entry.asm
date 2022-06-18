@@ -63,7 +63,7 @@ Start:             ;; $0150
 	ld  [hl+],a              ;;
 	ld  [hl+],a              ;;
 	ld  [hl+],a              ;;
-	ld  [hl],a               ;; Clears memory $C5DB-$C5DF
+	ld  [hl],a               ;; Clears memory $C5DB-$C5DE
 	ld  a,$05                ;;
 	ld  [$C5DB],a            ;; [$C5DB] = $05
 
@@ -120,7 +120,7 @@ Start:             ;; $0150
 	
 	ld  b,$1F                ;;
 	ld  hl,$5040             ;;
-	rst $10                  ;; =RST10 (31, $5040)
+	rst $10                  ;; =RST10 (31, $5040) ;; FUN_ROM31_5040 ()
 
 	call Wait7000            ;; =Wait7000
 
@@ -129,7 +129,7 @@ Start:             ;; $0150
 
 	ld  b,$1F                ;;
 	ld  hl,$5040             ;;
-	rst $10                  ;; =RST10 (31, $5040)
+	rst $10                  ;; =RST10 (31, $5040) ;; FUN_ROM31_5040 ()
 
 	call Wait7000            ;; =Wait7000
 
@@ -138,7 +138,7 @@ Start:             ;; $0150
 
 	ld  b,$1F                ;;
 	ld  hl,$5040             ;;
-	rst $10                  ;; =RST10 (31, $5040)
+	rst $10                  ;; =RST10 (31, $5040) ;; FUN_ROM31_5040 ()
 
 	call Wait7000            ;; =Wait7000
 
@@ -147,7 +147,7 @@ Start:             ;; $0150
 
 	ld  b,$1F                ;;
 	ld  hl,$5040             ;;
-	rst $10                  ;; =RST10 (31, $5040)
+	rst $10                  ;; =RST10 (31, $5040) ;; FUN_ROM31_5040 ()
 
 	call Wait7000            ;; =Wait7000
 
@@ -156,7 +156,7 @@ Start:             ;; $0150
 
 	ld  b,$1F                ;;
 	ld  hl,$5040             ;;
-	rst $10                  ;; =RST10 (31, $5040)
+	rst $10                  ;; =RST10 (31, $5040) ;; FUN_ROM31_5040 ()
 
 	call Wait7000            ;; =Wait7000
 
@@ -165,7 +165,7 @@ Start:             ;; $0150
 
 	ld  b,$1F                ;;
 	ld  hl,$5040             ;;
-	rst $10                  ;; =RST10 (31, $5040)
+	rst $10                  ;; =RST10 (31, $5040) ;; FUN_ROM31_5040 ()
 
 	call Wait7000            ;; =Wait7000
 
@@ -174,7 +174,7 @@ Start:             ;; $0150
 
 	ld  b,$1F                ;;
 	ld  hl,$5040             ;;
-	rst $10                  ;; =RST10 (31, $5040)
+	rst $10                  ;; =RST10 (31, $5040) ;; FUN_ROM31_5040 ()
 
 	call Wait7000            ;; =Wait7000
 
@@ -183,7 +183,7 @@ Start:             ;; $0150
 
 	ld  b,$1F                ;;
 	ld  hl,$5040             ;;
-	rst $10                  ;; =RST10 (31, $5040)
+	rst $10                  ;; =RST10 (31, $5040) ;; FUN_ROM31_5040 ()
 
 	call Wait7000            ;; =Wait7000
 
@@ -192,7 +192,7 @@ Start:             ;; $0150
 
 	ld  b,$1F                ;;
 	ld  hl,$5040             ;;
-	rst $10                  ;; =RST10 (31, $5040)
+	rst $10                  ;; =RST10 (31, $5040) ;; FUN_ROM31_5040 ()
 
 	call Wait7000            ;; =Wait7000
 
@@ -201,7 +201,7 @@ Start:             ;; $0150
 	ld  e,$6C
 	ld  d,$44
 	ld  h,$17
-	call FUN_0705
+	call FUN_0705            ;;FUN_0705 (A: value, BC: counter, DE: ptr, H: bank)
 
 	call Wait7000
 
@@ -217,8 +217,8 @@ Start:             ;; $0150
 	ld  [$C47C],a            ;; $C47C = $12
 
 	ld  b,$1F                ;;
-	ld  hl,$5040             ;; =RST10
-	rst $10                  ;;
+	ld  hl,$5040             ;;
+	rst $10                  ;; =RST10 (31, $5040) ;; FUN_ROM31_5040 ()
 
 	call Wait7000            ;; =Wait7000
 
@@ -226,8 +226,8 @@ Start:             ;; $0150
 	ld  [$C47C],a            ;; $C47C = $0A
 
 	ld  b,$1F                ;;
-	ld  hl,$5040             ;; =RST10
-	rst $10                  ;;
+	ld  hl,$5040             ;;
+	rst $10                  ;; =RST10 (31, $5040) ;; FUN_ROM31_5040 ()
 
 	call Wait7000            ;; =Wait7000
 
@@ -235,8 +235,8 @@ Start:             ;; $0150
 	ld  [$C47C],a            ;; $C47C = $13
 
 	ld  b,$1F                ;;
-	ld  hl,$5040             ;; =RST10
-	rst $10                  ;;
+	ld  hl,$5040             ;;
+	rst $10                  ;; =RST10 (31, $5040) ;; FUN_ROM31_5040 ()
 
 	call Wait7000            ;; =Wait7000
 
@@ -244,22 +244,22 @@ Start:             ;; $0150
 	ld  [$C47C],a            ;; $C47C = $0E
 
 	ld  b,$1F                ;;
-	ld  hl,$5040             ;; =RST10
-	rst $10                  ;;
+	ld  hl,$5040             ;;
+	rst $10                  ;; =RST10 (31, $5040) ;; FUN_ROM31_5040 ()
 
 	call Wait7000            ;; =Wait7000
 
-	ld  a,$01
-	ld  [$C524],a
-	ld  a,$FF
-	ld  [$C523],a
-	xor a
-	ld  [$C51F],a
-	ld  [$C520],a
+	ld  a,$01                ;;
+	ld  [$C524],a            ;;
+	ld  a,$FF                ;;
+	ld  [$C523],a            ;;
+	xor a                    ;;
+	ld  [$C51F],a            ;;
+	ld  [$C520],a            ;;
 	
-	ld  hl,$41CF
-	ld  b,$17
-	rst $10
+	ld  hl,$41CF             ;;
+	ld  b,$17                ;;
+	rst $10                  ;; =RST10 (23, $41CF) ;; FUN_ROM23_41CF ()
 
 .LAB_02D1:         ;; $02D1
 	ei
@@ -334,8 +334,8 @@ Start:             ;; $0150
 	ld  [$C47C],a            ;; $C47C = $00
 
 	ld  b,$1F                ;;
-	ld  hl,$5040             ;; =RST10
-	rst $10                  ;;
+	ld  hl,$5040             ;;
+	rst $10                  ;; =RST10 (31, $5040) ;; FUN_ROM23_5040 ()
 
 	call Wait7000            ;; =Wait7000
 
