@@ -9,9 +9,13 @@
 [rNR50]  = $FF24;
 [rNR51]  = $FF25;
 [rNR52]  = $FF26;
+[rSCY]   = $FF42;
+[rSCX]   = $FF43;
+[rBGP]   = $FF47;  
 [rVBK]   = $FF4F; // 
 [rRP]    = $FF56; // CGB Mode Only
 [rSVBK]  = $FF70; // 
+
 
 [rRAMG]  = $0100;
 [rROMB0] = $2100;
@@ -28,20 +32,21 @@
 [$C0D9]  = $C0D9;
 //	Start = $00
 [$C47C]  = $C47C;
-//	Start = $20
-//	Start = $02
-//	Start = $03
-//	Start = $04
-//	Start = $05
-//	Start = $06
-//	Start = $07
-//	Start = $08
-//	Start = $09
-//	Start = $18
-//	Start = $10
-//	Start = $19
-//	Start = $14
-//	Start = $00
+//	Start    = $20
+//	Start    = $02
+//	Start    = $03
+//	Start    = $04
+//	Start    = $05
+//	Start    = $06
+//	Start    = $07
+//	Start    = $08
+//	Start    = $09
+//	Start    = $18
+//	Start    = $10
+//	Start    = $19
+//	Start    = $14
+//	Start    = $00
+//  FUN_0705 = $0C
 [$C51F]  = $C51F;
 //	Start = $00
 [$C520]  = $C520;
@@ -75,6 +80,7 @@
 //	Start = $00
 [$C5E0]  = $C5E0;
 //	Start = $00
+[$C5EC]  = $C5EC;
 [$C5ED]  = $C5ED;
 //	Start = $00
 [$C5EE]  = $C5EE;
@@ -359,17 +365,23 @@ Unknown1 :: proc() {
 	[$DD09] = $00;
 	[rNR50] = $77;
 
+	// Insert $FFFF every $22 from $DC00-$DCCC
 	HL = $DC00;
 	DE = $0020;
-	for i:=6; i != 0; i-=1 {
+	B  = $06;
+	for B != 0 {
 		[Hl+] = $FF;
 		[HL+] = $FF;
 		HL   += $0020;
+		B    -= $01;
 	}
 
+	// 
 	HL = $DCC0;
-	for i:=$48; i != 0; i-=1 {
+	B  = $48
+	for i != 0 {
 		[HL+] = $00;
+		B    -= $01;
 	}
 
 	[$DD15] = 0;
@@ -387,4 +399,60 @@ Unknown1_3 :: proc(B: val1, C: val2) {
 	[$DD12] = B;
 	[$DD13] = C;
 	[$DD14] = 0;
+}
+
+SECTION "0705", ROM0[$0705]
+// FUN_0705 (A: value, BC: counter, DE: ptr, H: bank)
+FUN_0705 :: proc(A: value, BC: counter, DE: ptr, H: bank) {
+	[$C47C] = A;
+
+	if [$C524] == 0 do return;
+
+	{ HL, BC
+		DisableLCD();
+		FUN_0B9B();
+
+		[rSCX] = $00;
+		[rSCY] = $00;
+		[rBGP] = $E4;
+	}
+
+	A = [rRAMB];
+	{ AF
+		{ BC
+			[rROMB0] = bank;
+		}
+
+		HL = $8800;
+		for counter != 0 {
+			[HL] = [DE];
+			HL  += 1;
+			DE  += 1;
+			BC  -= 1;
+		}
+
+		HL = $9800;
+		DE = $000C;
+		A  = $80;
+		C  = $0D;
+		for C != 0 {
+			B = $14;
+			for B != 0 {
+				[HL] = A;
+				HL  += 1;
+				A   += 1;
+				B   -= 1;
+			}
+			HL += DE;
+			C  -=  1;
+		}
+
+		[rLCDC] = $81;
+		[$C5EC] = $81;
+
+		Wait1750_X(5);
+		FUN_ROM31_5040();
+		DisableLCD();
+	}
+	[rROMB0] = A;
 }
