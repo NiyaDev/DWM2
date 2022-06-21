@@ -16,7 +16,7 @@ FUN_0705:
 
 	call DisableLCD          ;; =DisableLCD ()
 
-	call FUN_0B9B            ;; TODO:
+	call clear_8_hram        ;;
 
 	xor a                    ;;
 	ldh [rSCX],a             ;;

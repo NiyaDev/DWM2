@@ -267,11 +267,11 @@ Start:             ;; $0150
 .main_loop:        ;; $02D2
 	call VRAMClear
 
-	call FUN_0BA7
+	call clear_work_start
 
 	call FUN_0B7F
 
-	call FUN_0B9B
+	call clear_8_hram
 
 	call FUN_0DCA
 
@@ -351,22 +351,6 @@ FUN_03A4:
 SECTION "06A8", ROM0[$06A8]
 FUN_06A8:
 	ret
-	
-SECTION "095B", ROM0[$095B]
-FUN_095B:
-	ret
-	
-SECTION "0B7F", ROM0[$0B7F]
-FUN_0B7F:
-	ret
-
-SECTION "0B9B", ROM0[$0B9B]
-FUN_0B9B:
-	ret
-
-SECTION "0DCA", ROM0[$0DCA]
-FUN_0DCA:
-	ret
 
 SECTION "255B", ROM0[$255B]
 FUN_255B:
@@ -398,12 +382,17 @@ INCLUDE "src/Bank0/InterruptLCD.inc"         ;; ROM0[$078D]
 INCLUDE "src/Bank0/MemInitial.inc"           ;; ROM0[$08D0]
 INCLUDE "src/Bank0/VRAMClear.inc"            ;; ROM0[$0930]
 INCLUDE "src/Bank0/Memset.inc"               ;; ROM0[$0949]
-;INCLUDE "src/Bank0/FUN_095B.inc"             ;; ROM0[$095B]
+INCLUDE "src/Bank0/FUN_095B.inc"             ;; ROM0[$095B]
 ;INCLUDE "src/Bank0/FUN_09F3.inc"             ;; ROM0[$09F3]
 ;INCLUDE "src/Bank0/FUN_0A17.inc"             ;; ROM0[$0A17]
 ;INCLUDE "src/Bank0/FUN_0A61.inc"             ;; ROM0[$0A61]
 
-INCLUDE "src/Bank0/FUN_0BA7.inc"             ;; ROM0[$0BA7]
+INCLUDE "src/Bank0/FUN_0B7F.inc"             ;; ROM0[$0B7F]
+INCLUDE "src/Bank0/clear_8_hram.inc"         ;; ROM0[$0B9B]
+
+INCLUDE "src/Bank0/clear_work_start.inc"     ;; ROM0[$0BA7]
+
+INCLUDE "src/Bank0/FUN_0DCA.inc"             ;; ROM0[$0DCA]
 
 INCLUDE "src/Bank0/CopyData.inc"             ;; ROM0[$1679]
 

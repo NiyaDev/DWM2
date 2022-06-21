@@ -243,7 +243,7 @@ Start :: proc() {
 
 	for {
 		VRAMClear();
-		FUN_0BA7();
+		clear_work_start();
 		FUN_0B7F();
 		FUN_0B9B();
 		FUN_0DCA();
@@ -467,6 +467,78 @@ Memset :: proc(A: value, BC: counter, HL: pointer) {
 		pointer += 1;
 		counter -= 1;
 	}
+}
+
+SECTION "FUN_095B", ROM0[$095B]
+// 
+FUN_095B :: proc() {
+	{ HL
+		A        = ([$C5E8] + 1) & $7F;
+		[$C5E8]  = A;
+		A       += $73;
+		L        = A;
+
+		if L > $FF do H += 1;
+
+		[$C5E7] = [HL];
+	}
+}
+
+SECTION "FUN_0B7F", ROM0[$0B7F]
+// Sets three bytes in seperate locations to $D2,$D2,$E2
+FUN_0B7F :: proc() {
+	[$C5E9] = $D2;
+	[$C5EA] = $D2;
+	[$C5EB] = $E2;
+
+	[$D040] = $D2;
+	[$D041] = $D2;
+	[$D042] = $E2;
+}
+
+SECTION "clear_8_hram", ROM0[$0B9B]
+// Sets three bytes in seperate locations to $D2,$D2,$E2
+clear_8_hram :: proc() {
+	clear_4_hram(0, $FFA1);
+	clear_4_hram(0, $FFA5);
+}
+clear_4_hram :: proc(A: val, HL: ptr) {
+	[HL+0] = val;
+	[HL+1] = val;
+	[HL+2] = val;
+	[HL+3] = val;
+}
+
+SECTION "clear_work_start", ROM0[$0BA7]
+// Clears the first 160 bytes of work RAM
+clear_work_start :: proc() {
+	[$ffB1] = 0;
+
+	HL = $C000;
+	B  = $A0;
+	for B != 0 {
+		[HL]  = 0;
+		HL   += 1;
+		B    -= 1;
+	}
+}
+
+SECTION "FUN_0DCA", ROM0[$0DCA]
+// 
+FUN_0DCA :: proc() {
+	[$C56F] = [$C5E9];
+	[$C570] = [$C5EA];
+	[$C571] = [$C5EB];
+
+	[$C572] = 0;
+	[$C573] = 0;
+	[$C574] = 0;
+	[$C575] = 0;
+	[$C576] = 0;
+
+	[$C56C] = 0;
+	[$C56D] = $07;
+	[$C56E] = $1f;
 }
 
 SECTION "FUN_3290", ROM0[$3290]
