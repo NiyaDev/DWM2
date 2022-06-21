@@ -5,6 +5,7 @@
 
 
 
+[rP1]    = $FF00;
 [rIF]    = $FF0F;
 [rNR50]  = $FF24;
 [rNR51]  = $FF25;
@@ -16,6 +17,17 @@
 [rRP]    = $FF56; // CGB Mode Only
 [rSVBK]  = $FF70; // 
 
+
+P1F_5        = %00100000 // P15 out port, set to 0 to get buttons
+P1F_4        = %00010000 // P14 out port, set to 0 to get dpad
+P1F_3        = %00001000 // P13 in port
+P1F_2        = %00000100 // P12 in port
+P1F_1        = %00000010 // P11 in port
+P1F_0        = %00000001 // P10 in port
+
+P1F_GET_DPAD = P1F_5
+P1F_GET_BTN  = P1F_4
+P1F_GET_NONE = P1F_4 | P1F_5
 
 [rRAMG]  = $0100;
 [rROMB0] = $2100;
@@ -47,6 +59,10 @@
 //	Start    = $14
 //	Start    = $00
 //  FUN_0705 = $0C
+//  FUN_05E3 = $0B
+//  FUN_05E3 = $0A
+[$C47F]  = $C47F;
+//  FUN_ROM31_5040 
 [$C51F]  = $C51F;
 //	Start = $00
 [$C520]  = $C520;
@@ -94,13 +110,13 @@
 [$C60B]  = $C60B;
 //	Start = $FF
 [$DD09]  = $DD09;
-//  Unknown1 = $00;
+//  FUN_3290 = $00;
 [$DD12]  = $DD12;
-//  Unknown1_3 = $00;
+//  FUN_32DB = $00;
 [$DD13]  = $DD13;
-//  Unknown1_3 = $00;
+//  FUN_32DB = $00;
 [$DD14]  = $DD14;
-//  Unknown1_3 = $00;
+//  FUN_32DB = $00;
 
 
 
@@ -141,86 +157,87 @@ Start :: proc() {
 	[$C60A] = 255;
 	[$C60B] = 255;
 
-	Unknown1();
+	FUN_3290();
 
 	[$C58C] = 0;
 
-	if [IsGBC] == true {
+
+	if [IsGBC] {
 		[rVBK]  = 0;
 		[rSVBK] = 0;
 		[rRP]   = 0;
 
-		Unknown3();
-
-		[$C524] = 0;
+		FUN_ROM2_42FA();
 	} else {
-		FUN_05E2();
+		if FUN_05E2() {
+			Wait1750_X(12);
 
-		Wait1750_X(12);
+			[$C47C] = 20;
+			FUN_ROM31_5040();
+			Wait7000();
 
-		[$C47C] = 20;
-		FUN_ROM31_5040();
-		Wait7000();
+			[$C47C] = 2;
+			FUN_ROM31_5040();
+			Wait7000();
 
-		[$C47C] = 2;
-		FUN_ROM31_5040();
-		Wait7000();
-		
-		[$C47C] = 3;
-		FUN_ROM31_5040();
-		Wait7000();
-		
-		[$C47C] = 4;
-		FUN_ROM31_5040();
-		Wait7000();
-		
-		[$C47C] = 5;
-		FUN_ROM31_5040();
-		Wait7000();
-		
-		[$C47C] = 6;
-		FUN_ROM31_5040();
-		Wait7000();
-		
-		[$C47C] = 7;
-		FUN_ROM31_5040();
-		Wait7000();
-		
-		[$C47C] = 8;
-		FUN_ROM31_5040();
-		Wait7000();
-		
-		[$C47C] = 9;
-		FUN_ROM31_5040();
-		Wait7000();
+			[$C47C] = 3;
+			FUN_ROM31_5040();
+			Wait7000();
 
-		FUN_0705(12, 2048, $446C, 23);
-		Wait7000();
+			[$C47C] = 4;
+			FUN_ROM31_5040();
+			Wait7000();
 
-		FUN_06A8($0D, $17, $44, $8C);
-		Wait7000();
+			[$C47C] = 5;
+			FUN_ROM31_5040();
+			Wait7000();
 
-		[$C47C] = 18;
-		FUN_ROM31_5040();
-		Wait7000();
-		
-		[$C47C] = 10;
-		FUN_ROM31_5040();
-		Wait7000();
+			[$C47C] = 6;
+			FUN_ROM31_5040();
+			Wait7000();
 
-		[$C47C] = 19;
-		FUN_ROM31_5040();
-		Wait7000();
+			[$C47C] = 7;
+			FUN_ROM31_5040();
+			Wait7000();
 
-		[$C47C] = 14;
-		FUN_ROM31_5040();
-		Wait7000();
+			[$C47C] = 8;
+			FUN_ROM31_5040();
+			Wait7000();
 
-		[$C524] = 1;
-		[$C523] = 255;
-		[$C51F] = 0;
-		[$C520] = 0;
+			[$C47C] = 9;
+			FUN_ROM31_5040();
+			Wait7000();
+
+			FUN_0705(12, 2048, $446C, 23);
+			Wait7000();
+
+			FUN_06A8($0D, $17, $44, $8C);
+			Wait7000();
+
+			[$C47C] = 18;
+			FUN_ROM31_5040();
+			Wait7000();
+
+			[$C47C] = 10;
+			FUN_ROM31_5040();
+			Wait7000();
+
+			[$C47C] = 19;
+			FUN_ROM31_5040();
+			Wait7000();
+
+			[$C47C] = 14;
+			FUN_ROM31_5040();
+			Wait7000();
+
+			[$C524] = 1;
+			[$C523] = 255;
+			[$C51F] = 0;
+			[$C520] = 0;
+		}
 	}
+
+	[$C524] = 0;
 
 	ei;
 
@@ -235,7 +252,7 @@ Start :: proc() {
 		[$C52B] = 0;
 		[$C52F] = 0;
 		[$C530] = 0;
-		Unknown2();
+		FUN_0355();
 
 		[$C5DF]	= 0;
 		[$C5E0]	= 0;
@@ -264,10 +281,10 @@ Start :: proc() {
 
 			halt;
 
-			if [$C5DF] == 0 do continue;
-			if [$C56C] == 0 do break;
+			if [$C5DF] == 0           do continue;
+			if [$C56C] == 0           do break;
 			if bit(7, [$C56C]) == 128 do continue;
-			else                          do break;
+			else                      do break;
 		}
 
 		di;
@@ -276,8 +293,8 @@ Start :: proc() {
 		Wait7000();
 
 		[$C47C] = 0;
+		FUN_ROM23_5040();
 
-		FUN_ROM23_5040()
 		Wait7000();
 	}
 }
@@ -299,6 +316,104 @@ CopyDMATransfer :: proc() {
 }
 ROMDMA: db  $3E, $C0, $E0, $46, $3E, $28, $3D, $20, $FD, $C9;
 
+SECTION "05E2", ROM0[$05E2]
+// FUN_05E2 ()
+FUN_05E2 :: proc() -> bool {
+
+	[$C47C] = $0B;
+	FUN_ROM31_5040();
+
+	Wait7000();
+
+	if [rP1] & 3 == 3 {
+		[rP1] = P1F_GET_DPAD;
+		[rP1] = P1F_GET_NONE;
+		[rP1] = P1F_GET_BTN;
+		[rP1] = P1F_GET_NONE;
+
+		if [rP1] & 3 == 3 {
+
+			[$C47C] = $0A;
+			FUN_ROM31_5040();
+
+			Wait7000();
+
+			return false;
+		}
+	}
+
+	[$C47C] = $0A;
+	FUN_ROM31_5040();
+
+	Wait7000();
+
+	return true;
+}
+
+SECTION "0705", ROM0[$0705]
+// FUN_0705 (A: value, BC: counter, DE: ptr, H: bank)
+FUN_0705 :: proc(A: value, BC: counter, DE: ptr, H: bank) {
+	
+	// Sets variable to input
+	[$C47C] = A;
+
+	if [$C524] == 0 do return;
+
+
+	{ HL, BC
+		DisableLCD();
+		FUN_0B9B();
+
+		// Sets the screen to 0,0
+		[rSCX] = $00;
+		[rSCY] = $00;
+		// Pallette: Black, Dark gray,Light gray, White 
+		[rBGP] = $E4;
+	}
+
+	// Grabs ROM bank
+	A = [rRAMB];
+	{ AF
+		// Sets from bank to input
+		{ BC
+			[rROMB0] = bank;
+		}
+
+		// Copies data from DE to [$8800] VRAM
+		HL = $8800;
+		for counter != 0 {
+			[HL] = [DE];
+			HL  += 1;
+			DE  += 1;
+			BC  -= 1;
+		}
+
+		// Puts an incremented A into every $14 starting at [$9800]VRAM
+		HL = $9800;
+		DE = $000C;
+		A  = $80;
+		C  = $0D;
+		for C != 0 {
+			B = $14;
+			for B != 0 {
+				[HL] = A;
+				HL  += 1;
+				A   += 1;
+				B   -= 1;
+			}
+			HL += DE;
+			C  -=  1;
+		}
+
+		[rLCDC] = $81;
+		[$C5EC] = $81;
+
+		Wait1750_X(5);
+		FUN_ROM31_5040();
+		DisableLCD();
+	}
+	[rROMB0] = A;
+}
 
 SECTION "SetInterrupts", ROM0[$078D]
 // Sets enabled interrupts, then disables LCD
@@ -316,7 +431,6 @@ DisableLCD :: proc() {
 	reset(7, [$FF40]);
 	reset(7, [$C5EC]);
 }
-
 
 SECTION "MemInit", ROM0[$08D0]
 // Initializes various parts of both console RAM and Cart RAM
@@ -355,18 +469,18 @@ Memset :: proc(A: value, BC: counter, HL: pointer) {
 	}
 }
 
-SECTION "Unknown1", ROM0[$3290]
+SECTION "FUN_3290", ROM0[$3290]
 // Preps audio then does some audio clearing
-Unknown1 :: proc() {
-	Unknown1_3(0,0);
-
+FUN_3290 :: proc() {
+	// Sets some variables
+	FUN_32DB(0,0);
 	[rNR52] = $80;
 	[rNR51] = $00;
 	[$DD09] = $00;
 	[rNR50] = $77;
 
 	// Insert $FFFF every $22 from $DC00-$DCCC
-	HL = $DC00;
+	HL = $DC00;              
 	DE = $0020;
 	B  = $06;
 	for B != 0 {
@@ -376,83 +490,82 @@ Unknown1 :: proc() {
 		B    -= $01;
 	}
 
-	// 
+	// Clears $48 bytes from [$DCC0]-[$DD08]
 	HL = $DCC0;
 	B  = $48
 	for i != 0 {
-		[HL+] = $00;
-		B    -= $01;
+		[HL] = $00;
+		HL  += $01;
+		B   -= $01;
 	}
 
+	// Sets some variables
 	[$DD15] = 0;
 	[$DD19] = 0;
 }
-Unknown1_1 :: proc() {
+FUN_32C6 :: proc() {
 	[$DD15] = 0;
 	[$DD09] = 0;
 }
-Unknown1_2 :: proc() {
+FUN_32D1 :: proc() {
 	[$DD15] = 4;
 	[$DD09] = 4;
 }
-Unknown1_3 :: proc(B: val1, C: val2) {
+FUN_32DB :: proc(B: val1, C: val2) {
 	[$DD12] = B;
 	[$DD13] = C;
 	[$DD14] = 0;
 }
 
-SECTION "0705", ROM0[$0705]
-// FUN_0705 (A: value, BC: counter, DE: ptr, H: bank)
-FUN_0705 :: proc(A: value, BC: counter, DE: ptr, H: bank) {
-	[$C47C] = A;
+SECTION "5040", ROMX[$5040], BANK[31]
+// I still have no idea about this function
+// All it really does is read/write the joypad a bunch of times
+FUN_ROM31_5040 :: proc() {
+	if ![$C524] do return;
 
-	if [$C524] == 0 do return;
+	if [$C47C] != $FF {
+		// Get pointer from ROM
+		L   = [$C47C];
+		HL  = ([$C47C] * 2) + $5094;
+		DE  = [HL];
+		HL  = DE;
+	} else do HL = $C47F;
 
-	{ HL, BC
-		DisableLCD();
-		FUN_0B9B();
+	if [HL] & $07 == 0 do return;
 
-		[rSCX] = $00;
-		[rSCY] = $00;
-		[rBGP] = $E4;
-	}
+	B = [HL] & 7;
+	C = $00;
 
-	A = [rRAMB];
-	{ AF
+	for {
 		{ BC
-			[rROMB0] = bank;
-		}
+			[rP1] = $00;
+			[rP1] = P1F_GET_NONE;
 
-		HL = $8800;
-		for counter != 0 {
-			[HL] = [DE];
-			HL  += 1;
-			DE  += 1;
-			BC  -= 1;
-		}
-
-		HL = $9800;
-		DE = $000C;
-		A  = $80;
-		C  = $0D;
-		for C != 0 {
-			B = $14;
+			B = $10;
+			// Goes through the next 16 bytes and tests each one
 			for B != 0 {
-				[HL] = A;
-				HL  += 1;
-				A   += 1;
-				B   -= 1;
+				E   = $08;
+				D   = [HL];
+				HL += 1;
+				// Goes through every bit in D and sets [rP1] to btn or dpad depending
+				for E != 0 {
+					if !bit(0, D) do A = P1F_GET_DPAD;
+					else          do A = P1F_GET_BTN;
+
+					[rP1] = A;
+					[rP1] = $00;
+
+					D  = D << 1;
+					E -= 1;
+				}
+				B -= 1;
 			}
-			HL += DE;
-			C  -=  1;
+
+			[rP1] = P1F_GET_DPAD;
+			[rP1] = P1F_GET_NONE;
 		}
 
-		[rLCDC] = $81;
-		[$C5EC] = $81;
-
-		Wait1750_X(5);
-		FUN_ROM31_5040();
-		DisableLCD();
+		B -= 1;
+		if B == 0 do return;
 	}
-	[rROMB0] = A;
 }

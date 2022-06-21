@@ -82,7 +82,7 @@ Start:             ;; $0150
 	ld  [$C60A],a            ;; 
 	ld  [$C60B],a            ;; [$C60A-$C60B] = $FF
 
-	call Unknown1            ;; =Unknown1() ;; Audio prep?
+	call FUN_3290            ;; =FUN_3290() ;; Audio prep?
 
 	xor a                    ;;
 	ld  [$C58C],a            ;; [$C58C] = $00
@@ -98,7 +98,7 @@ Start:             ;; $0150
 
 	ld  hl,$42FA             ;;
 	ld  b,$02                ;;
-	rst $10                  ;; =RST10 (2, $42FA) ;; Call Unknown3
+	rst $10                  ;; =RST10 (2, $42FA) ;; Call FUN_ROM2_42FA
 
 	jr  .LAB_01D8            ;;
 
@@ -264,7 +264,7 @@ Start:             ;; $0150
 .LAB_02D1:         ;; $02D1
 	ei
 
-.LAB_02D2:         ;; $02D2
+.main_loop:        ;; $02D2
 	call VRAMClear
 
 	call FUN_0BA7
@@ -280,7 +280,7 @@ Start:             ;; $0150
 	ld  [$C52B],a
 	ld  [$C52F],a
 	ld  [$C530],a
-	Call Unknown2
+	Call FUN_0355
 
 	xor a
 	ld  [$C5DF],a
@@ -305,7 +305,7 @@ Start:             ;; $0150
 	ld  [hl+], a
 	ld  [hl], a
 
-.LAB_0324:         ;; $0324
+.loop:             ;; $0324
 	ld  a,[$C58A]
 	or  a
 	call z,FUN_095B
@@ -314,16 +314,16 @@ Start:             ;; $0150
 	
 	ld  a,[$C5DF]
 	or  a
-	jr  z,.LAB_0324
+	jr  z,.loop
 
 	ld  a,[$C56C]
 	or  a
-	jr  z,.LAB_033D
+	jr  z,.break
 
 	bit 7,a
-	jr  z,.LAB_0324
+	jr  z,.loop
 
-.LAB_033D:         ;; $033D
+.break:            ;; $033D
 	di
 
 	call SetInterrupts
@@ -339,7 +339,7 @@ Start:             ;; $0150
 
 	call Wait7000            ;; =Wait7000
 
-	jp  .LAB_02D2
+	jp  .main_loop
 
 
 ;---------------------------------- TODO:
@@ -348,182 +348,9 @@ SECTION "03A4", ROM0[$03A4]
 FUN_03A4:
 	ret
 
-;---------------------------------- TODO:
-
-;---------------------------------- TODO:
-
-SECTION "05E2", ROM0[$05E2]
-
-
-;; FUN_05E2 ()
-FUN_05E2:          ;; $05E2
-	ld  a,$0B                ;;
-	ld  [$C47C],a            ;; [$C47C] = $0B
-
-	ld  b,$1F                ;;
-	ld  hl,$5040             ;;
-	rst $10                  ;; =RST10 (31, $5040) ;; Call FUN_ROM31_5040
-
-	call Wait7000            ;; =Wait7000 ()
-
-	ldh a,[rP1]              ;;
-	and $03                  ;;
-	cp  $03                  ;;
-	jr  nz,.leave            ;; if Left+Right / B+A are pressed, leave
-
-	ld  a,P1F_GET_DPAD       ;;
-	ldh [rP1],a              ;;
-
-	ldh a,[rP1]              ;;
-	ldh a,[rP1]              ;;
-
-	ld  a,P1F_GET_NONE       ;;
-	ldh [rP1],a              ;;
-
-	ld  a,P1F_GET_BTN        ;;
-	ldh [rP1],a              ;;
-
-	ldh a,[rP1]              ;;
-	ldh a,[rP1]              ;;
-	ldh a,[rP1]              ;;
-	ldh a,[rP1]              ;;
-	ldh a,[rP1]              ;;
-	ldh a,[rP1]              ;;
-
-	ld  a,P1F_GET_NONE       ;;
-	ldh [rP1],a              ;;
-
-	ldh a,[rP1]              ;;
-	ldh a,[rP1]              ;;
-	ldh a,[rP1]              ;;
-
-	ldh a,[rP1]              ;;
-	and $03                  ;;
-	cp  $03                  ;;
-	jr  nz,.leave            ;; if Left+Right / B+A are pressed, leave
-
-	ld  a,$0A                ;;
-	ld  [$C47C],a            ;;
-
-	ld  b,$1F                ;;
-	ld  hl,$5040             ;;
-	rst $10                  ;; =RST10 (31, $5040) ;; Call FUN_ROM31_5040
-
-	call Wait7000            ;; =Wait7000 ()
-	sub a                    ;; return 0
-	ret
-
-.leave:
-	ld  a,$0A                ;;
-	ld  [$C47C],a            ;;
-
-	ld  b,$1F                ;;
-	ld  hl,$5040             ;;
-	rst $10                  ;; =RST10 (31, $5040) ;; Call FUN_ROM31_5040
-
-	call Wait7000            ;; =Wait7000 ()
-
-	scf                      ;; carry = true
-	ret
-
-
-;---------------------------------- TODO:
-
-;---------------------------------- TODO:
-
 SECTION "06A8", ROM0[$06A8]
 FUN_06A8:
 	ret
-
-;---------------------------------- TODO:
-
-SECTION "0705", ROM0[$0705]
-
-
-;; FUN_0705 (A: value, BC: counter, DE: ptr, H: bank)
-FUN_0705:
-	ld  [$C47C],a            ;; [$C47C] = [value]
-
-	ld  a,[$C524]            ;;
-	or  a                    ;;
-	ret z                    ;; if [$C524] == 0, return
-
-
-	push hl                  ;;
-	push bc                  ;;
-
-	call DisableLCD          ;; =DisableLCD ()
-
-	call FUN_0B9B            ;; TODO:
-
-	xor a                    ;;
-	ldh [rSCX],a             ;;
-	ldh [rSCY],a             ;;
-	ld  a,$E4                ;;
-	ldh [rBGP],a             ;;
-
-	pop bc                   ;;
-	pop hl                   ;;
-
-
-	ld  a,[$4000]            ;; usually uses $4100, for some reson this one doesn't
-	push af                  ;; Save current bank
-
-	push bc                  ;;
-	ld  a,h                  ;;
-	ld  [rROMB0],a           ;; Sets bank to [bank]
-	pop bc                   ;;
-
-	ld  hl,$8800             ;;
-
-.LAB_072D:
-	ld  a,[de]               ;;
-	ld  [hl+],a              ;; [HL] = [DE]
-	inc de                   ;;
-	dec bc                   ;;
-	ld  a,b                  ;;
-	or  c                    ;;
-	jr  nz,.LAB_072D         ;; if BC != 0, loop
-
-	ld  hl,$9800             ;;
-	ld  de,$000C             ;;
-	ld  a,$80                ;;
-	ld  c,$0D                ;;
-
-.LAB_073F:
-	ld  b,$14                ;;
-
-.LAB_0741:
-	ld  [hl+],a              ;;
-	inc a                    ;;
-	dec b                    ;;
-	jr  nz,.LAB_0741         ;; if B != 0, loop
-
-	add hl,de                ;;
-	dec c                    ;;
-	jr  nz,.LAB_073F         ;; if C != 0, loop
-
-	ld  a,$81                ;;
-	ldh [rLCDC],a            ;;
-	ld  [$C5EC],a            ;;
-	
-	ld  bc,$0005             ;;
-	call Wait1750_X          ;; =Wait1750_X (5)
-	
-	ld  hl,$5040             ;;
-	ld  b,$1F                ;;
-	rst $10                  ;; =RST10 (31, $5040) ;; Call FUN_ROM31_5040
-
-	ld  bc,$0006             ;;
-	call Wait1750_X          ;; =Wait1750_X (6)
-
-	call DisableLCD          ;; =DisableLCD ()
-
-	pop af                   ;;
-	ld  [rROMB0],a           ;; Sets bank back to start
-	ret
-
-
 	
 SECTION "095B", ROM0[$095B]
 FUN_095B:
@@ -535,10 +362,6 @@ FUN_0B7F:
 
 SECTION "0B9B", ROM0[$0B9B]
 FUN_0B9B:
-	ret
-
-SECTION "0BA7", ROM0[$0BA7]
-FUN_0BA7:
 	ret
 
 SECTION "0DCA", ROM0[$0DCA]
@@ -555,27 +378,42 @@ FUN_256A:
 
 
 
-INCLUDE "src/Bank0/unknown/unknown2.inc"     ;; ROM0[$0355]
+INCLUDE "src/Bank0/FUN_0355.inc"             ;; ROM0[$0355]
 
 INCLUDE "src/Bank0/Wait7000.inc"             ;; ROM0[$05D1]
-
+INCLUDE "src/Bank0/FUN_05E2.inc"             ;; ROM0[$05E2]
+;INCLUDE "src/Bank0/FUN_0646.inc"             ;; ROM0[$0646]
 INCLUDE "src/Bank0/Wait1750_X.inc"           ;; ROM0[$0692]
-
+;INCLUDE "src/Bank0/FUN_06A8.inc"             ;; ROM0[$06A8]
+INCLUDE "src/Bank0/FUN_0705.inc"             ;; ROM0[$0705]
+;INCLUDE "src/Bank0/FUN_076B.inc"             ;; ROM0[$076B]
 INCLUDE "src/Bank0/InterruptLCD.inc"         ;; ROM0[$078D]
+;INCLUDE "src/Bank0/FUN_07E0.inc"             ;; ROM0[$07E0]
+;INCLUDE "src/Bank0/FUN_07F1.inc"             ;; ROM0[$07F1]
+;INCLUDE "src/Bank0/FUN_07FD.inc"             ;; ROM0[$07FD]
+;INCLUDE "src/Bank0/FUN_0829.inc"             ;; ROM0[$0829]
+;INCLUDE "src/Bank0/FUN_085C.inc"             ;; ROM0[$085C]
+;INCLUDE "src/Bank0/FUN_0897.inc"             ;; ROM0[$0897]
 
 INCLUDE "src/Bank0/MemInitial.inc"           ;; ROM0[$08D0]
 INCLUDE "src/Bank0/VRAMClear.inc"            ;; ROM0[$0930]
 INCLUDE "src/Bank0/Memset.inc"               ;; ROM0[$0949]
+;INCLUDE "src/Bank0/FUN_095B.inc"             ;; ROM0[$095B]
+;INCLUDE "src/Bank0/FUN_09F3.inc"             ;; ROM0[$09F3]
+;INCLUDE "src/Bank0/FUN_0A17.inc"             ;; ROM0[$0A17]
+;INCLUDE "src/Bank0/FUN_0A61.inc"             ;; ROM0[$0A61]
+
+INCLUDE "src/Bank0/FUN_0BA7.inc"             ;; ROM0[$0BA7]
 
 INCLUDE "src/Bank0/CopyData.inc"             ;; ROM0[$1679]
 
-INCLUDE "src/Bank0/unknown/unknown1.inc"     ;; ROM0[$3290]
+INCLUDE "src/Bank0/FUN_3290.inc"             ;; ROM0[$3290]
 
 
-INCLUDE "src/Bank2/unknown3.inc"             ;; ROMX[$3290], BANK[2]
+INCLUDE "src/Bank2/FUN_42FA.inc"             ;; ROMX[$3290], BANK[2]
 
 
-INCLUDE "src/Bank31/unknown4.inc"            ;; ROMX[$5040], BANK[31]
+INCLUDE "src/Bank31/FUN_5040.inc"            ;; ROMX[$5040], BANK[31]
 
 
 

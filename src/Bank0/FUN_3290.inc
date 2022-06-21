@@ -1,12 +1,12 @@
 
-SECTION "Unknown1", ROM0[$3290]
+SECTION "FUN_3290", ROM0[$3290]
 
 
 ;; Unknown1 ()
 ;; Preps audio then does some audio clearing
-Unknown1:          ;; $3290
+FUN_3290:          ;; $3290
 	ld  bc,$0000           ;; 
-	call Unknown1_3        ;; =Unknown1_3($00, $00)
+	call FUN_32DB          ;; =FUN_32DB($00, $00)
 
 	ld  a,$80              ;;                       ;;
 	ldh [rNR52],a          ;; [rNR52] = 1000 0000   ;;
@@ -46,14 +46,14 @@ Unknown1:          ;; $3290
 
 ;---------------------------------- TODO:
 
-SECTION "Unknown1_1", ROM0[$32C6]
+SECTION "FUN_32C6", ROM0[$32C6]
 
 
-;; Unknown1_1 ()
+;; FUN_32C6 ()
 ;; Sets a variable to $00 then sets another to a seperate variable
 ;; NOTE: This function hasn't been called
 ;;       It was found by disassembling between functions
-Unknown1_1:        ;; $32C6
+FUN_32C6:        ;; $32C6
 	xor a
 	ld  [$DD15],a
 	ld  a,[$DD16]
@@ -64,14 +64,14 @@ Unknown1_1:        ;; $32C6
 
 ;---------------------------------- TODO:
 
-SECTION "Unknown1_2", ROM0[$32D1]
+SECTION "FUN_32D1", ROM0[$32D1]
 
 
-;; Unknown1_2 ()
+;; FUN_32D1 ()
 ;; Sets one variable to $04 and another to $00
 ;; NOTE: This function hasn't been called
 ;;       It was found by disassembling between functions
-Unknown1_2:        ;; $32D1
+FUN_32D1:        ;; $32D1
 	ld  a,$04
 	ld  [$DD15],a
 	xor a
@@ -82,12 +82,12 @@ Unknown1_2:        ;; $32D1
 
 ;---------------------------------- TODO:
 
-SECTION "Unknown1_3", ROM0[$32DB]
+SECTION "FUN_32DB", ROM0[$32DB]
 
 
-;; Unknown1_3 (B: val1, C: val2)
+;; FUN_32DB (B: val1, C: val2)
 ;; Sets a few values
-Unknown1_3:          ;; $32DB
+FUN_32DB:          ;; $32DB
 	ld  a,b                ;;
 	ld  [$DD12],a          ;;
 	ld  a,c                ;;

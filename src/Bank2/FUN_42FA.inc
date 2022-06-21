@@ -1,10 +1,10 @@
 
-SECTION "Unknown3", ROMX[$42FA], BANK[2]
+SECTION "FUN_42FA", ROMX[$42FA], BANK[2]
 
 
-;; Unknown3 ()
+;; FUN_ROM2_42FA ()
 ;; 
-Unknown3:
+FUN_ROM2_42FA:
 	ld  a,[IsGBC]            ;;
 	or  a                    ;;
 	ret z                    ;; if IsGBC == 0, return

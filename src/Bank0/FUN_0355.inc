@@ -1,10 +1,10 @@
 
-SECTION "Unknown2", ROM0[$0355]
+SECTION "FUN_0355", ROM0[$0355]
 
 
-;; Unknown2 ()
+;; FUN_0355 ()
 ;; 
-Unknown2:          ;; $0355
+FUN_0355:          ;; $0355
 	ld  a,[$C5DB]
 	rst $00
 	ld  l,e

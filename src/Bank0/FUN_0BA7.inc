@@ -1,0 +1,8 @@
+
+SECTION "FUN_0BA7", ROM0[$0BA7]
+
+
+;;
+FUN_0BA7:
+	
+	ret
