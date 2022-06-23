@@ -5,15 +5,12 @@ Copies DMA transfer function from ROM to beginning of high-memory.
 ```
 copy_dma_transfer :: proc() {
 	C  = $80;   // Beginning of DMATransfer
-	B  = $0A;
 	HL = $008E;
 	
-	for B != 0 {
-		[$FF00+C] = [HL];
+	for i:=10; i!=0; i-=1 {
+		[$FF00+C] = [HL+];
 		
-		HL += 1;
-		C  += 1;
-		B  -+ 1;
+		C += 1;
 	}
 }
 

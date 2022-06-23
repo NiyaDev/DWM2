@@ -174,7 +174,7 @@ main :: proc() {
 - [copy_dma_transfer()](bank0/copy_dma_transfer.md)
 - [memset(value, counter, ptr)](bank0/memset.md)
 - [Wait7000()](bank0/wait_7000.md)
-- [Wait1750_X()](bank0/wait1750_x.md)
+- [Wait1750_X(counter)](bank0/wait1750_x.md)
 - [VRAMClear()](bank0/vram_clear.md)
 - [clear_work_start()](bank0/clear_work_start.md)
 - [FUN_0355()](bank0/FUN_0355.md)

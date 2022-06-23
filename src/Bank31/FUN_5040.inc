@@ -32,7 +32,7 @@ FUN_ROM31_5040:    ;; 31,5040
 .continue:         ;; 31,505E
 	ld  a,[hl]               ;;
 	and $07                  ;; Take the first u8 at [hl] and check if 7
-	ret z                    ;; if [HL] & 7 != 0, return
+	ret z                    ;; if [HL] & 7 == 0, return
 
 	ld  b,a                  ;;
 	ld  c,$00                ;;
