@@ -219,6 +219,10 @@ Bit 2-0 - Bank Specification (0,1: Specify Bank 1; 2-7: Specify Banks 2-7)
 ---
 
 ## Software
+##### C524
+___[SkipWait?] | bool___
+When set to false, will return out of wait functions without waiting.
+
 ##### C525
 ___[IsGBC] | bool___
 True if Gameboy Color
