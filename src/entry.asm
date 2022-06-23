@@ -335,7 +335,7 @@ Start:             ;; $0150
 
 	ld  b,$1F                ;;
 	ld  hl,$5040             ;;
-	rst $10                  ;; =RST10 (31, $5040) ;; FUN_ROM23_5040 ()
+	rst $10                  ;; =RST10 (31, $5040) ;; FUN_ROM31_5040 ()
 
 	call Wait7000            ;; =Wait7000
 
