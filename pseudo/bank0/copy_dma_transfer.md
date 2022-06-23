@@ -21,4 +21,4 @@ ROMDMA: db  $3E, $C0, $E0, $46, $3E, $28, $3D, $20, $FD, $C9;
 ```
 ## Variables
 ##### Software
-- [DMATransfer](variables#FF80-FF89)
+- [DMATransfer](variables.md#FF80-FF89)

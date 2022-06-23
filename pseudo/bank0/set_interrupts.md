@@ -22,8 +22,8 @@ disable_lcd :: proc() {
 ```
 ## Variables
 ##### Hardware
-- [rIF](variables#FF0F)
-- [rLCDC](variables#FF40-FF4B)
-- [rLY](variables#FF40-FF4B)
+- [rIF](variables.md#FF0F)
+- [rLCDC](variables.md#FF40-FF4B)
+- [rLY](variables.md#FF40-FF4B)
 ##### Software
-- [$C5EC](variables#C5EC)
+- [$C5EC](variables.md#C5EC)
