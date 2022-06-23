@@ -1,3 +1,5 @@
+# main()
+### Code
 ```
 main :: proc() {
 	
@@ -7,15 +9,15 @@ main :: proc() {
 	di();
 	SP = $DFFF;
 	
-	SetInterrupts();
-	MemInitialization();
-	CopyDMATransfer();
+	set_interrupts();
+	memory_initialization();
+	copy_dma_transfer();
 	
-	Memset(0, 7168, $8000);
+	memset(0, 7168, $8000);
 	
 	if [IsGBC] {
 		[rVBK] = 1;
-		Memset(0, 2048, $9800);
+		memset(0, 2048, $9800);
 		[rVBK] = 0;
 	}
 	
@@ -44,7 +46,7 @@ main :: proc() {
 
         FUN_ROM2_42FA();
 	} else {
-		if  {
+		if FUN_05E2() {
 			Wait1750_X(12);
 
             [$C47C] = 20;
@@ -166,12 +168,13 @@ main :: proc() {
 ```
 
 
-# Functions
-- [SetInterrupts()](bank0/set_interrupts.md)
-- [MemInitialization()](bank0/memory_initialization.md)
-- [CopyDMATransfer()](bank0/copy_dma_transfer.md)
-- [Memset(value, counter, ptr)](bank0/memset.md)
+## Functions
+- [set_interrupts()](bank0/set_interrupts.md)
+- [memory_initialization()](bank0/memory_initialization.md)
+- [copy_dma_transfer()](bank0/copy_dma_transfer.md)
+- [memset(value, counter, ptr)](bank0/memset.md)
 - [Wait7000()](bank0/wait_7000.md)
+- [Wait1750_X()](bank0/wait1750_x.md)
 - [VRAMClear()](bank0/vram_clear.md)
 - [clear_work_start()](bank0/clear_work_start.md)
 - [FUN_0355()](bank0/FUN_0355.md)
@@ -185,18 +188,58 @@ main :: proc() {
 - [FUN_ROM2_42FA()](bank2/FUN_42FA.md)
 - [FUN_ROM31_5040()](bank31/FUN_5040.md)
 
-# Variables
+## Variables
 ##### Hardware
-- [rP1] = $FF00;
-- [rIF] = $FF0F;
-- [rNR50] = $FF24;
-- [rNR51] = $FF25;
-- [rNR52] = $FF26;
-- [rSCY] = $FF42;
-- [rSCX] = $FF43;
-- [rBGP] = $FF47;  
-- [rVBK] = $FF4F;
-- [rRP] = $FF56;
-- [rSVBK] = $FF70;
-##### Game
-- [IsGBC] :: $C525
+- [rP1](variables#FF00)
+- [rIF](variables#FF0F)
+- [rNR50](variables#FF10-FF26)
+- [rNR51](variables#FF10-FF26)
+- [rNR52](variables#FF10-FF26)
+- [rSCY](variables#FF40-FF4B)
+- [rSCX](variables#FF40-FF4B)
+- [rBGP](variables#FF40-FF4B)
+- [rVBK](variables#FF4F)
+- [rRP](variables#FF56)
+- [rSVBK](variables#FF70)
+- [rRAMB](variables#MBC5)
+- [rRAMG](variables#MBC5)
+- [rROMB0](variables#MBC5)
+- [rROMB1](variables#MBC5)
+##### Software
+- [IsGBC](variables#C525)
+- [$C0C0](variables#C0C0)
+- [$C0C1](variables#C0C1)
+- [$C0D8](variables#C0D8)
+- [$C0D9](variables#C0D9)
+- [$C47C](variables#C47C)
+- [$C5DB](variables#C5DB)
+- [$C5DC](variables#C5DC)
+- [$C5DD](variables#C5DD)
+- [$C5DE](variables#C5DE)
+- [$C51F](variables#C51F)
+- [$C520](variables#C520)
+- [$C523](variables#C523)
+- [$C524](variables#C524)
+- [$C52B](variables#C52B)
+- [$C52F](variables#C52F)
+- [$C530](variables#C530)
+- [$C56C](variables#C56C)
+- [$C586](variables#C586)
+- [$C58A](variables#C58A)
+- [$C58C](variables#C58C)
+- [$C58D](variables#C58D)
+- [$C58E](variables#C58E)
+- [$C5DF](variables#C5DF)
+- [$C5E0](variables#C5E0)
+- [$C5ED](variables#C5ED)
+- [$C5EE](variables#C5EE)
+- [$C5F0](variables#C5F0)
+- [$C5F1](variables#C5F1)
+- [$C604](variables#C604)
+- [$C605](variables#C605)
+- [$C606](variables#C606)
+- [$C607](variables#C607)
+- [$C60A](variables#C60A)
+- [$C60B](variables#C60B)
+- [$FFB9](variables#FFB9)
+- [$FFBA](variables#FFBA)

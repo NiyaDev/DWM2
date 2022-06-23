@@ -303,12 +303,11 @@ Start :: proc() {
 SECTION "CopyDMATransfer", ROM0[$0080]
 // Copies DMA transfer function from 0x008E to high memory
 CopyDMATransfer :: proc() {
-	C  = $80;
 	B  = $0A;
 	HL = $008E;
 	
 	for B != 0 {
-		[$FF00+C] = [HL];
+		[$FF80] = [HL];
 		HL += 1;
 		C  += 1;
 		B  -= 1;
@@ -424,11 +423,11 @@ SetInterrupts :: proc() {
 	DisableLCD();
 }
 DisableLCD :: proc() {
-	if bit(7, [$FF40]) == 0 do return;
+	if bit(7, [rLCDC]) == 0 do return;
 
 	while [rLY] != 0 {}
 
-	reset(7, [$FF40]);
+	reset(7, [rLCDC]);
 	reset(7, [$C5EC]);
 }
 
