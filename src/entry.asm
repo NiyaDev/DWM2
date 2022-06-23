@@ -371,6 +371,7 @@ INCLUDE "src/Bank0/Wait1750_X.inc"           ;; ROM0[$0692]
 ;INCLUDE "src/Bank0/FUN_06A8.inc"             ;; ROM0[$06A8]
 INCLUDE "src/Bank0/FUN_0705.inc"             ;; ROM0[$0705]
 ;INCLUDE "src/Bank0/FUN_076B.inc"             ;; ROM0[$076B]
+INCLUDE "src/Bank0/LAB_077A.inc"             ;; ROM0[$077A]
 INCLUDE "src/Bank0/InterruptLCD.inc"         ;; ROM0[$078D]
 ;INCLUDE "src/Bank0/FUN_07E0.inc"             ;; ROM0[$07E0]
 ;INCLUDE "src/Bank0/FUN_07F1.inc"             ;; ROM0[$07F1]
@@ -397,6 +398,9 @@ INCLUDE "src/Bank0/FUN_0DCA.inc"             ;; ROM0[$0DCA]
 INCLUDE "src/Bank0/CopyData.inc"             ;; ROM0[$1679]
 
 INCLUDE "src/Bank0/FUN_3290.inc"             ;; ROM0[$3290]
+
+
+INCLUDE "src/Bank1/FUN_4001.inc"             ;; ROM0[$4001]
 
 
 INCLUDE "src/Bank2/FUN_42FA.inc"             ;; ROMX[$3290], BANK[2]
