@@ -14,4 +14,4 @@ wait_1750_x :: proc(BC: counter) {
 ```
 ## Variables
 ##### Software
-- [$C524](variables.md#C524)
+- [$C524](variables/software/C524.md)

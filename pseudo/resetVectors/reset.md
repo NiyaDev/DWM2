@@ -22,5 +22,5 @@ RST10 :: proc(B: bank, HL: ptr) {
 ```
 ## Variables
 ##### Hardware
-- [rRAMB](variables.md#MBC5)
-- [rROMB0](variables.md#MBC5)
+- [rRAMB](variables/hardware/MBC5.md)
+- [rROMB0](variables/hardware/MBC5.md)

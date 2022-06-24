@@ -10,6 +10,6 @@
 - [()](bank0/)
 ## Variables
 ##### Hardware
-- [](variables.md#)
+- [](variables/hardware/)
 ##### Software
-- [](variables.md#)
+- [](variables/software/)

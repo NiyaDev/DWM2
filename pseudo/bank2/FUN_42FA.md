@@ -18,8 +18,8 @@ FUN_ROM2_42FA :: proc() {
 - [copy_data()](bank0/copy_data.md)
 ## Variables
 ##### Software
-- [IsGBC](variables.md#C525)
-- [$C49F](variables.md#C49F)
-- [$C4DF](variables.md#C4DF)
-- [$C526](variables.md#C526)
-- [$C527](variables.md#C527)
+- [IsGBC](variables/software/C525.md)
+- [$C49F](variables/software/C49F.md)
+- [$C4DF](variables/software/C4DF.md)
+- [$C526](variables/software/C526.md)
+- [$C527](variables/software/C527.md)

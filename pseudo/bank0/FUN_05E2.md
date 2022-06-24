@@ -38,6 +38,6 @@ FUN_05E2 :: proc() -> bool {
 - [wait_7000()](bank0/wait_7000.md)
 ## Variables
 ##### Hardware
-- [rP1](variables.md#FF00)
+- [rP1](variables/hardware/rP1.md)
 ##### Software
-- [$C47C](variables.md#C47C)
+- [$C47C](variables/software/C47C.md)

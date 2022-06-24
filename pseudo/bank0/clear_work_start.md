@@ -14,4 +14,4 @@ clear_work_start :: proc() {
 ```
 ## Variables
 ##### Software
-- [$FFB1](variables.md#FFB1)
+- [$FFB1](variables/software/FFB1.md)
