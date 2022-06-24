@@ -1,0 +1,98 @@
+{
+  "main": {
+    "id": "d1c6cfe95003a9a4",
+    "type": "split",
+    "children": [
+      {
+        "id": "a719b5f056861e17",
+        "type": "leaf",
+        "state": {
+          "type": "graph",
+          "state": {}
+        }
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "ed6bb6a512567ea9",
+    "type": "split",
+    "children": [
+      {
+        "id": "41058835c8feca69",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "5fcfb1ed28117b3e",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {}
+            }
+          },
+          {
+            "id": "9e563e181d9eecbb",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "e30ef2cef4b8abc7",
+    "type": "split",
+    "children": [
+      {
+        "id": "06db54aac2698314",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "adc614dbe3cb956d",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "active": "a719b5f056861e17",
+  "lastOpenFiles": [
+    "bank0/FUN_0705.md",
+    "variables/software/C5DB.md",
+    "variables/software/C47C.md",
+    "variables/software/C524.md",
+    "variables/software/C525.md",
+    "main.md",
+    "bank31/FUN_5040.md",
+    "variables.md",
+    "variables/hardware/rP1.md",
+    "bank0/FUN_05E2.md"
+  ]
+}
