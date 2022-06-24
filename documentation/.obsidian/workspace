@@ -7,8 +7,11 @@
         "id": "a719b5f056861e17",
         "type": "leaf",
         "state": {
-          "type": "graph",
-          "state": {}
+          "type": "markdown",
+          "state": {
+            "file": "bank0/FUN_077A.md",
+            "mode": "preview"
+          }
         }
       }
     ],
@@ -65,6 +68,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "bank0/FUN_077A.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -84,15 +88,15 @@
   },
   "active": "a719b5f056861e17",
   "lastOpenFiles": [
-    "bank0/FUN_0705.md",
-    "variables/software/C5DB.md",
-    "variables/software/C47C.md",
-    "variables/software/C524.md",
-    "variables/software/C525.md",
-    "main.md",
+    "bank0/FUN_077A.md",
+    "bank0/FUN_07AA.md",
     "bank31/FUN_5040.md",
-    "variables.md",
-    "variables/hardware/rP1.md",
-    "bank0/FUN_05E2.md"
+    "variables/hardware/LCDC.md",
+    "Template.md",
+    "variables/software.md",
+    "bank1/FUN_4001.md",
+    "bank0/FUN_076B.md",
+    "bank2/FUN_42FA.md",
+    "bank0/clear_8_hram.md"
   ]
 }

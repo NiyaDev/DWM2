@@ -1,6 +1,5 @@
 # copy_dma_transfer()
 Copies DMA transfer function from ROM to beginning of high-memory.
-
 ## Code
 ```
 copy_dma_transfer :: proc() {

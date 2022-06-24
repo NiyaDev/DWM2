@@ -1,5 +1,5 @@
 # copy_data()
-
+Copies data from src to dest.
 ## Code
 ```
 copy_data :: proc(BC: counter, DE: src, HL: dest) {

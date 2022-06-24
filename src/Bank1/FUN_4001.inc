@@ -1,5 +1,5 @@
 
-SECTION "FUN_4001", ROM0[$4001]
+SECTION "FUN_4001", ROMX[$4001], BANK[1]
 
 
 ;;
@@ -34,4 +34,4 @@ FUN_4001:          ;;4001
 	ld  a,$03
 	ld  [$C5EC],a
 	ld  a,$01
-	jp  LAB_077A
+	jp  FUN_077A
