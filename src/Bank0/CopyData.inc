@@ -8,6 +8,7 @@ CopyData:
 	ld  a,[de]               ;;
 	inc de                   ;;
 	ld  [hl+],a              ;; move [de] into [hl]
+	
 	dec bc                   ;;
 	ld  a,b                  ;;
 	or  c                    ;;

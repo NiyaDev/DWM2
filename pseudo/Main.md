@@ -183,7 +183,7 @@ main :: proc() {
 - [FUN_0705(12, 2048, $446C, 23)](bank0/FUN_0705.md)
 - [FUN_095B()](bank0/FUN_095B.md)
 - [FUN_0B7F()](bank0/FUN_0B7F.md)
-- [FUN_0B9B()](bank0/FUN_0B9B.md)
+- [clear_8_hram()](bank0/clear_8_hram.md)
 - [FUN_3290()](bank0/FUN_3290.md)
 - [FUN_ROM2_42FA()](bank2/FUN_42FA.md)
 - [FUN_ROM31_5040()](bank31/FUN_5040.md)
