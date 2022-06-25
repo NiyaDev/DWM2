@@ -7,8 +7,11 @@
         "id": "23279b53f3948de2",
         "type": "leaf",
         "state": {
-          "type": "graph",
-          "state": {}
+          "type": "markdown",
+          "state": {
+            "file": "bank0/FUN_14D1.md",
+            "mode": "preview"
+          }
         }
       }
     ],
@@ -65,6 +68,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "bank0/FUN_14D1.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -86,13 +90,13 @@
   "lastOpenFiles": [
     "bank0/FUN_14D1.md",
     "variables/hardware/Serial.md",
+    "variables/software/C57F.md",
+    "variables/software/C47C.md",
+    "variables/software/C5DB.md",
+    "bank1/FUN_4001.md",
+    "variables/software.md",
     "variables/hardware/LCDC.md",
     "Template.md",
-    "bank0/FUN_077A.md",
-    "bank1/FUN_4001.md",
-    "bank0/set_enabled_interrupts.md",
-    "bank0/FUN_07AA.md",
-    "variables/hardware/rIF.md",
-    "variables/hardware/rIE.md"
+    "bank0/FUN_077A.md"
   ]
 }

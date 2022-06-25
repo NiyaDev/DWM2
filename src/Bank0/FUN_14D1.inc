@@ -118,7 +118,7 @@ FUN_14D1:          ;;14D1
 .LAB_1575:
 	xor a
 	ld  [$C582],a
-	
+
 	ld  hl,$C55E
 	ld  b,$0E
 
