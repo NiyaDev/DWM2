@@ -15,4 +15,4 @@ vram_clear :: proc() {
 - [memset(value, counter, ptr)](bank0/memset.md)
 ## Variables
 ##### Software
-- [$D066](variables/software/D066.md)
+- [$D066](variables/software/D066.md) [R/W]

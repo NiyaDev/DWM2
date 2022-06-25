@@ -7,11 +7,11 @@ wait_1750_x :: proc(BC: counter) {
 	
 	for i:=BC; i!=0; i-=1 {
 		for i:=1750; i!=0; i-=1 {
-			// 36 cycles
+			// Skip 36 cycles
 		}
 	}
 }
 ```
 ## Variables
 ##### Software
-- [$C524](variables/software/C524.md)
+- [$C524](variables/software/C524.md) [R]

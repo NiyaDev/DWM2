@@ -9,5 +9,5 @@ set_enabled_interrupts :: proc(B: flags) {
 ```
 ## Variables
 ##### Hardware
-- [rIF](variables/hardware/rIF.md)
-- [rIE](variables/hardware/rIE.md)
+- [rIF](variables/hardware/rIF.md) [W]
+- [rIE](variables/hardware/rIE.md) [W]

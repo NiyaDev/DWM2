@@ -16,4 +16,4 @@ clear_4_hram :: proc(A: val, HL: ptr) {
 ```
 ## Variables
 ##### Software
-- [$FFA1 - $FFA9](variables/software/FFA1.md)
+- [\$FFA1-\$FFA9](variables/software/FFA1.md) [W]

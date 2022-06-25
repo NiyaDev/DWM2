@@ -34,7 +34,7 @@ Start:             ;; $0150
 	di                       ;;
 	ld  sp,$DFFF             ;; 
 
-	call SetInterrupts       ;; =SetInterrupts()
+	call set_interrupts      ;; =set_interrupts()
 	call MemInitialization   ;; =MemInitialization()
 	call CopyDMATransfer     ;; =CopyDMATransfer()
 
@@ -326,7 +326,7 @@ Start:             ;; $0150
 .break:            ;; $033D
 	di
 
-	call SetInterrupts
+	call set_interrupts
 
 	call Wait7000
 

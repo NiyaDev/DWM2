@@ -64,12 +64,12 @@ FUN_14D1 :: proc() {
 - [FUN_15C2()](bank0/FUN_15C2.md)
 ## Variables
 ##### Hardware
-- [rSB](variables/hardware/Serial.md#rSB($FF01))
+- [rSB](variables/hardware/Serial.md#rSB($FF01)) [R]
 ##### Software
-- [IsGBC](variables/software/C525.md)
-- [$C57F](variables/software/C57F.md)
-- [$C580](variables/software/C580.md)
-- [$C581](variables/software/C581.md)
-- [$C582](variables/software/C582.md)
-- [$C58A](variables/software/C58A.md)
-- [$C55E](variables/software/C55E.md)
+- [IsGBC](variables/software/C525.md) [R]
+- [$C57F](variables/software/C57F.md) [R/W]
+- [$C580](variables/software/C580.md) [R/W]
+- [$C581](variables/software/C581.md) [R]
+- [$C582](variables/software/C582.md) [W]
+- [$C58A](variables/software/C58A.md) [R]
+- [$C55E](variables/software/C55E.md) [W]

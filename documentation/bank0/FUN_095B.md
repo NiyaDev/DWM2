@@ -15,5 +15,5 @@ FUN_095B :: proc() {
 ```
 ## Variables
 ##### Software
-- [$C5E8](variables/software/C5E8.md)
-- [$C5E7](variables/software/C5E7.md)
+- [$C5E8](variables/software/C5E8.md) [W]
+- [$C5E7](variables/software/C5E7.md) [W]

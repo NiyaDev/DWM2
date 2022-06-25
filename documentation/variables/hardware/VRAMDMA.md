@@ -1,4 +1,4 @@
-## VRAM DMA (\$FF51-\$FF55)
+ ## VRAM DMA (\$FF51-\$FF55)
 __| VRAM DMA |__
 __{GBC Onwards}__
 

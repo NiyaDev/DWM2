@@ -20,4 +20,4 @@ FUN_077A :: proc(A: flags) {
 - [FUN_14D1()](bank0/FUN_14D1.md)
 ## Variables
 ##### Software
-- [$C58A](variables/software/C58A.md)
+- [$C58A](variables/software/C58A.md) [R]

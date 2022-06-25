@@ -14,7 +14,7 @@ FUN_0705:
 	push hl                  ;;
 	push bc                  ;;
 
-	call DisableLCD          ;; =DisableLCD ()
+	call disable_lcd         ;; =DisableLCD ()
 
 	call clear_8_hram        ;;
 
@@ -79,7 +79,7 @@ FUN_0705:
 	ld  bc,$0006             ;;
 	call Wait1750_X          ;; =Wait1750_X (6)
 
-	call DisableLCD          ;; =DisableLCD ()
+	call disable_lcd         ;; =DisableLCD ()
 
 	pop af                   ;;
 	ld  [rROMB0],a           ;; Sets bank back to start

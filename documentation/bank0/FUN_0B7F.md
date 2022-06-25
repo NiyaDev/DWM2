@@ -14,9 +14,9 @@ FUN_0B7F :: proc() {
 ```
 ## Variables
 ##### Software
-- [$C5E9](variables/software/C5E9.md)
-- [$C5EA](variables/software/C5EA.md)
-- [$C5EB](variables/software/C5EB.md)
-- [D040](variables/software/D040.md)
-- [$D041](variables/software/D041.md)
-- [$D042](variables/software/D042.md)
+- [$C5E9](variables/software/C5E9.md) [W]
+- [$C5EA](variables/software/C5EA.md) [W]
+- [$C5EB](variables/software/C5EB.md) [W]
+- [$D040](variables/software/D040.md) [W]
+- [$D041](variables/software/D041.md) [W]
+- [$D042](variables/software/D042.md) [W]

@@ -1,19 +1,19 @@
 
-SECTION "SetInterrupts", ROM0[$078D]
+SECTION "set_interrupts", ROM0[$078D]
 
 
-;; SetInterrupts ()
+;; set_interrupts ()
 ;; Sets which interrupts are enabled
 ;; then waits for LY == 91 and disables LCD
-SetInterrupts:
+set_interrupts:
 	xor  a                 ;;
 	ldh  [rIF],a           ;;
 	ldh  a,[rIE]           ;;
 	and  $E2               ;;
 	ldh  [rIE],a           ;; Disable Trans, Serial, Timer, and V-Blank interrupts, but enable LCDC
 
-DisableLCD:
-	ld  hl,$FF40           ;;
+disable_lcd:
+	ld  hl,rLCDC           ;;
 	bit $7,[hl]            ;;
 	ret z                  ;; if LCD operation == false, return
 

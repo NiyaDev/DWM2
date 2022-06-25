@@ -12,18 +12,19 @@ set_interrupts :: proc() {
 }
 
 disable_lcd :: proc() {
-	if bit(7, [rLCDC]) == 0 do return;
+	if [rLCDC] & $80 == $80 do return;
 	
+	// Wait until rLY == 0
 	for [rLY] != 0 {}
 	
-	reset(7, [rLCDC]);
-	reset(7, [$C5EC]);
+	[rLCDC] = [rLCDC] & $80;
+	[$C5EC] = [$C5EC] & $80;
 }
 ```
 ## Variables
 ##### Hardware
-- [rIF](variables/hardware/rIF.md)
-- [rLCDC](variables/hardware/LCDC.md#rLCDC($FF40))
-- [rLY](variables/hardware/LCDC.md#rLY($FF44))
+- [rIF](variables/hardware/rIF.md) [W]
+- [rLCDC](variables/hardware/LCDC.md#rLCDC($FF40)) [R]
+- [rLY](variables/hardware/LCDC.md#rLY($FF44)) [R]
 ##### Software
-- [$C5EC](variables/software/C5EC.md)
+- [$C5EC](variables/software/C5EC.md) [W]

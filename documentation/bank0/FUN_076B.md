@@ -13,4 +13,4 @@ FUN_076B :: proc() {
 ```
 ## Variables
 ##### Software
-- [$C47F](variables/software/C47F.md)
+- [$C47F](variables/software/C47F.md) [W]

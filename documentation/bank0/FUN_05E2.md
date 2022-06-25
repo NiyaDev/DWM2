@@ -10,13 +10,13 @@ FUN_05E2 :: proc() -> bool {
 
 	// This is always true
 	// When forced false it cause the game to load normally, but all transitions were disabled, making it possible to see the game loading in sprites.
-    if [rP1] & 3 == 3 {
+    if [rP1] & $03 == $03 {
         [rP1] = P1F_GET_DPAD;
         [rP1] = P1F_GET_NONE;
         [rP1] = P1F_GET_BTN;
         [rP1] = P1F_GET_NONE;
 
-        if [rP1] & 3 == 3 {
+        if [rP1] & $03 == $03 {
 		
             [$C47C] = 10;
             FUN_ROM31_5040();
@@ -38,6 +38,6 @@ FUN_05E2 :: proc() -> bool {
 - [wait_7000()](bank0/wait_7000.md)
 ## Variables
 ##### Hardware
-- [rP1](variables/hardware/rP1.md)
+- [rP1](variables/hardware/rP1.md) [R/W]
 ##### Software
-- [$C47C](variables/software/C47C.md)
+- [$C47C](variables/software/C47C.md) [W]

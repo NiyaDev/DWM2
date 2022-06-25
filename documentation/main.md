@@ -158,10 +158,10 @@ main :: proc() {
 			
 			halt();
 
-            if [$C5DF] == 0           do continue;
-            if [$C56C] == 0           do break;
-            if bit(7, [$C56C]) == 128 do continue;
-            else                      do break;
+            if [$C5DF] == 0         do continue;
+            if [$C56C] == 0         do break;
+			if [$C56C] & $80 == $80 do continue;
+            else                    do break;
 		}
 	}
 }
@@ -190,56 +190,56 @@ main :: proc() {
 
 ## Variables
 ##### Hardware
-- [rP1](variables/hardware/rP1.md)
-- [rIF](variables/hardware/rIF.md)
-- [rNR50](variables/hardware/Sound.md#rAUDVOL/rNR50($FF24))
-- [rNR51](variables/hardware/Sound.md#rAUDTERM/rNR51($FF25))
-- [rNR52](variables/hardware/Sound.md#rAUDENA/rNR52($FF26))
-- [rSCY](variables/hardware/LCDC.md#rSCY($FF42))
-- [rSCX](variables/hardware/LCDC.md#rSCX($FF43))
-- [rBGP](variables/hardware/LCDC.md#rBGP($FF47))
-- [rVBK](variables/hardware/rVBK.md)
-- [rRP](variables/hardware/rRP.md)
-- [rSVBK](variables/hardware/rSVBK.md)
-- [rRAMB](variables/hardware/MBC5.md)
-- [rRAMG](variables/hardware/MBC5.md)
-- [rROMB0](variables/hardware/MBC5.md)
-- [rROMB1](variables/hardware/MBC5.md)
+- [rP1](variables/hardware/rP1.md) [W]
+- [rIF](variables/hardware/rIF.md) [W]
+- [rNR50](variables/hardware/Sound.md#rAUDVOL/rNR50($FF24)) [W]
+- [rNR51](variables/hardware/Sound.md#rAUDTERM/rNR51($FF25)) [W]
+- [rNR52](variables/hardware/Sound.md#rAUDENA/rNR52($FF26)) [W]
+- [rSCY](variables/hardware/LCDC.md#rSCY($FF42)) [W]
+- [rSCX](variables/hardware/LCDC.md#rSCX($FF43)) [W]
+- [rBGP](variables/hardware/LCDC.md#rBGP($FF47)) [W]
+- [rVBK](variables/hardware/rVBK.md) [W]
+- [rRP](variables/hardware/rRP.md) [W]
+- [rSVBK](variables/hardware/rSVBK.md) [W]
+- [rRAMB](variables/hardware/MBC5.md) [W]
+- [rRAMG](variables/hardware/MBC5.md) [W]
+- [rROMB0](variables/hardware/MBC5.md) [W]
+- [rROMB1](variables/hardware/MBC5.md) [W]
 ##### Software
-- [IsGBC](variables/software/C525.md)
-- [$C0C0](variables/software/C0C0.md)
-- [$C0C1](variables/software/C0C1.md)
-- [$C0D8](variables/software/C0D8.md)
-- [$C0D9](variables/software/C0D9.md)
-- [$C47C](variables/software/C47C.md)
-- [$C51F](variables/software/C51F.md)
-- [$C520](variables/software/C520.md)
-- [$C523](variables/software/C523.md)
-- [$C524](variables/software/C524.md)
-- [$C52B](variables/software/C52B.md)
-- [$C52F](variables/software/C52F.md)
-- [$C530](variables/software/C530.md)
-- [$C56C](variables/software/C56C.md)
-- [$C586](variables/software/C586.md)
-- [$C58A](variables/software/C58A.md)
-- [$C58C](variables/software/C58C.md)
-- [$C58D](variables/software/C58D.md)
-- [$C58E](variables/software/C58E.md)
-- [$C5DB](variables/software/C5DB.md)
-- [$C5DC](variables/software/C5DC.md)
-- [$C5DD](variables/software/C5DD.md)
-- [$C5DE](variables/software/C5DE.md)
-- [$C5DF](variables/software/C5DF.md)
-- [$C5E0](variables/software/C5E0.md)
-- [$C5ED](variables/software/C5ED.md)
-- [$C5EE](variables/software/C5EE.md)
-- [$C5F0](variables/software/C5F0.md)
-- [$C5F1](variables/software/C5F1.md)
-- [$C604](variables/software/C604.md)
-- [$C605](variables/software/C605.md)
-- [$C606](variables/software/C606.md)
-- [$C607](variables/software/C607.md)
-- [$C60A](variables/software/C60A.md)
-- [$C60B](variables/software/C60B.md)
-- [$FFB9](variables/software/FFB9.md)
-- [$FFBA](variables/software/FFBA.md)
+- [IsGBC](variables/software/C525.md) [R/W]
+- [$C0C0](variables/software/C0C0.md) [W]
+- [$C0C1](variables/software/C0C1.md) [W]
+- [$C0D8](variables/software/C0D8.md) [W]
+- [$C0D9](variables/software/C0D9.md) [W]
+- [$C47C](variables/software/C47C.md) [W]
+- [$C51F](variables/software/C51F.md) [W]
+- [$C520](variables/software/C520.md) [W]
+- [$C523](variables/software/C523.md) [W]
+- [$C524](variables/software/C524.md) [W]
+- [$C52B](variables/software/C52B.md) [W]
+- [$C52F](variables/software/C52F.md) [W]
+- [$C530](variables/software/C530.md) [W]
+- [$C56C](variables/software/C56C.md) [R]
+- [$C586](variables/software/C586.md) [W]
+- [$C58A](variables/software/C58A.md) [R]
+- [$C58C](variables/software/C58C.md) [W]
+- [$C58D](variables/software/C58D.md) [W]
+- [$C58E](variables/software/C58E.md) [W]
+- [$C5DB](variables/software/C5DB.md) [W]
+- [$C5DC](variables/software/C5DC.md) [W]
+- [$C5DD](variables/software/C5DD.md) [W]
+- [$C5DE](variables/software/C5DE.md) [W]
+- [$C5DF](variables/software/C5DF.md) [R/W]
+- [$C5E0](variables/software/C5E0.md) [W]
+- [$C5ED](variables/software/C5ED.md) [W]
+- [$C5EE](variables/software/C5EE.md) [W]
+- [$C5F0](variables/software/C5F0.md) [W]
+- [$C5F1](variables/software/C5F1.md) [W]
+- [$C604](variables/software/C604.md) [W]
+- [$C605](variables/software/C605.md) [W]
+- [$C606](variables/software/C606.md) [W]
+- [$C607](variables/software/C607.md) [W]
+- [$C60A](variables/software/C60A.md) [W]
+- [$C60B](variables/software/C60B.md) [W]
+- [$FFB9](variables/software/FFB9.md) [W]
+- [$FFBA](variables/software/FFBA.md) [W]

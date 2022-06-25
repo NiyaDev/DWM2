@@ -3,7 +3,7 @@
 ## Code
 ```
 FUN_07AA :: proc() {
-	[$C5EC] += 128;
+	[$C5EC] += $80;
 	[rLCDC]  = [$C5EC];
 	
 	if ![$C524] do return;
@@ -18,8 +18,8 @@ FUN_07AA :: proc() {
 - [wait_7000()](bank0/wait_7000.md)
 ## Variables
 ##### Hardware
-- [rLCDC](variables/hardware/LCDC.md#rLCDC($FF40))
+- [rLCDC](variables/hardware/LCDC.md#rLCDC($FF40)) [W]
 ##### Software
-- [$C47C](variables/software/C47C.md)
-- [$C524](variables/software/C524.md)
-- [$C5EC](variables/software/C5EC.md)
+- [$C47C](variables/software/C47C.md) [W]
+- [$C524](variables/software/C524.md) [R]
+- [$C5EC](variables/software/C5EC.md) [W]
