@@ -82,7 +82,7 @@ FUN_14D1:          ;;14D1
 
 	ld  a,[$C57F]
 	set 1,a
-	jr  LAB_1555
+	jr  .LAB_1555
 
 .LAB_1545:
 	ld  a,[IsGBC]

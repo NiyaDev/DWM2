@@ -3,7 +3,9 @@
 A disassembly of Dragon Warrior Monsters 2.
 
 ## Progress
-~~NOTE: Numbers are based on a direct comparison between the outputted file and the original, whitespace included. Actual documentation is a different story.~~
+NOTE: Numbers are based on a direct comparison between the outputted file and the original. Actual documentation is a different story.
+
+[1,943 / 2,060,211] | ~[.001%] Similarity as of 2022/06/25.
 
 TODO:
 
