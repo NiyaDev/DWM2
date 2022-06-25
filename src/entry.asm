@@ -344,10 +344,6 @@ Start:             ;; $0150
 
 ;---------------------------------- TODO:
 
-SECTION "03A4", ROM0[$03A4]
-FUN_03A4:
-	ret
-
 SECTION "06A8", ROM0[$06A8]
 FUN_06A8:
 	ret
@@ -363,6 +359,7 @@ FUN_256A:
 
 
 INCLUDE "src/Bank0/FUN_0355.inc"             ;; ROM0[$0355]
+INCLUDE "src/Bank0/FUN_03A4.inc"             ;; ROM0[$03A4]
 
 INCLUDE "src/Bank0/Wait7000.inc"             ;; ROM0[$05D1]
 INCLUDE "src/Bank0/FUN_05E2.inc"             ;; ROM0[$05E2]

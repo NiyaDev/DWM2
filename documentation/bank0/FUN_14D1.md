@@ -1,5 +1,5 @@
 # FUN_14D1()
-TODO
+
 ## Code
 ```
 FUN_14D1 :: proc() {
@@ -66,7 +66,7 @@ FUN_14D1 :: proc() {
 ##### Hardware
 - [rSB](variables/hardware/Serial.md#rSB($FF01)) [R]
 ##### Software
-- [IsGBC](variables/software/C525.md) [R]
+- [IsGBC](variables/software/IsGBC.md) [R]
 - [$C57F](variables/software/C57F.md) [R/W]
 - [$C580](variables/software/C580.md) [R/W]
 - [$C581](variables/software/C581.md) [R]

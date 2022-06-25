@@ -1,6 +1,7 @@
 
 ;; Copies DMA transfer function from 0x008E to high memory
 DEF DMAFunction    EQU  $80
+DEF DMATransfer    EQU  $FF80
 
 
 SECTION "CopyDMATransfer", ROM0[$0080]

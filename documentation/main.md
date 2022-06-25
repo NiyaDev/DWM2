@@ -6,6 +6,8 @@ main :: proc() {
 	if A == $11 do [IsGBC] = true;
 	else        do [IsGBC] = false;
 	
+.initialize:
+	
 	di();
 	SP = $DFFF;
 	
@@ -206,7 +208,7 @@ main :: proc() {
 - [rROMB0](variables/hardware/MBC5.md) [W]
 - [rROMB1](variables/hardware/MBC5.md) [W]
 ##### Software
-- [IsGBC](variables/software/C525.md) [R/W]
+- [IsGBC](variables/software/IsGBC.md) [R/W]
 - [$C0C0](variables/software/C0C0.md) [W]
 - [$C0C1](variables/software/C0C1.md) [W]
 - [$C0D8](variables/software/C0D8.md) [W]

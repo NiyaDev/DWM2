@@ -46,7 +46,7 @@ memory_initialization :: proc() {
 - [rRAMG](variables/hardware/MBC5.md#rRAMG($0100)) [W]
 - [rRAMB](variables/hardware/MBC5.md#rRAMB($4100)) [W]
 ##### Software
-- [IsGBC](variables/software/C525.md) [R]
+- [IsGBC](variables/software/IsGBC.md) [R]
 - [$C000](variables/software/C000.md) [W]
 - [$A000](variables/software/A000.md) [W]
 - [$FF84](variables/software/FF84.md) [W]
