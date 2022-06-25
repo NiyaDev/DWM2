@@ -7,9 +7,9 @@
 }
 ```
 ## Functions
-- [()](bank0/)
+- [()](bank0/.md)
 ## Variables
 ##### Hardware
-- [](variables/hardware/)
+- [](variables/hardware/.md)
 ##### Software
-- [](variables/software/)
+- [](variables/software/.md)

@@ -18,7 +18,7 @@
       "query": "path:variables/software",
       "color": {
         "a": 1,
-        "rgb": 14725458
+        "rgb": 5431439
       }
     }
   ],
@@ -32,6 +32,6 @@
   "repelStrength": 15.7264957264957,
   "linkStrength": 0.803418803418804,
   "linkDistance": 167,
-  "scale": 0.36288736930121834,
+  "scale": 0.3628873693012205,
   "close": false
 }

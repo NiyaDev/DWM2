@@ -375,8 +375,8 @@ INCLUDE "src/Bank0/FUN_077A.inc"             ;; ROM0[$077A]
 INCLUDE "src/Bank0/InterruptLCD.inc"         ;; ROM0[$078D]
 INCLUDE "src/Bank0/FUN_07AA.inc"             ;; ROM0[$07AA]
 ;INCLUDE "src/Bank0/FUN_07D1.inc"             ;; ROM0[$07D1]
-INCLUDE "src/Bank0/FUN_07D8.inc"             ;; ROM0[$07D8]
-INCLUDE "src/Bank0/FUN_07E0.inc"             ;; ROM0[$07D8]
+INCLUDE "src/Bank0/set_enabled_interrupts.inc";; ROM0[$07D8]
+;INCLUDE "src/Bank0/FUN_07E0.inc"             ;; ROM0[$007E0]
 
 ;INCLUDE "src/Bank0/FUN_07E0.inc"             ;; ROM0[$07E0]
 ;INCLUDE "src/Bank0/FUN_07F1.inc"             ;; ROM0[$07F1]
@@ -399,6 +399,8 @@ INCLUDE "src/Bank0/clear_8_hram.inc"         ;; ROM0[$0B9B]
 INCLUDE "src/Bank0/clear_work_start.inc"     ;; ROM0[$0BA7]
 
 INCLUDE "src/Bank0/FUN_0DCA.inc"             ;; ROM0[$0DCA]
+
+INCLUDE "src/Bank0/FUN_14D1.inc"             ;; ROM0[$14D1]
 
 INCLUDE "src/Bank0/CopyData.inc"             ;; ROM0[$1679]
 

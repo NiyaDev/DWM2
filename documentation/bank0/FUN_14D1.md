@@ -1,0 +1,70 @@
+# FUN_14D1()
+TODO
+## Code
+```
+FUN_14D1 :: proc() {
+	if [$C58A] != 0 {
+		set_enabled_interrupts(8);
+		
+		[$C57F] = [$C580] & ($BF | &80);
+		
+		if bit(a, [$C57F]) != 0 {
+			for i:=$6000; i!=0; i-=1 {}
+		}
+		
+		ei();
+		
+		if [$C581] == 5 {
+			FUN_15C2();
+			FUN_07D1();
+			
+			if [rSB] != $F5 do FUN_15C2();
+		} else {
+			if FUN_1583() != 2 do FUN_07D1();
+			
+			if [rSB] != $70 && [rSB] != $71 do B = FUN_1583();
+			
+			if [$C581] ! $05 {
+				if [$C57F] & 2 != 0 {
+					if [IsGBC] != 0 && B & 1 == 0 {
+						set(1, [$C57F]);
+					}
+				} else if [IsGBC] != 0 && B & 1 != 0 {
+					res(1, [$C57F]);
+				}
+			}
+		}
+		di();
+		
+		res(7, [$C580]);
+		res(0, [$C580]);
+		res(1, [$C580]);
+		
+		if bit(1,[$C57F]) != 0 do FUN_08BA($F8);
+	}
+	[$C582] = 0;
+	
+	HL = $C55E;
+	for i:=14; i!=0; i-=1 {
+		[HL] = 0;
+		HL  += 1;
+	}
+}
+```
+## Functions
+- [set_enabled_interrupts()](bank0/set_enabled_interrupts.md)
+- [FUN_07D1()](bank0/FUN_07D1.md)
+- [FUN_08BA()](bank0/FUN_08BA.md)
+- [FUN_1583()](bank0/FUN_1583.md)
+- [FUN_15C2()](bank0/FUN_15C2.md)
+## Variables
+##### Hardware
+- [rSB](variables/hardware/Serial.md#rSB($FF01))
+##### Software
+- [IsGBC](variables/software/C525.md)
+- [$C57F](variables/software/C57F.md)
+- [$C580](variables/software/C580.md)
+- [$C581](variables/software/C581.md)
+- [$C582](variables/software/C582.md)
+- [$C58A](variables/software/C58A.md)
+- [$C55E](variables/software/C55E.md)

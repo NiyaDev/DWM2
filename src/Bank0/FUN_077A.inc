@@ -17,7 +17,7 @@ FUN_077A:          ;;077A
 
 	pop af
 
-	call FUN_07D8
+	call set_enabled_interrupts
 
 	ei
 

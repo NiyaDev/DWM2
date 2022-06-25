@@ -3,7 +3,8 @@
 ## Code
 ```
 FUN_07AA :: proc() {
-	[rLCDC] = [$C5EC] + 128;
+	[$C5EC] += 128;
+	[rLCDC]  = [$C5EC];
 	
 	if ![$C524] do return;
 	

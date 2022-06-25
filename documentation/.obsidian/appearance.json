@@ -1,5 +1,7 @@
 {
-  "cssTheme": "Obsidian Nord",
+  "cssTheme": "Primary",
   "monospaceFontFamily": "",
-  "baseFontSize": 19
+  "baseFontSize": 19,
+  "translucency": false,
+  "theme": "obsidian"
 }
