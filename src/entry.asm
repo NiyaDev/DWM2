@@ -420,14 +420,6 @@ SECTION "1583", ROM0[$1583]
 FUN_1583:
 	ret
 
-SECTION "255B", ROM0[$255B]
-FUN_255B:
-	ret
-
-SECTION "256A", ROM0[$256A]
-FUN_256A:
-	ret
-
 SECTION "2620", ROM0[$2620]
 FUN_2620:
 	ret
@@ -490,14 +482,18 @@ INCLUDE "src/Bank0/FUN_14D1.inc"             ;; ROM0[$14D1]
 
 INCLUDE "src/Bank0/CopyData.inc"             ;; ROM0[$1679]
 
+INCLUDE "src/Bank0/FUN_255B.inc"             ;; ROM0[$255B]
+INCLUDE "src/Bank0/FUN_256A.inc"             ;; ROM0[$256A]
+
 INCLUDE "src/Bank0/FUN_3290.inc"             ;; ROM0[$3290]
 
 
-INCLUDE "src/Bank1/FUN_4001.inc"             ;; ROM0[$4001]
+INCLUDE "src/Bank1/FUN_4001.inc"             ;; ROM0[$4001], BANK[1]
 
 
 INCLUDE "src/Bank2/FUN_42FA.inc"             ;; ROMX[$3290], BANK[2]
 
+INCLUDE "src/Bank27/FUN_4001.inc"            ;; ROMX[$5040], BANK[27]
 
 INCLUDE "src/Bank31/FUN_5040.inc"            ;; ROMX[$5040], BANK[31]
 
