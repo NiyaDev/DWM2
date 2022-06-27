@@ -46,7 +46,7 @@ FUN_ROM27_4001:
 	ldh a,[rSB]
 	ld  b,a
 	cp  $F1
-	jr  z,.LAB_4132
+	jp  z,.LAB_4132
 
 	cp  $F5
 	jr  z,.LAB_4060
@@ -58,10 +58,10 @@ FUN_ROM27_4001:
 	jr  z,.LAB_40B4
 
 	cp  $E0
-	jr  z,.LAB_40DE
+	jp  z,.LAB_40DE
 
 	cp  $DC
-	jr  z,.LAB_4108
+	jp  z,.LAB_4108
 
 	jp  .LAB_4163
 
@@ -91,7 +91,7 @@ FUN_ROM27_4001:
 	set 1,a
 	ld  [$C57F],a
 
-	jp  .LAB_42A7
+	jp  .LAB_42A4
 
 
 .LAB_408A:
@@ -251,7 +251,7 @@ FUN_ROM27_4001:
 	cp  b
 	jp  z,.LAB_4357
 
-	call FUN_4388
+	call FUN_ROM27_4388
 
 	ld  a,b
 	ld  [$D700],a
