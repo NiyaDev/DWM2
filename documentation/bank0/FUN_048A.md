@@ -50,7 +50,7 @@ FUN_048A :: proc() {
 - [FUN_ROM242_40A2()](bank242/FUN_40A2.md)
 ## Variables
 ##### Software
-- [$C56C](variables/software/.md) [R]
-- [$C58A](variables/software/.md) [R]
-- [$C5DB](variables/software/.md) [R]
-- [$C5DF](variables/software/.md) [R]
+- [$C56C](variables/software/C56C.md) [R]
+- [$C58A](variables/software/C58A.md) [R]
+- [$C5DB](variables/software/C5DB.md) [R]
+- [$C5DF](variables/software/C5DF.md) [R]

@@ -11,3 +11,5 @@ ___[???] | ???___
 	- [main()](main.md)
 - Used as an switch, leading do different functions. Min 0, Max 8
 	- [FUN_048A()](bank0/FUN_048A.md)
+- Used as an switch, leading do different functions. Min 0, Max 8
+	- [FUN_048A()](bank0/FUN_048A.md)
