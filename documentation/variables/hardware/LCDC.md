@@ -24,6 +24,12 @@ Values range from 0->153. 144->153 is the VBlank period.
 
 ---
 
+### rLYC($FF45)
+LCDC Y-Coordinate (R)
+Values range from 0->153. 144->153 is the VBlank period.
+
+---
+
 ### rBGP($FF47)
 BG Palette Data (W)
 

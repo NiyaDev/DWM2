@@ -1,14 +1,12 @@
 # Reset Vectors
-RST00 jumps to a position located at (offset * 2) away from where reset was called
+RST00 jumps to a pointer located at offset * 2 ahead of return address.
 RST10 jumps to a function in a designated ROM bank.
 ## Code
 ```
 RST00 :: proc(A: offset, RETADR: base) {
-	base += offset * 2;
+	RETADR += offset * 2;
 	
-	HL = [base];
-	
-	jmp HL;
+	jmp [RETADR];
 }
 
 RST10 :: proc(B: bank, HL: ptr) {

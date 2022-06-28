@@ -348,10 +348,6 @@ SECTION "04ED", ROM0[$04ED]
 FUN_04ED:
 	ret
 
-SECTION "0474", ROM0[$0474]
-FUN_0474:
-	ret
-
 SECTION "06A8", ROM0[$06A8]
 FUN_06A8:
 	ret
@@ -396,6 +392,10 @@ SECTION "0A8D", ROM0[$0A8D]
 FUN_0A8D:
 	ret
 
+SECTION "0BB4", ROM0[$0BB4]
+FUN_0BB4:
+	ret
+
 SECTION "0BCC", ROM0[$0BCC]
 FUN_0BCC:
 	ret
@@ -422,6 +422,10 @@ FUN_15C2:
 
 SECTION "1583", ROM0[$1583]
 FUN_1583:
+	ret
+
+SECTION "252D", ROM0[$252D]
+FUN_252D:
 	ret
 
 SECTION "2620", ROM0[$2620]
@@ -456,6 +460,8 @@ FUN_ROM27_4394:
 
 INCLUDE "src/Bank0/FUN_0355.inc"             ;; ROM0[$0355]
 INCLUDE "src/Bank0/FUN_03A4.inc"             ;; ROM0[$03A4]
+INCLUDE "src/Bank0/FUN_0474.inc"             ;; ROM0[$0474]
+INCLUDE "src/Bank0/FUN_048A.inc"             ;; ROM0[$048A]
 
 INCLUDE "src/Bank0/Wait7000.inc"             ;; ROM0[$05D1]
 INCLUDE "src/Bank0/FUN_05E2.inc"             ;; ROM0[$05E2]

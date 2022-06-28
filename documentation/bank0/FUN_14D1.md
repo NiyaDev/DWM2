@@ -1,12 +1,13 @@
 # FUN_14D1()
-
+Has to do with Serial
 ## Code
 ```
 FUN_14D1 :: proc() {
 
 	if [$C58A] != 0 {
-	
-		set_enabled_interrupts(8);
+		
+		// Joypad only
+		set_enabled_interrupts(%00001000);
 		
 		[$C57F] = ([$C580] & %10111111) | %10000000;
 		

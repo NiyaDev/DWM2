@@ -3,11 +3,10 @@
 ## Code
 ```
 FUN_077A :: proc(A: flags) {
-	{ AF
-		if [$C58A] != 0 do FUN_14D1();
+
+	if [$C58A] != 0 do FUN_14D1();
 		
-		FUN_07AA();
-	}
+	FUN_07AA();
 	
 	set_enabled_interrupts(flags);
 	

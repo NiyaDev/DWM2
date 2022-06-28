@@ -8,36 +8,65 @@ FUN_0355:          ;; $0355
 	ld  a,[$C5DB]
 	rst $00
 
-	ld  l,e
 
-	inc bc
-	ld  [hl],d
-	
-	inc bc
-	ld  a,c
+	dw .LAB_036B, .LAB_0372, .LAB_0379, .LAB_0380, .LAB_0381, .LAB_0388, .LAB_038F, .LAB_0396, .LAB_039D
 
-	inc bc
-	add b
 
-	inc bc
-	add c
-
-	inc bc
-	adc b
-
-	inc bc
-	adc a
-
-	inc bc
-	sub [hl]
-
-	inc bc
-	sbc l
-
-	inc bc
-
+.LAB_036B:
 	ld  hl,$4001
-	ld  b,$01
+	ld  b,1
+	rst $10
+
+	ret
+
+.LAB_0372:
+	ld  hl,$45C6
+	ld  b,2
+	rst $10
+
+	ret
+	
+.LAB_0379:
+	ld  hl,$4001
+	ld  b,3
+	rst $10
+
+	ret
+
+.LAB_0380:
+	ret 
+
+.LAB_0381:
+	ld  hl,$4001
+	ld  b,49
+	rst $10
+
+	ret
+
+.LAB_0388:
+	ld  hl,$486E
+	ld  b,7
+	rst $10
+
+	ret
+
+.LAB_038F:
+	ld  hl,$4001
+	ld  b,36
+	rst $10
+
+	ret
+
+.LAB_0396:
+	ld  hl,$4ECF
+	ld  b,160
+	rst $10
+
+	ret
+
+.LAB_039D:
+	ld  hl,$4001
+	ld  b,242
 	rst $10
 
 	ret
