@@ -14,7 +14,7 @@ stat_interrupt :: proc() {
 		case 3:
 			[rSCX] = [$C0F0 + [rLY]];
 			
-			if [rLYC] + 2 >= $90 {
+			if [rLYC] + 2 >= 144 {
 				[rSCX] = [$FFA1];
 				[rLYC] = 0;
 			} else do [rLYC] = [rLYC] + 2;
@@ -22,7 +22,7 @@ stat_interrupt :: proc() {
 		case 4:
 			[rSCY] = [$C0F0 + [rLY]];
 			
-			if [rLYC] + 2 >= $81 {
+			if [rLYC] + 2 >= 129 {
 				[rSCY] = [$FFA5];
 				[rLYC] = 0;
 			} else do [rLYC] = [rLYC] + 2;
