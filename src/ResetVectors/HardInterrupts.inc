@@ -10,7 +10,7 @@ intr_vblank:
 
 ;; TODO:
 intr_stat:
-	jp  FUN_256A
+	jp  stat_interrupt
 	db $00,$00,$00,$00,$00
 
 intr_timer:

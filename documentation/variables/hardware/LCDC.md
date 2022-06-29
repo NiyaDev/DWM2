@@ -19,14 +19,12 @@ Scroll X (R/W)
 ---
 
 ### rLY($FF44)
-LCDC Y-Coordinate (R)
-Values range from 0->153. 144->153 is the VBlank period.
+LY indicates the current horizontal line, which might be about to be drawn, being drawn, or just been drawn. LY can hold any value from 0 to 153, with values from 144 to 153 indicating the VBlank period.
 
 ---
 
 ### rLYC($FF45)
-LCDC Y-Coordinate (R)
-Values range from 0->153. 144->153 is the VBlank period.
+The Game Boy permanently compares the value of the LYC and LY registers. When both values are identical, the “LYC=LY” flag in the STAT register is set, and (if enabled) a STAT interrupt is requested.
 
 ---
 

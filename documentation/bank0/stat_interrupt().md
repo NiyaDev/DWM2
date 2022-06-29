@@ -1,12 +1,15 @@
-# FUN_256A()
+# stat_interrupt()
 
 ## Code
 ```
-FUN_256A :: proc() {
+stat_interrupt :: proc() {
 	stor1 = [rSVBK];
 	
 	[rSVBK] = 0;
 	
+	// Scroll X/Y by a value at $C0F0-C17F
+	// If in hblank, scroll == [$FFA1] and (maybe) interrupts at rLY == 0
+	// if not, add 2 to rLYC 
 	#partial switch [$C5E1] {
 		case 3:
 			[rSCX] = [$C0F0 + [rLY]];

@@ -9,7 +9,7 @@ intr_vblank :: proc() {
 }
 
 intr_stat :: proc() {
-	jmp FUN_256A;
+	jmp stat_interrupt;
 }
 
 intr_serial :: proc() {
@@ -18,5 +18,5 @@ intr_serial :: proc() {
 ```
 ## Functions
 - [FUN_03A4()](bank0/FUN_03A4.md)
-- [FUN_256A()](bank0/FUN_256A.md)
+- [FUN_256A()](bank0/stat_interrupt().md)
 - [FUN_255B()](bank0/FUN_255B.md)

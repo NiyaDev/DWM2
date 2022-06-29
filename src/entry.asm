@@ -504,7 +504,7 @@ INCLUDE "src/Bank0/FUN_14D1.inc"             ;; ROM0[$14D1]
 INCLUDE "src/Bank0/CopyData.inc"             ;; ROM0[$1679]
 
 INCLUDE "src/Bank0/FUN_255B.inc"             ;; ROM0[$255B]
-INCLUDE "src/Bank0/FUN_256A.inc"             ;; ROM0[$256A]
+INCLUDE "src/Bank0/stat_interrupt.inc"       ;; ROM0[$256A]
 
 INCLUDE "src/Bank0/FUN_3290.inc"             ;; ROM0[$3290]
 
