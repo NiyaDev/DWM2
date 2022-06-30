@@ -6,7 +6,7 @@ SECTION "048A", ROM0[$048A]
 FUN_048A:
 	ld  a,[$C5DF]
 	or  a
-	ret z
+	ret nz
 
 	ld  a,[$C58A]
 	or  a
@@ -73,7 +73,7 @@ FUN_048A:
 
 .LAB_04D8:
 	ld  hl,$4117
-	ld  b,24
+	ld  b,$24
 	rst $10
 
 	ret

@@ -130,6 +130,10 @@ FUN_03A4:          ;; $03A4
 
 	ld  [$C5D7],a
 
+	pop af
+
+	ldh [rSVBK],a
+
 	pop hl
 	pop de
 	pop bc

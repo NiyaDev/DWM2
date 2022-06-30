@@ -344,10 +344,6 @@ Start:             ;; $0150
 
 ;---------------------------------- TODO:
 
-SECTION "04ED", ROM0[$04ED]
-FUN_04ED:
-	ret
-
 SECTION "06A8", ROM0[$06A8]
 FUN_06A8:
 	ret
@@ -374,6 +370,10 @@ FUN_0829:
 
 SECTION "085C", ROM0[$085C]
 FUN_085C:
+	ret
+
+SECTION "08AD", ROM0[$08AD]
+FUN_08AD:
 	ret
 
 SECTION "08BA", ROM0[$08BA]
@@ -462,7 +462,8 @@ INCLUDE "src/Bank0/FUN_0355.inc"             ;; ROM0[$0355]
 INCLUDE "src/Bank0/FUN_03A4.inc"             ;; ROM0[$03A4]
 INCLUDE "src/Bank0/FUN_0474.inc"             ;; ROM0[$0474]
 INCLUDE "src/Bank0/FUN_048A.inc"             ;; ROM0[$048A]
-
+INCLUDE "src/Bank0/FUN_04ED.inc"             ;; ROM0[$04ED]
+INCLUDE "src/Bank0/AREA_0531.inc"            ;; ROM0[$0531]
 INCLUDE "src/Bank0/Wait7000.inc"             ;; ROM0[$05D1]
 INCLUDE "src/Bank0/FUN_05E2.inc"             ;; ROM0[$05E2]
 ;INCLUDE "src/Bank0/FUN_0646.inc"             ;; ROM0[$0646]
