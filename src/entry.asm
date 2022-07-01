@@ -21,187 +21,204 @@ EntryPoint:
 
 		ds $150 - @, 0 ; Make room for the header
 
-Start:             ;; $0150
-	cp  $11                  ;; 
-	ld  a,$00                ;; 
-	jr  nz,.DMG              ;; if console != GBC, jump
-	inc a                    ;; else, IsGBC = true
+Start: ;;0150
+	;; Tests if console is GBC
+	;; Stores result in $C525
+	cp  $11
+	ld  a,$00
+	jr  nz,.dmg
+	inc a
+.dmg:  ;;0157
+	ld  [IsGBC],a
 
-.DMG:              ;; $0157
-	ld  [IsGBC],a            ;; 
+.initialize: ;;015A
+	di
+	ld  sp,$DFFF
 
-.initialize:       ;; $015A
-	di                       ;;
-	ld  sp,$DFFF             ;; 
+	;; Initialization
+	call set_interrupts
+	call MemInitialization
+	call CopyDMATransfer
 
-	call set_interrupts      ;; =set_interrupts()
-	call MemInitialization   ;; =MemInitialization()
-	call CopyDMATransfer     ;; =CopyDMATransfer()
+	;; Clear $8000-$9C00
+	ld  hl,$8000
+	ld  bc,$1C00
+	xor a
+	call Memset
 
-	ld  hl,$8000             ;; =Pointer    ;;
-	ld  bc,$1C00             ;; =Counter    ;; Clears memory at
-	xor a                    ;; =Value      ;;   $8000-$9C00
-	call Memset              ;; =Memset()   ;;      (VRAM)
+	;; Skip if DMG
+	ld  a,[IsGBC]
+	or  a
+	jr  z,.skip_color_vram_clear
 
-	ld  a,[IsGBC]            ;;
-	or  a                    ;;
-	jr  z,.skipColorVRAMClear;; if IsGBC == false, jump
+	;; Clear [$9800-$9FFF] in VRAM bank 1
+	ld  a,$01
+	ldh [rVBK],a
 
-	ld  a,$01                ;;
-	ldh [rVBK],a             ;;
-	ld  hl,$9800             ;; =Pointer    ;;
-	ld  bc,$0800             ;; =Counter    ;; Clears memory at
-	xor a                    ;; =Value      ;;   $9800-$9FFF
-	call Memset              ;; =Memset()   ;;      (VRAM)
+	ld  hl,$9800
+	ld  bc,$0800
+	xor a
+	call Memset
 
-	ld  a,$00                ;;
-	ldh [rVBK],a             ;;
+	ld  a,$00
+	ldh [rVBK],a
 
-.skipColorVRAMClear:    ;; $0189
-	ld  hl,$C5DB             ;;
-	xor a                    ;;
-	ld  [hl+],a              ;;
-	ld  [hl+],a              ;;
-	ld  [hl+],a              ;;
-	ld  [hl],a               ;; Clears memory $C5DB-$C5DE
-	ld  a,$05                ;;
-	ld  [$C5DB],a            ;; [$C5DB] = $05
+.skip_color_vram_clear: ;;0189
+	;; Clear [$C5DB-$C5DE]
+	ld  hl,$C5DB
+	xor a
+	ld  [hl+],a
+	ld  [hl+],a
+	ld  [hl+],a
+	ld  [hl],a
 
-	ld  a,$00                ;;
-	ld  [rRAMB],a            ;; Selects cart RAM bank 0
-	ld  a,$00                ;;
-	ld  [rRAMG],a            ;; Disables writing to Cart RAM 
-	ld  a,$01                ;;                                           ;;
-	ld  [rROMB0],a           ;; Lower 8-bits of ROM banks set to 0x01     ;; ROM Bank 1
-	ld  a,$00                ;;                                           ;;  selected
-	ld  [rROMB1],a           ;; Upper 1-bit  of ROM banks set to 0x00     ;;
+	;; [$C5DB] = 5
+	ld  a,$05
+	ld  [$C5DB],a
 
-	ld  a,$01                ;; 
-	ld  [$C524],a            ;; [$C524] = $01
-	ld  a,$FF                ;; 
-	ld  [$C60A],a            ;; 
-	ld  [$C60B],a            ;; [$C60A-$C60B] = $FF
+	;; Selects ROM bank 1
+	ld  a,$00
+	ld  [rRAMB],a
+	ld  a,$00
+	ld  [rRAMG],a
+	ld  a,$01
+	ld  [rROMB0],a
+	ld  a,$00
+	ld  [rROMB1],a
 
-	call FUN_3290            ;; =FUN_3290() ;; Audio prep?
+	;; [$C524] = $01
+	ld  a,$01
+	ld  [$C524],a
 
-	xor a                    ;;
-	ld  [$C58C],a            ;; [$C58C] = $00
+	;; [$C60A-$C60B] = $FF
+	ld  a,$FF
+	ld  [$C60A],a
+	ld  [$C60B],a
 
-	ld  a,[IsGBC]            ;;
-	or  a                    ;;
-	jr  z,.skipColorVRAM_RST ;; if isGBC == false, skip
+	call FUN_3290
 
-	xor a                    ;;
-	ldh [rVBK],a             ;;
-	ldh [rSVBK],a            ;;
-	ldh [rRP],a              ;;
+	;; [$C58C] = $00
+	xor a
+	ld  [$C58C],a
 
-	ld  hl,$42FA             ;;
-	ld  b,$02                ;;
-	rst $10                  ;; =RST10 (2, $42FA) ;; Call FUN_ROM2_42FA
+	;; Skip if DMG
+	ld  a,[IsGBC]
+	or  a
+	jr  z,.skip_color_vram_rst
 
-	jr  .LAB_01D8            ;;
+	;; Set VRAM and WRAM banks to 0 and disable infrared
+	xor a
+	ldh [rVBK],a
+	ldh [rSVBK],a
+	ldh [rRP],a
 
-.skipColorVRAM_RST:;; $01D3
+	;; Call FUN_ROM2_42FA
+	ld  hl,$42FA
+	ld  b,2
+	rst $10
+
+	jr  .continue_gbc
+
+
+.skip_color_vram_rst: ;;01D3
 	call FUN_05E2
-	jr  c,.LAB_01DF
 
-.LAB_01D8:         ;; $01D8
+	;; Skip if result of FUN_05E2 is true
+	jr  c,.continue_dmg
+
+.continue_gbc: ;;01D8
+	;; [$C524] = 0
 	xor a
 	ld  [$C524],a
-	jp  .LAB_02D1
 
-.LAB_01DF:         ;; $01DF
-	ld  bc,$000C             ;; 
-	call Wait1750_X          ;; =Wait1750_X (12)
+	jp  .ei_main_loop
 
-	ld  a,$14                ;;
-	ld  [$C47C],a            ;; $C47C = $14
-	
-	ld  b,$1F                ;;
-	ld  hl,$5040             ;;
-	rst $10                  ;; =RST10 (31, $5040) ;; FUN_ROM31_5040 ()
 
-	call Wait7000            ;; =Wait7000
+.continue_dmg: ;;01DF
 
-	ld  a,$02                ;;
-	ld  [$C47C],a            ;; $C47C = $02
+	;; Wait 12 times
+	ld  bc,12
+	call Wait1750_X
 
-	ld  b,$1F                ;;
-	ld  hl,$5040             ;;
-	rst $10                  ;; =RST10 (31, $5040) ;; FUN_ROM31_5040 ()
+	;; Call FUN_ROM31_5040 with input of 20
+	ld  a,20
+	ld  [$C47C],a
+	ld  b,31
+	ld  hl,$5040
+	rst $10
+	call Wait7000
 
-	call Wait7000            ;; =Wait7000
+	;; Call FUN_ROM31_5040 with input of 2
+	ld  a,2
+	ld  [$C47C],a
+	ld  b,31
+	ld  hl,$5040
+	rst $10
+	call Wait7000
 
-	ld  a,$03                ;;
-	ld  [$C47C],a            ;; $C47C = $03
+	;; Call FUN_ROM31_5040 with input of 3
+	ld  a,3
+	ld  [$C47C],a
+	ld  b,31
+	ld  hl,$5040
+	rst $10
+	call Wait7000
 
-	ld  b,$1F                ;;
-	ld  hl,$5040             ;;
-	rst $10                  ;; =RST10 (31, $5040) ;; FUN_ROM31_5040 ()
+	;; Call FUN_ROM31_5040 with input of 4
+	ld  a,4
+	ld  [$C47C],a
+	ld  b,31
+	ld  hl,$5040 
+	rst $10
+	call Wait7000
 
-	call Wait7000            ;; =Wait7000
+	;; Call FUN_ROM31_5040 with input of 5
+	ld  a,5
+	ld  [$C47C],a
+	ld  b,31
+	ld  hl,$5040
+	rst $10
+	call Wait7000
 
-	ld  a,$04                ;;
-	ld  [$C47C],a            ;; $C47C = $04
+	;; Call FUN_ROM31_5040 with input of 6
+	ld  a,6
+	ld  [$C47C],a
+	ld  b,31
+	ld  hl,$5040
+	rst $10
+	call Wait7000
 
-	ld  b,$1F                ;;
-	ld  hl,$5040             ;;
-	rst $10                  ;; =RST10 (31, $5040) ;; FUN_ROM31_5040 ()
+	;; Call FUN_ROM31_5040 with input of 7
+	ld  a,7
+	ld  [$C47C],a
+	ld  b,31
+	ld  hl,$5040
+	rst $10
+	call Wait7000
 
-	call Wait7000            ;; =Wait7000
+	;; Call FUN_ROM31_5040 with input of 8
+	ld  a,8
+	ld  [$C47C],a
+	ld  b,31
+	ld  hl,$5040
+	rst $10
+	call Wait7000
 
-	ld  a,$05                ;;
-	ld  [$C47C],a            ;; $C47C = $05
+	;; Call FUN_ROM31_5040 with input of 9
+	ld  a,9
+	ld  [$C47C],a
+	ld  b,31
+	ld  hl,$5040
+	rst $10
+	call Wait7000
 
-	ld  b,$1F                ;;
-	ld  hl,$5040             ;;
-	rst $10                  ;; =RST10 (31, $5040) ;; FUN_ROM31_5040 ()
-
-	call Wait7000            ;; =Wait7000
-
-	ld  a,$06                ;;
-	ld  [$C47C],a            ;; $C47C = $06
-
-	ld  b,$1F                ;;
-	ld  hl,$5040             ;;
-	rst $10                  ;; =RST10 (31, $5040) ;; FUN_ROM31_5040 ()
-
-	call Wait7000            ;; =Wait7000
-
-	ld  a,$07                ;;
-	ld  [$C47C],a            ;; $C47C = $07
-
-	ld  b,$1F                ;;
-	ld  hl,$5040             ;;
-	rst $10                  ;; =RST10 (31, $5040) ;; FUN_ROM31_5040 ()
-
-	call Wait7000            ;; =Wait7000
-
-	ld  a,$08                ;;
-	ld  [$C47C],a            ;; $C47C = $08
-
-	ld  b,$1F                ;;
-	ld  hl,$5040             ;;
-	rst $10                  ;; =RST10 (31, $5040) ;; FUN_ROM31_5040 ()
-
-	call Wait7000            ;; =Wait7000
-
-	ld  a,$09                ;;
-	ld  [$C47C],a            ;; $C47C = $09
-
-	ld  b,$1F                ;;
-	ld  hl,$5040             ;;
-	rst $10                  ;; =RST10 (31, $5040) ;; FUN_ROM31_5040 ()
-
-	call Wait7000            ;; =Wait7000
-
+	;; 
 	ld  a,$0C
 	ld  bc,$0800
 	ld  e,$6C
 	ld  d,$44
 	ld  h,$17
-	call FUN_0705            ;;FUN_0705 (A: value, BC: counter, DE: ptr, H: bank)
+	call FUN_0705
 
 	call Wait7000
 
@@ -213,68 +230,68 @@ Start:             ;; $0150
 
 	call Wait7000
 
-	ld  a,$12                ;;
-	ld  [$C47C],a            ;; $C47C = $12
+	;; Call FUN_ROM31_5040 with input of 18
+	ld  a,18
+	ld  [$C47C],a
+	ld  b,31
+	ld  hl,$5040
+	rst $10
+	call Wait7000
 
-	ld  b,$1F                ;;
-	ld  hl,$5040             ;;
-	rst $10                  ;; =RST10 (31, $5040) ;; FUN_ROM31_5040 ()
+	;; Call FUN_ROM31_5040 with input of 10
+	ld  a,10
+	ld  [$C47C],a
+	ld  b,31
+	ld  hl,$5040
+	rst $10
+	call Wait7000
 
-	call Wait7000            ;; =Wait7000
+	;; Call FUN_ROM31_5040 with input of 19
+	ld  a,19
+	ld  [$C47C],a
+	ld  b,31
+	ld  hl,$5040
+	rst $10
+	call Wait7000
 
-	ld  a,$0A                ;;
-	ld  [$C47C],a            ;; $C47C = $0A
+	;; Call FUN_ROM31_5040 with input of 14
+	ld  a,14
+	ld  [$C47C],a
+	ld  b,$1F
+	ld  hl,$5040
+	rst $10
+	call Wait7000
 
-	ld  b,$1F                ;;
-	ld  hl,$5040             ;;
-	rst $10                  ;; =RST10 (31, $5040) ;; FUN_ROM31_5040 ()
+	;; [$C524] = 1
+	ld  a,$01
+	ld  [$C524],a
 
-	call Wait7000            ;; =Wait7000
+	;; [$C523] = $FF
+	ld  a,$FF
+	ld  [$C523],a
 
-	ld  a,$13                ;;
-	ld  [$C47C],a            ;; $C47C = $13
-
-	ld  b,$1F                ;;
-	ld  hl,$5040             ;;
-	rst $10                  ;; =RST10 (31, $5040) ;; FUN_ROM31_5040 ()
-
-	call Wait7000            ;; =Wait7000
-
-	ld  a,$0E                ;;
-	ld  [$C47C],a            ;; $C47C = $0E
-
-	ld  b,$1F                ;;
-	ld  hl,$5040             ;;
-	rst $10                  ;; =RST10 (31, $5040) ;; FUN_ROM31_5040 ()
-
-	call Wait7000            ;; =Wait7000
-
-	ld  a,$01                ;;
-	ld  [$C524],a            ;;
-	ld  a,$FF                ;;
-	ld  [$C523],a            ;;
-	xor a                    ;;
-	ld  [$C51F],a            ;;
-	ld  [$C520],a            ;;
+	;; [$C51F-$C520] = $FF
+	xor a
+	ld  [$C51F],a
+	ld  [$C520],a
 	
-	ld  hl,$41CF             ;;
-	ld  b,$17                ;;
-	rst $10                  ;; =RST10 (23, $41CF) ;; FUN_ROM23_41CF ()
+	;; Call FUN_ROM23_41CF
+	ld  hl,$41CF
+	ld  b,23
+	rst $10
 
-.LAB_02D1:         ;; $02D1
+.ei_main_loop: ;;02D1
 	ei
 
-.main_loop:        ;; $02D2
+.main_loop: ;;02D2
+
 	call VRAMClear
-
 	call clear_work_start
-
 	call FUN_0B7F
-
 	call clear_8_hram
-
 	call FUN_0DCA
 
+	;; [$C586],[$C52B],[$C52F],[$C530] = 0
 	xor a
 	ld  [$C586],a
 	ld  [$C52B],a
@@ -282,6 +299,7 @@ Start:             ;; $0150
 	ld  [$C530],a
 	Call FUN_0355
 
+	;; [$C5DF],[$C5E0],[$C5EE],[$C0C0],[$C0C1],[$C0D8],[$C0D9],[$C5ED],[$C5F0],[$C5F1] = 0
 	xor a
 	ld  [$C5DF],a
 	ld  [$C5E0],a
@@ -293,51 +311,59 @@ Start:             ;; $0150
 	ld  [$C5ED],a
 	ld  [$C5F0],a
 	ld  [$C5F1],a
-	ldh [$ff00+$B9], a
+
+	;; [$FFB9] = 0, [$FFBA] = $80
+	ldh [$FFB9], a
 	ld  a,$80
-	ldh [$ff00+$BA], a
+	ldh [$FFBA], a
+
+	;; [$C58D-$C58E] = 0
 	xor a
 	ld  [$C58D],a
 	ld  [$C58E],a
+
+	;; [$C604-$C607] = 0
 	ld  hl,$C604
 	ld  [hl+], a
 	ld  [hl+], a
 	ld  [hl+], a
 	ld  [hl], a
 
-.loop:             ;; $0324
+.loop: ;;0324
+	;; If [$C58A] = 0, FUN_095B
 	ld  a,[$C58A]
 	or  a
 	call z,FUN_095B
 
 	halt
 	
+	;; Continue
 	ld  a,[$C5DF]
 	or  a
 	jr  z,.loop
 
+	;; Break
 	ld  a,[$C56C]
 	or  a
 	jr  z,.break
 
+	;; Continue
 	bit 7,a
 	jr  z,.loop
 
-.break:            ;; $033D
+.break: ;;033D
 	di
 
 	call set_interrupts
-
 	call Wait7000
 
-	ld  a,$00                ;;
-	ld  [$C47C],a            ;; $C47C = $00
-
-	ld  b,$1F                ;;
-	ld  hl,$5040             ;;
-	rst $10                  ;; =RST10 (31, $5040) ;; FUN_ROM31_5040 ()
-
-	call Wait7000            ;; =Wait7000
+	;; Call FUN_ROM31_5040 with input of 0
+	ld  a,0
+	ld  [$C47C],a
+	ld  b,31
+	ld  hl,$5040
+	rst $10
+	call Wait7000
 
 	jp  .main_loop
 
