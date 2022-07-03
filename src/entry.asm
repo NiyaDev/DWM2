@@ -1,10 +1,12 @@
 
-
+;; Definitions
 INCLUDE "src/includes/hardware.inc"
 INCLUDE "src/constants.inc"
 
+INCLUDE "src/todo.inc"
 
 
+;; Code
 INCLUDE "src/ResetVectors/reset_vectors.inc"          ;; ROM0[$0000]
 INCLUDE "src/ResetVectors/hardware_interrupts.inc"    ;; ROM0[$0040]
 INCLUDE "src/ResetVectors/copy_dma_transfer.inc"      ;; ROM0[$0080]
@@ -12,7 +14,6 @@ INCLUDE "src/ResetVectors/copy_dma_transfer.inc"      ;; ROM0[$0080]
 
 
 SECTION "Header", ROM0[$0100]
-
 
 EntryPoint:
 	nop
@@ -38,14 +39,14 @@ Start: ;;0150
 
 	;; Initialization
 	call set_interrupts
-	call MemInitialization
+	call memory_initialization
 	call CopyDMATransfer
 
 	;; Clear $8000-$9C00
 	ld  hl,$8000
 	ld  bc,$1C00
 	xor a
-	call Memset
+	call memset
 
 	;; Skip if DMG
 	ld  a,[IsGBC]
@@ -59,7 +60,7 @@ Start: ;;0150
 	ld  hl,$9800
 	ld  bc,$0800
 	xor a
-	call Memset
+	call memset
 
 	ld  a,$00
 	ldh [rVBK],a
@@ -286,7 +287,7 @@ Start: ;;0150
 
 .main_loop: ;;02D2
 
-	call VRAMClear
+	call vram_clear
 	call clear_work_start
 	call FUN_0B7F
 	call clear_8_hram
@@ -369,120 +370,6 @@ Start: ;;0150
 	jp  .main_loop
 
 
-;---------------------------------- TODO:
-
-SECTION "06A8", ROM0[$06A8]
-FUN_06A8:
-	ret
-
-SECTION "07D1", ROM0[$07D1]
-FUN_07D1:
-	ret
-
-SECTION "07E0", ROM0[$07E0]
-FUN_07E0:
-	ret
-
-SECTION "07F1", ROM0[$07F1]
-FUN_07F1:
-	ret
-
-SECTION "07FD", ROM0[$07FD]
-FUN_07FD:
-	ret
-
-SECTION "0829", ROM0[$0829]
-FUN_0829:
-	ret
-
-SECTION "085C", ROM0[$085C]
-FUN_085C:
-	ret
-
-SECTION "08AD", ROM0[$08AD]
-FUN_08AD:
-	ret
-
-SECTION "08BA", ROM0[$08BA]
-FUN_08BA:
-	ret
-
-SECTION "09F3", ROM0[$09F3]
-FUN_09F3:
-	ret
-
-SECTION "0A17", ROM0[$0A17]
-FUN_0A17:
-	ret
-
-SECTION "0A8D", ROM0[$0A8D]
-FUN_0A8D:
-	ret
-
-SECTION "0BB4", ROM0[$0BB4]
-FUN_0BB4:
-	ret
-
-SECTION "0BCC", ROM0[$0BCC]
-FUN_0BCC:
-	ret
-
-SECTION "0DF2", ROM0[$0DF2]
-FUN_0DF2:
-	ret
-
-SECTION "0F4E", ROM0[$0F4E]
-FUN_0F4E:
-	ret
-
-SECTION "1278", ROM0[$1278]
-FUN_1278:
-	ret
-
-SECTION "131A", ROM0[$131A]
-FUN_131A:
-	ret
-
-SECTION "15C2", ROM0[$15C2]
-FUN_15C2:
-	ret
-
-SECTION "1583", ROM0[$1583]
-FUN_1583:
-	ret
-
-SECTION "252D", ROM0[$252D]
-FUN_252D:
-	ret
-
-SECTION "2620", ROM0[$2620]
-FUN_2620:
-	ret
-
-SECTION "2E98", ROM0[$2E98]
-FUN_2E98:
-	ret
-
-SECTION "33E8", ROM0[$33E8]
-FUN_33E8:
-	ret
-
-SECTION "4045", ROMx[$4045],bank[1]
-FUN_ROM1_4045:
-	ret
-
-SECTION "4362", ROMx[$4362],bank[27]
-FUN_ROM27_4362:
-	ret
-
-SECTION "4388", ROMx[$4388],bank[27]
-FUN_ROM27_4388:
-	ret
-
-SECTION "4394", ROMx[$4394],bank[27]
-FUN_ROM27_4394:
-	ret
-
 
 
 INCLUDE "src/Bank0/FUN_0355.inc"             ;; ROM0[$0355]
@@ -499,7 +386,8 @@ INCLUDE "src/Bank0/Wait1750_X.inc"           ;; ROM0[$0692]
 INCLUDE "src/Bank0/FUN_0705.inc"             ;; ROM0[$0705]
 INCLUDE "src/Bank0/FUN_076B.inc"             ;; ROM0[$076B]
 INCLUDE "src/Bank0/FUN_077A.inc"             ;; ROM0[$077A]
-INCLUDE "src/Bank0/InterruptLCD.inc"         ;; ROM0[$078D]
+INCLUDE "src/Bank0/set_interrupts.inc"       ;; ROM0[$078D]
+INCLUDE "src/Bank0/disable_lcd.inc"          ;; ROM0[$0796]
 INCLUDE "src/Bank0/FUN_07AA.inc"             ;; ROM0[$07AA]
 ;INCLUDE "src/Bank0/FUN_07D1.inc"             ;; ROM0[$07D1]
 INCLUDE "src/Bank0/set_enabled_interrupts.inc";; ROM0[$07D8]
@@ -512,9 +400,9 @@ INCLUDE "src/Bank0/set_enabled_interrupts.inc";; ROM0[$07D8]
 ;INCLUDE "src/Bank0/FUN_085C.inc"             ;; ROM0[$085C]
 ;INCLUDE "src/Bank0/FUN_0897.inc"             ;; ROM0[$0897]
 
-INCLUDE "src/Bank0/MemInitial.inc"           ;; ROM0[$08D0]
-INCLUDE "src/Bank0/VRAMClear.inc"            ;; ROM0[$0930]
-INCLUDE "src/Bank0/Memset.inc"               ;; ROM0[$0949]
+INCLUDE "src/Bank0/memory_initialization.inc";; ROM0[$08D0]
+INCLUDE "src/Bank0/vram_clear.inc"           ;; ROM0[$0930]
+INCLUDE "src/Bank0/memset.inc"               ;; ROM0[$0949]
 INCLUDE "src/Bank0/FUN_095B.inc"             ;; ROM0[$095B]
 ;INCLUDE "src/Bank0/FUN_09F3.inc"             ;; ROM0[$09F3]
 ;INCLUDE "src/Bank0/FUN_0A17.inc"             ;; ROM0[$0A17]
