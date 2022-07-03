@@ -1,4 +1,8 @@
 
+;; Constants
+DEF run_dma EQU $FF80 ; DMA transfer function
 
-DEF IsGBC          EQU $C525
+
+;; Variables
+DEF IsGBC EQU $C525 ; bool - True if Gameboy color
 

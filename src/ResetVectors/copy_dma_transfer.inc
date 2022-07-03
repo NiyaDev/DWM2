@@ -1,7 +1,4 @@
 
-DEF run_dma EQU $FF80
-
-
 SECTION "CopyDMATransfer", ROM0[$0080]
 
 ;; Copies DMA transfer function to beginning of HRAM
