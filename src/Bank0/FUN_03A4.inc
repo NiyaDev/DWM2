@@ -26,7 +26,7 @@ FUN_03A4:          ;; $03A4
 
 	set 0,[hl]
 
-	call DMATransfer
+	call run_dma
 
 	ld  a,[IsGBC]
 	or  a

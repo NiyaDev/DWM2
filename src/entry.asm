@@ -5,9 +5,9 @@ INCLUDE "src/constants.inc"
 
 
 
-INCLUDE "src/ResetVectors/ResetVectors.inc"         ;; ROM0[$0000]
-INCLUDE "src/ResetVectors/HardInterrupts.inc"       ;; ROM0[$0040]
-INCLUDE "src/ResetVectors/CopyDMATransfer.inc"      ;; ROM0[$0080]
+INCLUDE "src/ResetVectors/reset_vectors.inc"          ;; ROM0[$0000]
+INCLUDE "src/ResetVectors/hardware_interrupts.inc"    ;; ROM0[$0040]
+INCLUDE "src/ResetVectors/copy_dma_transfer.inc"      ;; ROM0[$0080]
 
 
 
