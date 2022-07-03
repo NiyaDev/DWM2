@@ -1,7 +1,8 @@
 @echo off
 
-call ./build.bat
+code ./
 
 call D:/SDKs/Ghidra/ghidraRun.bat
 
-code ./
+call ./build.bat
+

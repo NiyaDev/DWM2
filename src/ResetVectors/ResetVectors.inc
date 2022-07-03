@@ -1,51 +1,62 @@
 
-SECTION "RST", ROM0[$0000]
+SECTION "RST00", ROM0[$0000]
 
-
-;; RST00 (A: param_1, HL: pointer)
-;; TODO: Still need an example of it being used
+;; Copies a pointer located at the return address + A*2.
+;; Then it jumps to it.
 RST00:
-	pop hl                 ;;
-	push de                ;;
+	;; Grabs return address and saves DE
+	pop hl
+	push de
 
-	ld  e,a                ;;
-	ld  d,$00              ;;
-	sla e                  ;;
-	rl  d                  ;;
-	add hl,de              ;;
-	pop de                 ;;
+	;; Copies A into DE and doubles it
+	ld  e,a
+	ld  d,$00
+	sla e
+	rl  d
 
-	ld  a,[hl+]            ;;
-	ld  h,[hl]             ;;
-	ld  l,a                ;;
+	;; Adds to return address and grabs DE
+	add hl,de
+	pop de
 
-
-;; HLJump (HL: pointer)
-HLJump:
-	jp  hl                 ;;
-	nop                    ;;
+	;; Grabs pointer at HL and jumps to it
+	ld  a,[hl+]
+	ld  h,[hl]
+	ld  l,a
 
 
-;; RST10 (B: bankNum, HL: pointer)
+
+SECTION "hl_jump", ROM0[$000E]
+
+;; Jumps to HL
+hl_jump:
+	jp  hl
+	nop
+
+
+
+SECTION "RST10", ROM0[$0010]
+
+;; Loads the RAM bank specified in B, then calls function in HL
 RST10:
-	ld  a,[$4000]          ;;
-	push af                ;; Pushes the number of the current ROM bank
-	ld  a,b                ;;
-	ld  [$2100],a          ;; Sets the lower 8-bits of ROM bank to =Bank
-	call HLJump            ;; =HLJump()
-	pop af                 ;;
-	ld [$2100],a           ;; Resets the ROM bank to the original
+	;; Pushes the number of the current ROM bank
+	ld  a,[$4000]
+	push af
+
+	;; Sets the lower 8-bits of ROM bank to B
+	ld  a,b
+	ld  [rROMB0],a
+
+	;; Calls [HL] as a function so the return address is here
+	call hl_jump
+
+	;; Resets the ROM bank to the original
+	pop af
+	ld [$2100],a
 	ret
 
 
-;; Filler
-RST20:
-	db $00,$00,$00,$00,$00,$00,$00,$00
-RST28:
-	db $00,$00,$00,$00,$00,$00,$00,$00
-RST30:
+
+SECTION "RST30", ROM0[$0030]
 	ret
-	db $00,$00,$00,$00,$00,$00,$00
-RST38:
+SECTION "RST38", ROM0[$0038]
 	ret
-	db $00,$00,$00,$00,$00,$00,$00

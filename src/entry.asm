@@ -1,10 +1,7 @@
 
 
 INCLUDE "src/includes/hardware.inc"
-
-
-
-DEF IsGBC          EQU $C525
+INCLUDE "src/constants.inc"
 
 
 
@@ -13,13 +10,17 @@ INCLUDE "src/ResetVectors/HardInterrupts.inc"       ;; ROM0[$0040]
 INCLUDE "src/ResetVectors/CopyDMATransfer.inc"      ;; ROM0[$0080]
 
 
+
 SECTION "Header", ROM0[$0100]
+
 
 EntryPoint:
 	nop
 	jp  Start
 
-		ds $150 - @, 0 ; Make room for the header
+
+ds $150 - @, 0 ; Make room for the header
+
 
 Start: ;;0150
 	;; Tests if console is GBC
