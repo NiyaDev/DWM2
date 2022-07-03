@@ -1,5 +1,5 @@
 
-SECTION "Memset", ROM0[$0949]
+SECTION "memset", ROM0[$0949]
 
 ;; Sets memory at pointer HL to Value A, BC times
 memset:

@@ -40,7 +40,7 @@ Start: ;;0150
 	;; Initialization
 	call set_interrupts
 	call memory_initialization
-	call CopyDMATransfer
+	call copy_dma_transfer
 
 	;; Clear $8000-$9C00
 	ld  hl,$8000

@@ -2,7 +2,7 @@
 SECTION "CopyDMATransfer", ROM0[$0080]
 
 ;; Copies DMA transfer function to beginning of HRAM
-CopyDMATransfer:
+copy_dma_transfer:
 	;; Initializes loop
 	ld  c,_HRAMSTART
 	ld  b,10

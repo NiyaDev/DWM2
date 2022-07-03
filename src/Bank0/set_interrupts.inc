@@ -1,7 +1,7 @@
 
 SECTION "set_interrupts", ROM0[$078D]
 
-;; 
+;; Clears interrupt flags and sets only STAT interrput enabled
 set_interrupts:
 	;; Clear interrupt flags
 	xor  a
