@@ -1,6 +1,6 @@
 @echo off
 
-code ./
+call code ./
 
 call D:/SDKs/Ghidra/ghidraRun.bat
 

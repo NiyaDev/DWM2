@@ -2,6 +2,7 @@
 ;; Definitions
 INCLUDE "src/includes/hardware.inc"
 INCLUDE "src/constants.inc"
+INCLUDE "src/macros.inc"
 
 INCLUDE "src/todo.inc"
 
@@ -142,77 +143,15 @@ Start: ;;0150
 	ld  bc,12
 	call Wait1750_X
 
-	;; Call FUN_ROM31_5040 with input of 20
-	ld  a,20
-	ld  [$C47C],a
-	ld  b,31
-	ld  hl,$5040
-	rst $10
-	call Wait7000
-
-	;; Call FUN_ROM31_5040 with input of 2
-	ld  a,2
-	ld  [$C47C],a
-	ld  b,31
-	ld  hl,$5040
-	rst $10
-	call Wait7000
-
-	;; Call FUN_ROM31_5040 with input of 3
-	ld  a,3
-	ld  [$C47C],a
-	ld  b,31
-	ld  hl,$5040
-	rst $10
-	call Wait7000
-
-	;; Call FUN_ROM31_5040 with input of 4
-	ld  a,4
-	ld  [$C47C],a
-	ld  b,31
-	ld  hl,$5040 
-	rst $10
-	call Wait7000
-
-	;; Call FUN_ROM31_5040 with input of 5
-	ld  a,5
-	ld  [$C47C],a
-	ld  b,31
-	ld  hl,$5040
-	rst $10
-	call Wait7000
-
-	;; Call FUN_ROM31_5040 with input of 6
-	ld  a,6
-	ld  [$C47C],a
-	ld  b,31
-	ld  hl,$5040
-	rst $10
-	call Wait7000
-
-	;; Call FUN_ROM31_5040 with input of 7
-	ld  a,7
-	ld  [$C47C],a
-	ld  b,31
-	ld  hl,$5040
-	rst $10
-	call Wait7000
-
-	;; Call FUN_ROM31_5040 with input of 8
-	ld  a,8
-	ld  [$C47C],a
-	ld  b,31
-	ld  hl,$5040
-	rst $10
-	call Wait7000
-
-	;; Call FUN_ROM31_5040 with input of 9
-	ld  a,9
-	ld  [$C47C],a
-	ld  b,31
-	ld  hl,$5040
-	rst $10
-	call Wait7000
+	long_call_rom31_5040 20
+	long_call_rom31_5040 2
+	long_call_rom31_5040 3
+	long_call_rom31_5040 4
+	long_call_rom31_5040 5
+	long_call_rom31_5040 6
+	long_call_rom31_5040 7
+	long_call_rom31_5040 8
+	long_call_rom31_5040 9
 
 	;; 
 	ld  a,$0C
@@ -232,37 +171,10 @@ Start: ;;0150
 
 	call Wait7000
 
-	;; Call FUN_ROM31_5040 with input of 18
-	ld  a,18
-	ld  [$C47C],a
-	ld  b,31
-	ld  hl,$5040
-	rst $10
-	call Wait7000
-
-	;; Call FUN_ROM31_5040 with input of 10
-	ld  a,10
-	ld  [$C47C],a
-	ld  b,31
-	ld  hl,$5040
-	rst $10
-	call Wait7000
-
-	;; Call FUN_ROM31_5040 with input of 19
-	ld  a,19
-	ld  [$C47C],a
-	ld  b,31
-	ld  hl,$5040
-	rst $10
-	call Wait7000
-
-	;; Call FUN_ROM31_5040 with input of 14
-	ld  a,14
-	ld  [$C47C],a
-	ld  b,$1F
-	ld  hl,$5040
-	rst $10
-	call Wait7000
+	long_call_rom31_5040 18
+	long_call_rom31_5040 10
+	long_call_rom31_5040 19
+	long_call_rom31_5040 14
 
 	;; [$C524] = 1
 	ld  a,$01
@@ -272,7 +184,7 @@ Start: ;;0150
 	ld  a,$FF
 	ld  [$C523],a
 
-	;; [$C51F-$C520] = $FF
+	;; [$C51F-$C520] = $00
 	xor a
 	ld  [$C51F],a
 	ld  [$C520],a
@@ -417,7 +329,7 @@ INCLUDE "src/Bank0/FUN_0DCA.inc"             ;; ROM0[$0DCA]
 
 INCLUDE "src/Bank0/FUN_14D1.inc"             ;; ROM0[$14D1]
 
-INCLUDE "src/Bank0/CopyData.inc"             ;; ROM0[$1679]
+INCLUDE "src/Bank0/memcpy.inc"               ;; ROM0[$1679]
 
 INCLUDE "src/Bank0/FUN_255B.inc"             ;; ROM0[$255B]
 INCLUDE "src/Bank0/stat_interrupt.inc"       ;; ROM0[$256A]
