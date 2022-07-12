@@ -75,9 +75,9 @@ Start: ;;0150
 	ld  [hl+],a
 	ld  [hl],a
 
-	;; [$C5DB] = 5
+	;; [UNK_C5DB] = 5
 	ld  a,$05
-	ld  [$C5DB],a
+	ld  [UNK_C5DB],a
 
 	;; Selects ROM bank 1
 	ld  a,$00
@@ -89,9 +89,9 @@ Start: ;;0150
 	ld  a,$00
 	ld  [rROMB1],a
 
-	;; [$C524] = $01
+	;; [UNK_C524] = true
 	ld  a,$01
-	ld  [$C524],a
+	ld  [UNK_C524],a
 
 	;; [$C60A-$C60B] = $FF
 	ld  a,$FF
@@ -130,9 +130,9 @@ Start: ;;0150
 	jr  c,.continue_dmg
 
 .continue_gbc: ;;01D8
-	;; [$C524] = 0
+	;; [UNK_C524] = false
 	xor a
-	ld  [$C524],a
+	ld  [UNK_C524],a
 
 	jp  .ei_main_loop
 
@@ -176,9 +176,9 @@ Start: ;;0150
 	long_call_rom31_5040 19
 	long_call_rom31_5040 14
 
-	;; [$C524] = 1
+	;; [UNK_C524] = true
 	ld  a,$01
-	ld  [$C524],a
+	ld  [UNK_C524],a
 
 	;; [$C523] = $FF
 	ld  a,$FF

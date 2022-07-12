@@ -1,87 +1,96 @@
 
 SECTION "FUN_0705", ROM0[$0705]
 
-
-;; FUN_0705 (A: value, BC: counter, DE: ptr, H: bank)
+;; Seems to do the same thing as FUN_06A8, but with bank switching involved
+;; Input: A, BC, DE, H
 FUN_0705:
-	ld  [$C47C],a            ;; [$C47C] = [value]
+	ld  [UNK_C47C],a
 
-	ld  a,[$C524]            ;;
-	or  a                    ;;
-	ret z                    ;; if [$C524] == 0, return
+	;; if [UNK_C524 == 0, return
+	ld  a,[UNK_C524]
+	or  a
+	ret z
 
+	push hl
+	push bc
 
-	push hl                  ;;
-	push bc                  ;;
+	call disable_lcd
+	call clear_8_hram
 
-	call disable_lcd         ;; =DisableLCD ()
+	;; Set scrolling to 0
+	xor a
+	ldh [rSCX],a
+	ldh [rSCY],a
 
-	call clear_8_hram        ;;
+	;; Set [rBGP] to $E4
+	ld  a,$E4
+	ldh [rBGP],a
 
-	xor a                    ;;
-	ldh [rSCX],a             ;;
-	ldh [rSCY],a             ;;
-	ld  a,$E4                ;;
-	ldh [rBGP],a             ;;
+	pop bc
+	pop hl
 
-	pop bc                   ;;
-	pop hl                   ;;
+	;; Save current bank
+	;; usually uses $4100, for some reson this one doesn't
+	ld  a,[$4000]
+	push af
 
+	;; Sets bank to input:H
+	push bc
+	ld  a,h
+	ld  [rROMB0],a
+	pop bc
 
-	ld  a,[$4000]            ;; usually uses $4100, for some reson this one doesn't
-	push af                  ;; Save current bank
-
-	push bc                  ;;
-	ld  a,h                  ;;
-	ld  [rROMB0],a           ;; Sets bank to [bank]
-	pop bc                   ;;
-
-	ld  hl,$8800             ;;
-
+	;; Copies [DE] into [HL] input:BC times
+	ld  hl,$8800
 .LAB_072D:
-	ld  a,[de]               ;;
-	ld  [hl+],a              ;; [HL] = [DE]
-	inc de                   ;;
-	dec bc                   ;;
-	ld  a,b                  ;;
-	or  c                    ;;
-	jr  nz,.LAB_072D         ;; if BC != 0, loop
+	ld  a,[de]
+	ld  [hl+],a
+	inc de
+	dec bc
+	ld  a,b
+	or  c
+	jr  nz,.LAB_072D
 
-	ld  hl,$9800             ;;
-	ld  de,$000C             ;;
-	ld  a,$80                ;;
-	ld  c,$0D                ;;
-
+	;; Sets 20 bytes every 32 bytes to $80-$94, 13 times
+	;; [$9800]->[$99A0] VRAM
+	ld  hl,$9800
+	ld  de,$000C
+	ld  a,$80
+	ld  c,$0D
 .LAB_073F:
-	ld  b,$14                ;;
-
+	ld  b,$14
 .LAB_0741:
-	ld  [hl+],a              ;;
-	inc a                    ;;
-	dec b                    ;;
-	jr  nz,.LAB_0741         ;; if B != 0, loop
+	ld  [hl+],a
+	inc a
+	dec b
+	jr  nz,.LAB_0741
 
-	add hl,de                ;;
-	dec c                    ;;
-	jr  nz,.LAB_073F         ;; if C != 0, loop
+	add hl,de
+	dec c
+	jr  nz,.LAB_073F
 
-	ld  a,$81                ;;
-	ldh [rLCDC],a            ;;
-	ld  [$C5EC],a            ;;
+	;; [rLCDC] and [UNK_C5EC] = $81
+	ld  a,$81
+	ldh [rLCDC],a
+	ld  [UNK_C5EC],a
 	
-	ld  bc,$0005             ;;
-	call wait_1750_x          ;; =Wait1750_X (5)
+	;; Wait 5 times (~.075 seconds)
+	ld  bc,5
+	call wait_1750_x
 	
-	ld  hl,$5040             ;;
-	ld  b,$1F                ;;
-	rst $10                  ;; =RST10 (31, $5040) ;; Call FUN_ROM31_5040
+	;; Long call FUN_ROM31_5040
+	ld  hl,$5040
+	ld  b,31
+	rst $10
 
-	ld  bc,$0006             ;;
-	call wait_1750_x          ;; =Wait1750_X (6)
+	;; Wait 6 times (~.09 seconds)
+	ld  bc,6
+	call wait_1750_x
 
-	call disable_lcd         ;; =DisableLCD ()
+	call disable_lcd
 
-	pop af                   ;;
-	ld  [rROMB0],a           ;; Sets bank back to start
+	;; Sets bank back to start
+	pop af
+	ld  [rROMB0],a
 	ret
 

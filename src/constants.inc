@@ -9,9 +9,11 @@ DEF run_dma EQU $FF80 ; DMA transfer function
 ; Used by FUN_ROM31_5040
 DEF UNK_C47C EQU $C47C
 
+; entry sets to true and false in different places
 ; If false, return from wait_7000   early
 ; If false, return from wait_1750_x early
 ; If false, return from FUN_06A8    early
+; If false, return from FUN_0705    early
 ;; Tentative:
 ;;   [UNK_C524] == [NO_WAIT] | bool
 DEF UNK_C524 EQU $C524
@@ -33,6 +35,7 @@ DEF UNK_C58A EQU $C58A
 ; Set to $81 by FUN_06A8
 DEF UNK_C5EC EQU $C5EC ; byte
 
+; entry sets to 5
 ; FUN_0355 chooses which long call based on this as an offset
 ; FUN_048A chooses which long call based on this as an offset
 DEF UNK_C5DB EQU $C5DB

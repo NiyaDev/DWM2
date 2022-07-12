@@ -8,7 +8,7 @@ Macros are only being used when a peice of code is repeated *SO* much that is ma
 ## Progress
 NOTE: Numbers are based on a direct comparison between the outputted file and the original. Actual documentation is a different story.
 
-[3,318 / 2,060,211] | ~[.0016%] Similarity as of 2022/06/30.
+[3,470 / 2,060,211] | ~[.0017%] Similarity as of 2022/07/12.
 
 ## Building
 NOTE: A step in the build script is comparing the output ROM to a backup copy of the released game, and that file is not included for obvious reasons. While I *currently* have no plans to switch over to a special build system, I will be working on improving this as I go forward.
