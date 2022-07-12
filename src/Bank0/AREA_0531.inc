@@ -1,16 +1,19 @@
 
 SECTION "AREA_0531", ROM0[$0531]
-;; None of this has ever been called so far.
+;; None of this have ever been called so far.
 
 
-;; 
+;; Call FUN_0BCC
 FUN_0531:
 	call FUN_0BCC
 	ret
 
-;;
+	
+;; TODO: Variables
+;; I'm not doing this now because it hasn't been called yet
 FUN_0535:
-	ld  a,[$C58A]
+	;; If [UNK_C58A] == 0, return
+	ld  a,[UNK_C58A]
 	or  a
 	ret z
 

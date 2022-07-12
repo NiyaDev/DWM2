@@ -20,6 +20,6 @@ FUN_07AA:          ;;07AA
 	ld  hl,$5040
 	rst $10
 
-	call Wait7000
+	call wait_7000
 
 	ret

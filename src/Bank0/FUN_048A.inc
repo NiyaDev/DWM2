@@ -1,18 +1,17 @@
 
 SECTION "048A", ROM0[$048A]
 
-
-;;
+;; 
 FUN_048A:
-	ld  a,[$C5DF]
+	ld  a,[UNK_C5DF]
 	or  a
 	ret nz
 
-	ld  a,[$C58A]
+	ld  a,[UNK_C58A]
 	or  a
 	jr  nz,.LAB_049E
 
-	ld  a,[$C56C]
+	ld  a,[UNK_C56C]
 	or  a
 	jr  z,.LAB_049E
 
@@ -20,11 +19,13 @@ FUN_048A:
 	ret z
 
 .LAB_049E:
-	ld  a,[$C5DB]
+	ld  a,[UNK_C5DB]
 	rst $00
 
 	
-	dw .LAB_04B4, .LAB_04BB, .LAB_04C2, .LAB_04C9, .LAB_04CA, .LAB_04D1, .LAB_04D8, .LAB_04DF, .LAB_04E6
+	dw .LAB_04B4, .LAB_04BB, .LAB_04C2, .LAB_04C9,
+	dw .LAB_04CA, .LAB_04D1, .LAB_04D8, .LAB_04DF,
+	dw .LAB_04E6
 
 	
 .LAB_04B4:

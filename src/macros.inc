@@ -6,5 +6,5 @@ MACRO long_call_rom31_5040
 	ld  b,bank(FUN_ROM31_5040)
 	ld  hl,FUN_ROM31_5040
 	rst $10
-	call Wait7000
+	call wait_7000
 ENDM

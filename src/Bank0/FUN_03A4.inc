@@ -1,9 +1,8 @@
 
 SECTION "FUN_03A4", ROM0[$03A4]
 
-
-;; FUN_03A4 ()
-FUN_03A4:          ;; $03A4
+;; TODO: variables
+FUN_03A4:  ;;03A4
 	push af
 	push bc
 	push de

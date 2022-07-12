@@ -9,15 +9,43 @@ DEF run_dma EQU $FF80 ; DMA transfer function
 ; Used by FUN_ROM31_5040
 DEF UNK_C47C EQU $C47C
 
-DEF IsGBC EQU $C525 ; bool - True if Gameboy color
+; If false, return from wait_7000   early
+; If false, return from wait_1750_x early
+;; Tentative:
+;;   [UNK_C524] == [NO_WAIT] | bool
+DEF UNK_C524 EQU $C524
+DEF IsGBC    EQU $C525 ; bool - True if Gameboy color
 ; Set to $7F in FUN_ROM2_42FA after first memcpy
 DEF UNK_C526 EQU $C526
 ; Set to $7F in FUN_ROM2_42FA after second memcpy
 DEF UNK_C527 EQU $C527
 
+; If == 0 in FUN_0474, calls FUN_0BB4
+; If != 0 in FUN_048A && ([UNK_C56C] & $80) == false, return from FUN_048A
+DEF UNK_C56C EQU $C56C
+
+; if != 0, check [UNK_C56C] in FUN_048A
+DEF UNK_C58A EQU $C58A
+
 
 ; Bit 7 set by disable_lcd when screen is turned off
 DEF UNK_C5EC EQU $C5EC
+
+; FUN_0355 chooses which long call based on this as an offset
+; FUN_048A chooses which long call based on this as an offset
+DEF UNK_C5DB EQU $C5DB
+
+; FUN_048A immediately leaves if != 0
+DEF UNK_C5DF EQU $C5DF
+
+
+; In FUN_04ED, if ([UNK_C604] | [UNK_C605]) == false, return
+;; Tentative:
+;;   [UNK_C604] == [SCY_MOD] | byte
+;;   [UNK_C605] == [SCX_MOD] | byte
+DEF UNK_C604 EQU $C604
+DEF UNK_C605 EQU $C605
+
 
 ; checked if and set to 0 in vram_clear
 DEF UNK_D066 EQU $D066
@@ -37,3 +65,7 @@ DEF UNK_DD14 EQU $DD14
 DEF UNK_DD15 EQU $DD15
 ; Set to 0 at the end of FUN_3290
 DEF UNK_DD19 EQU $DD19
+
+
+; Set to 0 at start of FUN_0474
+DEF UNK_FFB1 EQU $FFB1

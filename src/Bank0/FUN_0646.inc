@@ -22,7 +22,7 @@ FUN_0646:
 	and $03
 	sla a
 
-	;; Add A to [$C474] in HL
+	;; HL = A + $C474
 	ld  d,0
 	ld  e,a
 	ld  hl,$C474

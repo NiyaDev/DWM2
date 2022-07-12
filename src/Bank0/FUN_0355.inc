@@ -1,11 +1,10 @@
 
 SECTION "FUN_0355", ROM0[$0355]
 
-
-;; FUN_0355 ()
-;; 
-FUN_0355:          ;; $0355
-	ld  a,[$C5DB]
+;; Long calls function based on input
+;; Input: [UNK_C5DB]
+FUN_0355: ;;0355
+	ld  a,[UNK_C5DB]
 	rst $00
 
 

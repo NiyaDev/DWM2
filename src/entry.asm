@@ -141,7 +141,7 @@ Start: ;;0150
 
 	;; Wait 12 times
 	ld  bc,12
-	call Wait1750_X
+	call wait_1750_x
 
 	long_call_rom31_5040 20
 	long_call_rom31_5040 2
@@ -161,7 +161,7 @@ Start: ;;0150
 	ld  h,$17
 	call FUN_0705
 
-	call Wait7000
+	call wait_7000
 
 	ld  a,$0D
 	ld  e,$8C
@@ -169,7 +169,7 @@ Start: ;;0150
 	ld  b,$17
 	call FUN_06A8
 
-	call Wait7000
+	call wait_7000
 
 	long_call_rom31_5040 18
 	long_call_rom31_5040 10
@@ -269,7 +269,7 @@ Start: ;;0150
 	di
 
 	call set_interrupts
-	call Wait7000
+	call wait_7000
 
 	;; Call FUN_ROM31_5040 with input of 0
 	ld  a,0
@@ -277,7 +277,7 @@ Start: ;;0150
 	ld  b,31
 	ld  hl,$5040
 	rst $10
-	call Wait7000
+	call wait_7000
 
 	jp  .main_loop
 

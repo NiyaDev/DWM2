@@ -81,7 +81,7 @@ FUN_ROM31_5040:    ;; 31,5040
 	dec b                    ;;
 	ret z                    ;; if b == 0, return
 
-	call Wait7000            ;;
+	call wait_7000            ;;
 
 	jr .loop                 ;;
 

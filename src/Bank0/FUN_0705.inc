@@ -70,14 +70,14 @@ FUN_0705:
 	ld  [$C5EC],a            ;;
 	
 	ld  bc,$0005             ;;
-	call Wait1750_X          ;; =Wait1750_X (5)
+	call wait_1750_x          ;; =Wait1750_X (5)
 	
 	ld  hl,$5040             ;;
 	ld  b,$1F                ;;
 	rst $10                  ;; =RST10 (31, $5040) ;; Call FUN_ROM31_5040
 
 	ld  bc,$0006             ;;
-	call Wait1750_X          ;; =Wait1750_X (6)
+	call wait_1750_x          ;; =Wait1750_X (6)
 
 	call disable_lcd         ;; =DisableLCD ()
 
