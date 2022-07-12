@@ -1,9 +1,6 @@
 
 ;---------------------------------- TODO:
 
-SECTION "06A8", ROM0[$06A8]
-FUN_06A8:
-	ret
 
 SECTION "07D1", ROM0[$07D1]
 FUN_07D1:

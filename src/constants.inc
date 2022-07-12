@@ -11,6 +11,7 @@ DEF UNK_C47C EQU $C47C
 
 ; If false, return from wait_7000   early
 ; If false, return from wait_1750_x early
+; If false, return from FUN_06A8    early
 ;; Tentative:
 ;;   [UNK_C524] == [NO_WAIT] | bool
 DEF UNK_C524 EQU $C524
@@ -29,7 +30,8 @@ DEF UNK_C58A EQU $C58A
 
 
 ; Bit 7 set by disable_lcd when screen is turned off
-DEF UNK_C5EC EQU $C5EC
+; Set to $81 by FUN_06A8
+DEF UNK_C5EC EQU $C5EC ; byte
 
 ; FUN_0355 chooses which long call based on this as an offset
 ; FUN_048A chooses which long call based on this as an offset
