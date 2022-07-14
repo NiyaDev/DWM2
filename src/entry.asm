@@ -306,10 +306,16 @@ INCLUDE "src/Bank0/FUN_07D1.inc"                 ;; ROM0[$07D1]
 INCLUDE "src/Bank0/set_enabled_interrupts.inc"   ;; ROM0[$07D8]
 INCLUDE "src/Bank0/FUN_07E0.inc"                 ;; ROM0[$07E0]
 INCLUDE "src/Bank0/FUN_07F1.inc"                 ;; ROM0[$07F1]
-;INCLUDE "src/Bank0/FUN_07FD.inc"                 ;; ROM0[$07FD]
-;; AREA_0809 - Pointed to by FUN_ROM31_5134
-;INCLUDE "src/Bank0/FUN_0829.inc"                 ;; ROM0[$0829]
-;INCLUDE "src/Bank0/FUN_085C.inc"                 ;; ROM0[$085C]
+INCLUDE "src/Bank0/FUN_07FD.inc"                 ;; ROM0[$07FD]
+;; ----------------------------------------------------------------- ;;
+;; AREA_080A - Pointed to by FUN_ROM31_5134                          ;;
+;;  Might be data, but may also be code...                           ;;
+LAB_080A:	db $FA, $25, $C5, $B7, $C8, $FA, $00, $40, $F5, $78, $EA ;;
+			db $00, $21, $06, $40, $1A, $22, $13, $05, $20, $FA, $06 ;;
+LAB_0820:	db $00, $09, $36, $7F, $F1, $EA, $00, $21, $C9           ;;
+;; ----------------------------------------------------------------- ;;
+INCLUDE "src/Bank0/copy_bg_palette.inc"          ;; ROM0[$0829]
+INCLUDE "src/Bank0/copy_obj_palette.inc"         ;; ROM0[$085C]
 ;INCLUDE "src/Bank0/FUN_0897.inc"                 ;; ROM0[$0897]
 
 INCLUDE "src/Bank0/memory_initialization.inc"    ;; ROM0[$08D0]

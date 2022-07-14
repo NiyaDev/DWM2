@@ -1,20 +1,8 @@
 
 ;---------------------------------- TODO:
 
-
-
-
-
-SECTION "07FD", ROM0[$07FD]
-FUN_07FD:
-	ret
-
-SECTION "0829", ROM0[$0829]
-FUN_0829:
-	ret
-
-SECTION "085C", ROM0[$085C]
-FUN_085C:
+SECTION "0897", ROM0[$0897]
+FUN_0897:
 	ret
 
 SECTION "08AD", ROM0[$08AD]
@@ -55,6 +43,10 @@ FUN_0DF2:
 
 SECTION "0F4E", ROM0[$0F4E]
 FUN_0F4E:
+	ret
+
+SECTION "120A", ROM0[$120A]
+FUN_120A:
 	ret
 
 SECTION "1278", ROM0[$1278]

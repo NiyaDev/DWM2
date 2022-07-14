@@ -41,18 +41,21 @@ FUN_03A4:  ;;03A4
 	or  [hl]
 	jr  z,.LAB_03EA
 
-	ld  a,[$C526]
+	;; If [UNK_C526] != 0, copy bg palette
+	;; Then clear [UNK_C526]
+	ld  a,[UNK_C526]
 	or  a
-	call nz,FUN_0829
-
+	call nz,copy_bg_palette
 	xor a
-	ld  [$C526],a
-	ld  a,[$C527]
+	ld  [UNK_C526],a
+
+	;; If [UNK_C527] != 0, copy obj palette
+	;; Then clear [UNK_C527]
+	ld  a,[UNK_C527]
 	or  a
-	call nz,FUN_085C
-
+	call nz,copy_obj_palette
 	xor a
-	ld  [$C527],a
+	ld  [UNK_C527],a
 
 .LAB_03EA:
 	call FUN_0BCC

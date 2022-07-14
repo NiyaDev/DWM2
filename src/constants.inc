@@ -3,6 +3,14 @@
 
 DEF run_dma EQU $FF80 ; DMA transfer function
 
+DEF BCPD_MEM_LENGTH EQU $40
+DEF BCPD_MEM_UPPER  EQU $C4
+DEF BCPD_MEM_LOWER  EQU $9F
+
+DEF OCPD_MEM_LENGTH EQU $40
+DEF OCPD_MEM_UPPER  EQU $C4
+DEF OCPD_MEM_LOWER  EQU $DF
+
 
 ;; Variables
 
@@ -14,6 +22,12 @@ DEF UNK_C47C EQU $C47C
 ; Set to zero in FUN_076B
 
 
+; The start of background color data in memory
+DEF BCPD_MEM_START EQU $C49F
+; The start of object color data in memory
+DEF OCPD_MEM_START EQU $C4DF
+
+
 ; entry sets to true and false in different places
 ; If false, return from wait_7000   early
 ; If false, return from wait_1750_x early
@@ -21,11 +35,13 @@ DEF UNK_C47C EQU $C47C
 ; If false, return from FUN_0705    early
 ; If false, return from FUN_07AA    early
 ;; Tentative:
-;;   [UNK_C524] == [NO_WAIT] | bool
-DEF UNK_C524 EQU $C524
+;;   [UNK_C524] == [WAIT]
+DEF UNK_C524 EQU $C524 ; bool
 DEF IsGBC    EQU $C525 ; bool - True if Gameboy color
 ; Set to $7F in FUN_ROM2_42FA after first memcpy
-DEF UNK_C526 EQU $C526
+; Tentative:
+;;   [UNK_C526] == [DAT_rBCPS]
+DEF UNK_C526 EQU $C526 ; byte
 ; Set to $7F in FUN_ROM2_42FA after second memcpy
 DEF UNK_C527 EQU $C527
 
@@ -36,6 +52,12 @@ DEF UNK_C56C EQU $C56C
 ; If != 0, check [UNK_C56C] in FUN_048A
 ; If != 0, call FUN_14D1 in FUN_077A
 DEF UNK_C58A EQU $C58A
+
+
+; Grabbed in FUN_07FD and used in [rBGP], [rOBP0], and [rOBP1] respectively
+DEF UNK_C5E9 EQU $C5E9 ; byte
+DEF UNK_C5EA EQU $C5EA ; byte
+DEF UNK_C5EB EQU $C5EB ; byte
 
 
 ; Bit 7 set by disable_lcd when screen is turned off
@@ -83,6 +105,9 @@ DEF UNK_DD19 EQU $DD19
 
 ; Set to 0 at start of FUN_0474
 DEF UNK_FFB1 EQU $FFB1
+
+;
+DEF rBCPD_SH EQU $69
 
 ; Copied to [rSCX], [rSCY], [rWX], and [rWY] respectively in FUN_07E0
 DEF UNK_FFA1 EQU $A1
