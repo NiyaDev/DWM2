@@ -13,7 +13,7 @@ copy_obj_palette: ;;085C
 	;; Save [UNK_C526] into [rBCPS]
 	;; Add $C4DF to output of FUN_0897
 	ldh [rOCPS],a
-	call FUN_0897
+	call isolate_offset
 	ld  a,l
 	add OCPD_MEM_LOWER
 	ld  l,a

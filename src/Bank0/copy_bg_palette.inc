@@ -13,7 +13,7 @@ copy_bg_palette: ;;0829
 	;; Save [UNK_C526] into [rBCPS]
 	;; Add $C49F to output of FUN_0897
 	ldh [rBCPS],a
-	call FUN_0897
+	call isolate_offset
 	ld  a,l
 	add BCPD_MEM_LOWER
 	ld  l,a

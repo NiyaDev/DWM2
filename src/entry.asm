@@ -316,7 +316,7 @@ LAB_0820:	db $00, $09, $36, $7F, $F1, $EA, $00, $21, $C9           ;;
 ;; ----------------------------------------------------------------- ;;
 INCLUDE "src/Bank0/copy_bg_palette.inc"          ;; ROM0[$0829]
 INCLUDE "src/Bank0/copy_obj_palette.inc"         ;; ROM0[$085C]
-;INCLUDE "src/Bank0/FUN_0897.inc"                 ;; ROM0[$0897]
+INCLUDE "src/Bank0/isolate_offset.inc"                 ;; ROM0[$0897]
 
 INCLUDE "src/Bank0/memory_initialization.inc"    ;; ROM0[$08D0]
 INCLUDE "src/Bank0/vram_clear.inc"               ;; ROM0[$0930]

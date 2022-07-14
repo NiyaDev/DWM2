@@ -38,11 +38,19 @@ DEF OCPD_MEM_START EQU $C4DF
 ;;   [UNK_C524] == [WAIT]
 DEF UNK_C524 EQU $C524 ; bool
 DEF IsGBC    EQU $C525 ; bool - True if Gameboy color
+
 ; Set to $7F in FUN_ROM2_42FA after first memcpy
+; Bit  7   skip flag
+; Bits 3-5 used for offset
 ; Tentative:
 ;;   [UNK_C526] == [DAT_rBCPS]
 DEF UNK_C526 EQU $C526 ; byte
+
 ; Set to $7F in FUN_ROM2_42FA after second memcpy
+; Bit  7   skip flag
+; Bits 3-5 used for offset
+; Tentative:
+;;   [UNK_C527] == [DAT_rOCPS]
 DEF UNK_C527 EQU $C527
 
 ; If == 0 in FUN_0474, calls FUN_0BB4

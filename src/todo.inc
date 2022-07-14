@@ -1,10 +1,6 @@
 
 ;---------------------------------- TODO:
 
-SECTION "0897", ROM0[$0897]
-FUN_0897:
-	ret
-
 SECTION "08AD", ROM0[$08AD]
 FUN_08AD:
 	ret
