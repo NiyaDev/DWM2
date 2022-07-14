@@ -3,10 +3,11 @@ SECTION "FUN_077A", ROM0[$077A]
 
 
 ;;
-FUN_077A:          ;;077A
+FUN_077A: ;;077A
 	push af
 
-	ld  a,[$C58A]
+	;; Call FUN_14D1 if [UNK_C58A] != 0
+	ld  a,[UNK_C58A]
 	or  a
 	jr  z,.LAB_0784
 	

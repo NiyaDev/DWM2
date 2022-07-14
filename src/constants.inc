@@ -9,11 +9,17 @@ DEF run_dma EQU $FF80 ; DMA transfer function
 ; Used by FUN_ROM31_5040
 DEF UNK_C47C EQU $C47C
 
+
+; Memory $C47F->$C48F
+; Set to zero in FUN_076B
+
+
 ; entry sets to true and false in different places
 ; If false, return from wait_7000   early
 ; If false, return from wait_1750_x early
 ; If false, return from FUN_06A8    early
 ; If false, return from FUN_0705    early
+; If false, return from FUN_07AA    early
 ;; Tentative:
 ;;   [UNK_C524] == [NO_WAIT] | bool
 DEF UNK_C524 EQU $C524
@@ -27,12 +33,15 @@ DEF UNK_C527 EQU $C527
 ; If != 0 in FUN_048A && ([UNK_C56C] & $80) == false, return from FUN_048A
 DEF UNK_C56C EQU $C56C
 
-; if != 0, check [UNK_C56C] in FUN_048A
+; If != 0, check [UNK_C56C] in FUN_048A
+; If != 0, call FUN_14D1 in FUN_077A
 DEF UNK_C58A EQU $C58A
 
 
 ; Bit 7 set by disable_lcd when screen is turned off
+; Bit 7 set by FUN_07AA, then it's copied to rLCDC
 ; Set to $81 by FUN_06A8
+; Loaded into [rLCDC] by FUN_07F1
 DEF UNK_C5EC EQU $C5EC ; byte
 
 ; entry sets to 5
@@ -74,3 +83,9 @@ DEF UNK_DD19 EQU $DD19
 
 ; Set to 0 at start of FUN_0474
 DEF UNK_FFB1 EQU $FFB1
+
+; Copied to [rSCX], [rSCY], [rWX], and [rWY] respectively in FUN_07E0
+DEF UNK_FFA1 EQU $A1
+DEF UNK_FFA5 EQU $A5
+DEF UNK_FF9F EQU $9F
+DEF UNK_FFA0 EQU $A0

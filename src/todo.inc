@@ -2,17 +2,8 @@
 ;---------------------------------- TODO:
 
 
-SECTION "07D1", ROM0[$07D1]
-FUN_07D1:
-	ret
 
-SECTION "07E0", ROM0[$07E0]
-FUN_07E0:
-	ret
 
-SECTION "07F1", ROM0[$07F1]
-FUN_07F1:
-	ret
 
 SECTION "07FD", ROM0[$07FD]
 FUN_07FD:

@@ -284,67 +284,67 @@ Start: ;;0150
 
 
 
-INCLUDE "src/Bank0/FUN_0355.inc"             ;; ROM0[$0355]
-INCLUDE "src/Bank0/FUN_03A4.inc"             ;; ROM0[$03A4]
-INCLUDE "src/Bank0/FUN_0474.inc"             ;; ROM0[$0474]
-INCLUDE "src/Bank0/FUN_048A.inc"             ;; ROM0[$048A]
-INCLUDE "src/Bank0/FUN_04ED.inc"             ;; ROM0[$04ED]
-INCLUDE "src/Bank0/AREA_0531.inc"            ;; ROM0[$0531]
-INCLUDE "src/Bank0/wait_7000.inc"            ;; ROM0[$05D1]
-INCLUDE "src/Bank0/FUN_05E2.inc"             ;; ROM0[$05E2]
-INCLUDE "src/Bank0/FUN_0646.inc"             ;; ROM0[$0646]
-INCLUDE "src/Bank0/wait_1750_x.inc"          ;; ROM0[$0692]
-INCLUDE "src/Bank0/FUN_06A8.inc"             ;; ROM0[$06A8]
-INCLUDE "src/Bank0/FUN_0705.inc"             ;; ROM0[$0705]
-INCLUDE "src/Bank0/FUN_076B.inc"             ;; ROM0[$076B]
-INCLUDE "src/Bank0/FUN_077A.inc"             ;; ROM0[$077A]
-INCLUDE "src/Bank0/set_interrupts.inc"       ;; ROM0[$078D]
-INCLUDE "src/Bank0/disable_lcd.inc"          ;; ROM0[$0796]
-INCLUDE "src/Bank0/FUN_07AA.inc"             ;; ROM0[$07AA]
-;INCLUDE "src/Bank0/FUN_07D1.inc"             ;; ROM0[$07D1]
-INCLUDE "src/Bank0/set_enabled_interrupts.inc";; ROM0[$07D8]
-;INCLUDE "src/Bank0/FUN_07E0.inc"             ;; ROM0[$007E0]
+INCLUDE "src/Bank0/FUN_0355.inc"                 ;; ROM0[$0355]
+INCLUDE "src/Bank0/FUN_03A4.inc"                 ;; ROM0[$03A4]
+INCLUDE "src/Bank0/FUN_0474.inc"                 ;; ROM0[$0474]
+INCLUDE "src/Bank0/FUN_048A.inc"                 ;; ROM0[$048A]
+INCLUDE "src/Bank0/FUN_04ED.inc"                 ;; ROM0[$04ED]
+INCLUDE "src/Bank0/AREA_0531.inc"                ;; ROM0[$0531]
+INCLUDE "src/Bank0/wait_7000.inc"                ;; ROM0[$05D1]
+INCLUDE "src/Bank0/FUN_05E2.inc"                 ;; ROM0[$05E2]
+INCLUDE "src/Bank0/FUN_0646.inc"                 ;; ROM0[$0646]
+INCLUDE "src/Bank0/wait_1750_x.inc"              ;; ROM0[$0692]
+INCLUDE "src/Bank0/FUN_06A8.inc"                 ;; ROM0[$06A8]
+INCLUDE "src/Bank0/FUN_0705.inc"                 ;; ROM0[$0705]
+INCLUDE "src/Bank0/FUN_076B.inc"                 ;; ROM0[$076B]
+INCLUDE "src/Bank0/FUN_077A.inc"                 ;; ROM0[$077A]
+INCLUDE "src/Bank0/set_interrupts.inc"           ;; ROM0[$078D]
+INCLUDE "src/Bank0/disable_lcd.inc"              ;; ROM0[$0796]
+INCLUDE "src/Bank0/FUN_07AA.inc"                 ;; ROM0[$07AA]
+INCLUDE "src/Bank0/AREA_07C6.inc"                ;; ROM0[$07AA]
+INCLUDE "src/Bank0/FUN_07D1.inc"                 ;; ROM0[$07D1]
+INCLUDE "src/Bank0/set_enabled_interrupts.inc"   ;; ROM0[$07D8]
+INCLUDE "src/Bank0/FUN_07E0.inc"                 ;; ROM0[$07E0]
+INCLUDE "src/Bank0/FUN_07F1.inc"                 ;; ROM0[$07F1]
+;INCLUDE "src/Bank0/FUN_07FD.inc"                 ;; ROM0[$07FD]
+;; AREA_0809 - Pointed to by FUN_ROM31_5134
+;INCLUDE "src/Bank0/FUN_0829.inc"                 ;; ROM0[$0829]
+;INCLUDE "src/Bank0/FUN_085C.inc"                 ;; ROM0[$085C]
+;INCLUDE "src/Bank0/FUN_0897.inc"                 ;; ROM0[$0897]
 
-;INCLUDE "src/Bank0/FUN_07E0.inc"             ;; ROM0[$07E0]
-;INCLUDE "src/Bank0/FUN_07F1.inc"             ;; ROM0[$07F1]
-;INCLUDE "src/Bank0/FUN_07FD.inc"             ;; ROM0[$07FD]
-;INCLUDE "src/Bank0/FUN_0829.inc"             ;; ROM0[$0829]
-;INCLUDE "src/Bank0/FUN_085C.inc"             ;; ROM0[$085C]
-;INCLUDE "src/Bank0/FUN_0897.inc"             ;; ROM0[$0897]
+INCLUDE "src/Bank0/memory_initialization.inc"    ;; ROM0[$08D0]
+INCLUDE "src/Bank0/vram_clear.inc"               ;; ROM0[$0930]
+INCLUDE "src/Bank0/memset.inc"                   ;; ROM0[$0949]
+INCLUDE "src/Bank0/FUN_095B.inc"                 ;; ROM0[$095B]
+;INCLUDE "src/Bank0/FUN_09F3.inc"                 ;; ROM0[$09F3]
+;INCLUDE "src/Bank0/FUN_0A17.inc"                 ;; ROM0[$0A17]
+;INCLUDE "src/Bank0/FUN_0A61.inc"                 ;; ROM0[$0A61]
 
-INCLUDE "src/Bank0/memory_initialization.inc";; ROM0[$08D0]
-INCLUDE "src/Bank0/vram_clear.inc"           ;; ROM0[$0930]
-INCLUDE "src/Bank0/memset.inc"               ;; ROM0[$0949]
-INCLUDE "src/Bank0/FUN_095B.inc"             ;; ROM0[$095B]
-;INCLUDE "src/Bank0/FUN_09F3.inc"             ;; ROM0[$09F3]
-;INCLUDE "src/Bank0/FUN_0A17.inc"             ;; ROM0[$0A17]
-;INCLUDE "src/Bank0/FUN_0A61.inc"             ;; ROM0[$0A61]
+INCLUDE "src/Bank0/FUN_0B7F.inc"                 ;; ROM0[$0B7F]
+INCLUDE "src/Bank0/clear_8_hram.inc"             ;; ROM0[$0B9B]
 
-INCLUDE "src/Bank0/FUN_0B7F.inc"             ;; ROM0[$0B7F]
-INCLUDE "src/Bank0/clear_8_hram.inc"         ;; ROM0[$0B9B]
+INCLUDE "src/Bank0/clear_work_start.inc"         ;; ROM0[$0BA7]
 
-INCLUDE "src/Bank0/clear_work_start.inc"     ;; ROM0[$0BA7]
+INCLUDE "src/Bank0/FUN_0DCA.inc"                 ;; ROM0[$0DCA]
 
-INCLUDE "src/Bank0/FUN_0DCA.inc"             ;; ROM0[$0DCA]
+INCLUDE "src/Bank0/FUN_14D1.inc"                 ;; ROM0[$14D1]
 
-INCLUDE "src/Bank0/FUN_14D1.inc"             ;; ROM0[$14D1]
+INCLUDE "src/Bank0/memcpy.inc"                   ;; ROM0[$1679]
 
-INCLUDE "src/Bank0/memcpy.inc"               ;; ROM0[$1679]
+INCLUDE "src/Bank0/FUN_255B.inc"                 ;; ROM0[$255B]
+INCLUDE "src/Bank0/stat_interrupt.inc"           ;; ROM0[$256A]
 
-INCLUDE "src/Bank0/FUN_255B.inc"             ;; ROM0[$255B]
-INCLUDE "src/Bank0/stat_interrupt.inc"       ;; ROM0[$256A]
-
-INCLUDE "src/Bank0/FUN_3290.inc"             ;; ROM0[$3290]
-
-
-INCLUDE "src/Bank1/FUN_4001.inc"             ;; ROM0[$4001], BANK[1]
+INCLUDE "src/Bank0/FUN_3290.inc"                 ;; ROM0[$3290]
 
 
-INCLUDE "src/Bank2/FUN_42FA.inc"             ;; ROMX[$3290], BANK[2]
+INCLUDE "src/Bank1/FUN_4001.inc"                 ;; ROM0[$4001], BANK[1]
 
-INCLUDE "src/Bank27/FUN_4001.inc"            ;; ROMX[$5040], BANK[27]
 
-INCLUDE "src/Bank31/FUN_5040.inc"            ;; ROMX[$5040], BANK[31]
+INCLUDE "src/Bank2/FUN_42FA.inc"                 ;; ROMX[$3290], BANK[2]
+
+INCLUDE "src/Bank27/FUN_4001.inc"                ;; ROMX[$5040], BANK[27]
+
+INCLUDE "src/Bank31/FUN_5040.inc"                ;; ROMX[$5040], BANK[31]
 
 
 
