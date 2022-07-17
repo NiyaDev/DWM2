@@ -316,22 +316,50 @@ LAB_0820:	db $00, $09, $36, $7F, $F1, $EA, $00, $21, $C9           ;;
 ;; ----------------------------------------------------------------- ;;
 INCLUDE "src/Bank0/copy_bg_palette.inc"          ;; ROM0[$0829]
 INCLUDE "src/Bank0/copy_obj_palette.inc"         ;; ROM0[$085C]
-INCLUDE "src/Bank0/isolate_offset.inc"                 ;; ROM0[$0897]
-
+INCLUDE "src/Bank0/isolate_offset.inc"           ;; ROM0[$0897]
+;; ----------------------------------------------------------------- ;;
+;; AREA_089F - Unused so far.                                        ;;
+;;  Might be data, might be code. Ends in C9:ret, so probably code.  ;;
+LAB_089F:	db $F0, $41, $F6, $40, $E0, $41, $C9                     ;;
+LAB_08A6:	db $F0, $41, $E6, $07, $E0, $41, $C9                     ;;
+;; ----------------------------------------------------------------- ;;
+INCLUDE "src/Bank0/start_parent_serial.inc"      ;; ROM0[$08AD]
+INCLUDE "src/Bank0/start_child_serial.inc"       ;; ROM0[$08BA]
+INCLUDE "src/Bank0/set_transfer_data.inc"        ;; ROM0[$08C7]
 INCLUDE "src/Bank0/memory_initialization.inc"    ;; ROM0[$08D0]
 INCLUDE "src/Bank0/vram_clear.inc"               ;; ROM0[$0930]
 INCLUDE "src/Bank0/memset.inc"                   ;; ROM0[$0949]
+;; ----------------------------------------------------------------- ;;
+;; AREA_0952 - Unused so far.                                        ;;
+;;  Might be data, might be code. Ends in C9:ret, so probably code.  ;;
+LAB_0952:	db $2A, $12, $13, $0B, $78, $B1, $20, $F8, $C9           ;;
+;; ----------------------------------------------------------------- ;;
 INCLUDE "src/Bank0/FUN_095B.inc"                 ;; ROM0[$095B]
-;INCLUDE "src/Bank0/FUN_09F3.inc"                 ;; ROM0[$09F3]
-;INCLUDE "src/Bank0/FUN_0A17.inc"                 ;; ROM0[$0A17]
-;INCLUDE "src/Bank0/FUN_0A61.inc"                 ;; ROM0[$0A61]
-
+INCLUDE "src/Bank0/FUN_09F3.inc"                 ;; ROM0[$09F3]
+INCLUDE "src/Bank0/FUN_0A17.inc"                 ;; ROM0[$0A17]
+;; ----------------------------------------------------------------- ;;
+;; AREA_0A4F - Unused so far.                                        ;;
+;;  Might be data, might be code. Ends in C9:ret, so probably code.  ;;
+LAB_0A4F:	db $CD, $61, $0A, $FA, $60, $C5, $EA, $61, $C5           ;;
+LAB_0A58:	db $78, $EA, $60, $C5, $3E, $30, $E0, $00, $C9           ;;
+;; ----------------------------------------------------------------- ;;
+INCLUDE "src/Bank0/get_input.inc"                 ;; ROM0[$0A61]
+;INCLUDE "src/Bank0/FUN_0A8D.inc"                 ;; ROM0[$0A8D]
+;INCLUDE "src/Bank0/FUN_0B2B.inc"                 ;; ROM0[$0B2B]
 INCLUDE "src/Bank0/FUN_0B7F.inc"                 ;; ROM0[$0B7F]
 INCLUDE "src/Bank0/clear_8_hram.inc"             ;; ROM0[$0B9B]
-
 INCLUDE "src/Bank0/clear_work_start.inc"         ;; ROM0[$0BA7]
-
+;INCLUDE "src/Bank0/FUN_0BB4.inc"                 ;; ROM0[$0BB4]
+;INCLUDE "src/Bank0/FUN_0BCC.inc"                 ;; ROM0[$0BCC]
+;INCLUDE "src/Bank0/FUN_0C5A.inc"                 ;; ROM0[$0C5A]
+;INCLUDE "src/Bank0/FUN_0C69.inc"                 ;; ROM0[$0C69]
+;INCLUDE "src/Bank0/FUN_0DA8.inc"                 ;; ROM0[$0DA8]
 INCLUDE "src/Bank0/FUN_0DCA.inc"                 ;; ROM0[$0DCA]
+;INCLUDE "src/Bank0/FUN_0DF2.inc"                 ;; ROM0[$0DF2]
+;INCLUDE "src/Bank0/FUN_0F4E.inc"                 ;; ROM0[$0F4E]
+;INCLUDE "src/Bank0/FUN_0FC1.inc"                 ;; ROM0[$0FC1]
+;INCLUDE "src/Bank0/FUN_1022.inc"                 ;; ROM0[$1022]
+;INCLUDE "src/Bank0/FUN_1040.inc"                 ;; ROM0[$1040]
 
 INCLUDE "src/Bank0/FUN_14D1.inc"                 ;; ROM0[$14D1]
 

@@ -79,7 +79,7 @@ FUN_0535:
 	ld  [$C582],a
 
 	ld  a,[$C594]
-	jp  FUN_08AD
+	jp  start_parent_serial
 
 
 .LAB_059D:
@@ -109,7 +109,7 @@ FUN_0535:
 	ld  [$C582],a
 
 	ld  a,[hl]
-	jp  FUN_08AD
+	jp  start_parent_serial
 
 
 .LAB_05C7:
@@ -117,4 +117,4 @@ FUN_0535:
 	ld  [$C582],a
 
 	ld  a,$F0
-	jp  FUN_08AD
+	jp  start_parent_serial

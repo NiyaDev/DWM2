@@ -113,7 +113,7 @@ FUN_14D1:          ;;14D1
 	ld  a,[$C57F]
 	bit 1,a
 	ld  a,$F8
-	call nz,FUN_08BA
+	call nz,start_child_serial
 
 .LAB_1575:
 	xor a

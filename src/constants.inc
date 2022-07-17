@@ -14,6 +14,12 @@ DEF OCPD_MEM_LOWER  EQU $DF
 
 ;; Variables
 
+; In FUN_0A17, copied to [UNK_C55E]
+DEF UNK_C474 EQU $C474
+
+; In FUN_0A17, copied to [UNK_C560]
+DEF UNK_C476 EQU $C476
+
 ; Used by FUN_ROM31_5040
 DEF UNK_C47C EQU $C47C
 
@@ -34,6 +40,7 @@ DEF OCPD_MEM_START EQU $C4DF
 ; If false, return from FUN_06A8    early
 ; If false, return from FUN_0705    early
 ; If false, return from FUN_07AA    early
+; If false, use different version of FUN_0A17
 ;; Tentative:
 ;;   [UNK_C524] == [WAIT]
 DEF UNK_C524 EQU $C524 ; bool
@@ -53,6 +60,17 @@ DEF UNK_C526 EQU $C526 ; byte
 ;;   [UNK_C527] == [DAT_rOCPS]
 DEF UNK_C527 EQU $C527
 
+
+; In FUN_0A17, cleared
+DEF UNK_C55D EQU $C55D
+; In FUN_0A17, copied to [UNK_C55F]
+DEF UNK_C55E EQU $C55E
+DEF UNK_C55F EQU $C55F
+; In FUN_0A17, copied to [UNK_C561]
+DEF UNK_C560 EQU $C560
+DEF UNK_C561 EQU $C561
+
+
 ; If == 0 in FUN_0474, calls FUN_0BB4
 ; If != 0 in FUN_048A && ([UNK_C56C] & $80) == false, return from FUN_048A
 DEF UNK_C56C EQU $C56C
@@ -61,6 +79,11 @@ DEF UNK_C56C EQU $C56C
 ; If != 0, call FUN_14D1 in FUN_077A
 DEF UNK_C58A EQU $C58A
 
+; In FUN_095B, byte is loaded from [[UNK_C5E8] + $0973]
+DEF UNK_C5E7 EQU $C5E7 ; byte
+
+; Grabbed in FUN_095B, incremented, then AND'd with $7F and resaved
+DEF UNK_C5E8 EQU $C5E8 ; byte
 
 ; Grabbed in FUN_07FD and used in [rBGP], [rOBP0], and [rOBP1] respectively
 DEF UNK_C5E9 EQU $C5E9 ; byte
@@ -93,6 +116,11 @@ DEF UNK_C605 EQU $C605
 
 ; checked if and set to 0 in vram_clear
 DEF UNK_D066 EQU $D066
+
+
+; In FUN_09F3, loaded from. Logic is done, the saved.
+DEF UNK_CD03 EQU $CD03 ; byte
+DEF UNK_CD04 EQU $CD04 ; byte
 
 
 ; Set to zero when FUN_3290 clears sound output terminal

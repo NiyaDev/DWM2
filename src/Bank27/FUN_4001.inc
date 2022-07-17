@@ -582,6 +582,6 @@ FUN_ROM27_4001:
 	ld  [$C580],a
 
 	ld  a,$F8
-	call FUN_08BA
+	call start_child_serial
 
 	ret
