@@ -86,9 +86,15 @@ DEF UNK_C5E7 EQU $C5E7 ; byte
 DEF UNK_C5E8 EQU $C5E8 ; byte
 
 ; Grabbed in FUN_07FD and used in [rBGP], [rOBP0], and [rOBP1] respectively
+; Set to $D2, $D2, $E2 by FUN_0B7F
 DEF UNK_C5E9 EQU $C5E9 ; byte
 DEF UNK_C5EA EQU $C5EA ; byte
 DEF UNK_C5EB EQU $C5EB ; byte
+
+; Set to $D2, $D2, $E2 by FUN_0B7F
+DEF UNK_D040 EQU $D040 ; byte
+DEF UNK_D041 EQU $D041 ; byte
+DEF UNK_D042 EQU $D042 ; byte
 
 
 ; Bit 7 set by disable_lcd when screen is turned off
