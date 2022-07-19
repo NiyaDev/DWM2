@@ -344,7 +344,7 @@ LAB_0A4F:	db $CD, $61, $0A, $FA, $60, $C5, $EA, $61, $C5           ;;
 LAB_0A58:	db $78, $EA, $60, $C5, $3E, $30, $E0, $00, $C9           ;;
 ;; ----------------------------------------------------------------- ;;
 INCLUDE "src/Bank0/get_input.inc"                 ;; ROM0[$0A61]
-;INCLUDE "src/Bank0/FUN_0A8D.inc"                 ;; ROM0[$0A8D]
+INCLUDE "src/Bank0/FUN_0A8D.inc"                 ;; ROM0[$0A8D]
 ;INCLUDE "src/Bank0/FUN_0B2B.inc"                 ;; ROM0[$0B2B]
 INCLUDE "src/Bank0/FUN_0B7F.inc"                 ;; ROM0[$0B7F]
 INCLUDE "src/Bank0/clear_8_hram.inc"             ;; ROM0[$0B9B]

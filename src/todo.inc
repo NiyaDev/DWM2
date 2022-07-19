@@ -1,10 +1,6 @@
 
 ;---------------------------------- TODO:
 
-SECTION "0A8D", ROM0[$0A8D]
-FUN_0A8D:
-	ret
-
 SECTION "0BB4", ROM0[$0BB4]
 FUN_0BB4:
 	ret
