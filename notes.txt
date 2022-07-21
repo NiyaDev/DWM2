@@ -1,0 +1,50 @@
+
+
+
+
+FUN_0A8D :: proc() {
+	if [UNK_C58A] == 0 && [UNK_C55D] == 0 {
+		[UNK_C560] = 0;
+		[UNK_C561] = 0;
+	}
+
+	[UNK_C563] = 0;
+	[UNK_C562] = ([UNK_C55E] ^ [UNK_C55F]) & [UNK_C55E];
+
+	if [UNK_C55E] == 0 {
+		[UNK_C563] = [UNK_C562];
+		[UNK_C564] = $14;
+	} else if [UNK_C55E] == [UNK_C55F] {
+		if [UNK_C564] != 0 {
+			[UNK_C564]-= 1;
+		} else {
+			[UNK_C564] = $06;
+			[UNK_C563] = [UNK_C55E];
+			[UNK_C564]-= 1;
+		}
+	}
+
+	[UNK_C567] = 0;
+	[UNK_C566] = ([UNK_C560] ^ [UNK_C561]) & [UNK_C560];
+
+	if [UNK_C560] == 0 {
+		[UNK_C567] = [UNK_C566];
+		[UNK_C568] = $14;
+	} else if [UNK_C560] == [UNK_C561] {
+		if [UNK_C568] != 0 {
+			[UNK_C568]-=1;
+		} else {
+			[UNK_C568] = $06;
+			[UNK_C567] = [UNK_C560];
+			[UNK_C568]-= 1;
+		}
+	}
+}
+
+
+
+
+
+
+
+
