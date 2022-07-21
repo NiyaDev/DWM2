@@ -343,9 +343,26 @@ INCLUDE "src/Bank0/FUN_0A17.inc"                 ;; ROM0[$0A17]
 LAB_0A4F:	db $CD, $61, $0A, $FA, $60, $C5, $EA, $61, $C5           ;;
 LAB_0A58:	db $78, $EA, $60, $C5, $3E, $30, $E0, $00, $C9           ;;
 ;; ----------------------------------------------------------------- ;;
-INCLUDE "src/Bank0/get_input.inc"                 ;; ROM0[$0A61]
+INCLUDE "src/Bank0/get_input.inc"                ;; ROM0[$0A61]
 INCLUDE "src/Bank0/FUN_0A8D.inc"                 ;; ROM0[$0A8D]
-;INCLUDE "src/Bank0/FUN_0B2B.inc"                 ;; ROM0[$0B2B]
+;; ----------------------------------------------------------------- ;;
+;; AREA_0B0D - Unused so far.                                        ;;
+;;  Might be data, might be code. Ends in C9:ret, so probably code.  ;;
+LAB_0B0D:	db $87, $85, $6F, $3E, $00, $8C, $67, $2A, $66, $6F, $C9 ;;
+LAB_0B18:	db $FA, $00, $40, $F5, $78, $EA, $00, $21, $1A, $22, $13 ;;
+lab_0B23:   db $0D, $20, $FA, $F1, $EA, $00, $21, $C9                ;;
+;; ----------------------------------------------------------------- ;;
+INCLUDE "src/Bank0/memcpy_banked.inc"            ;; ROM0[$0B2B]
+;; ----------------------------------------------------------------- ;;
+;; AREA_0B46 - Unused so far.                                        ;;
+;;  Might be data, might be code. Ends in C9:ret, so probably code.  ;;
+LAB_0B46:	db $FA, $00, $40, $F5, $78, $EA, $00, $21, $F3, $F0, $41 ;;
+LAB_0B51:   db $CB, $4F, $20, $FA, $1A, $47, $13, $FB, $F3, $F0, $41 ;;
+LAB_0B5C:   db $CB, $4F, $20, $FA, $7E, $B0, $22, $FB, $0D, $20, $E7 ;;
+LAB_0B66:   db $F1, $EA, $00, $21, $C9, $FA, $00, $40, $F5, $FA, $FE ;;
+LAB_0B72:   db $D7, $EA, $00, $21, $2A, $47, $3A, $4F, $F1, $EA, $00 ;;
+LAB_0B7D:   db $21, $C9
+;; ----------------------------------------------------------------- ;;
 INCLUDE "src/Bank0/FUN_0B7F.inc"                 ;; ROM0[$0B7F]
 INCLUDE "src/Bank0/clear_8_hram.inc"             ;; ROM0[$0B9B]
 INCLUDE "src/Bank0/clear_work_start.inc"         ;; ROM0[$0BA7]

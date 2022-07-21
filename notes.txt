@@ -20,8 +20,8 @@ FUN_0A8D :: proc() {
 		} else {
 			[UNK_C564] = $06;
 			[UNK_C563] = [UNK_C55E];
-			[UNK_C564]-= 1;
 		}
+		[UNK_C564]-= 1;
 	}
 
 	[UNK_C567] = 0;
