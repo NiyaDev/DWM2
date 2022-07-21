@@ -14,6 +14,31 @@ DEF OCPD_MEM_LOWER  EQU $DF
 
 ;; Variables
 
+; clear_work_start - Cleared
+DEF UNK_C000 EQU $C000
+
+; FUN_0BCC - Loaded into DE.
+;          - If == 0, return early.
+;          - Set to zero.
+DEF UNK_C0C0 EQU $C0C0 ; ptr lower
+DEF UNK_C0C1 EQU $C0C1 ; ptr upper
+; FUN_0BCC - If !=0 
+DEF UNK_C0C2 EQU $C0C2 ; 
+; FUN_0BCC - Loaded into b
+DEF UNK_C0C3 EQU $C0C3 ; 
+; FUN_0BCC - Start of data to copy
+DEF UNK_C0C4 EQU $C0C4 ; 
+
+; FUN_0BCC - Loaded into DE.
+DEF UNK_C0D8 EQU $C0D8 ; ptr lower
+DEF UNK_C0D9 EQU $C0D9 ; ptr upper
+; FUN_0BCC - 
+DEF UNK_C0DA EQU $C0DA ; 
+; FUN_0BCC - 
+DEF UNK_C0DB EQU $C0DB ; 
+; FUN_0BCC - Loaded into HL
+DEF UNK_C0DC EQU $C0DC ; 
+
 ; FUN_0A17 - Copied to [UNK_C55E]
 DEF UNK_C474 EQU $C474
 
@@ -165,6 +190,7 @@ DEF UNK_DD15 EQU $DD15
 DEF UNK_DD19 EQU $DD19
 
 ; FUN_0474 - Set to 0 at start.
+; clear_work_start - Cleared.
 DEF UNK_FFB1 EQU $FFB1
 
 ; clear_8_hram - Set to 0 
@@ -173,8 +199,15 @@ DEF UNK_FFA1 EQU $FFA1
 ;
 DEF rBCPD_SH EQU $69
 
-; FUN_07E0 - Copied to [rSCX], [rSCY], [rWX], and [rWY] respectively.
-DEF UNK_FFA1_SH EQU $A1
-DEF UNK_FFA5_SH EQU $A5
+; FUN_07E0 - Copied to [rWX]
 DEF UNK_FF9F_SH EQU $9F
+; FUN_07E0 - Copied to [rWY]
 DEF UNK_FFA0_SH EQU $A0
+; FUN_07E0 - Copied to [rSCX]
+DEF UNK_FFA1_SH EQU $A1
+
+; FUN_07E0 - Copied to [rSCY]
+DEF UNK_FFA5_SH EQU $A5
+
+; FUN_0BB4 - If == $28, return early
+DEF UNK_FFB1_SH EQU $B1

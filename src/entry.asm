@@ -361,13 +361,13 @@ LAB_0B51:   db $CB, $4F, $20, $FA, $1A, $47, $13, $FB, $F3, $F0, $41 ;;
 LAB_0B5C:   db $CB, $4F, $20, $FA, $7E, $B0, $22, $FB, $0D, $20, $E7 ;;
 LAB_0B66:   db $F1, $EA, $00, $21, $C9, $FA, $00, $40, $F5, $FA, $FE ;;
 LAB_0B72:   db $D7, $EA, $00, $21, $2A, $47, $3A, $4F, $F1, $EA, $00 ;;
-LAB_0B7D:   db $21, $C9
+LAB_0B7D:   db $21, $C9                                              ;;
 ;; ----------------------------------------------------------------- ;;
 INCLUDE "src/Bank0/FUN_0B7F.inc"                 ;; ROM0[$0B7F]
 INCLUDE "src/Bank0/clear_8_hram.inc"             ;; ROM0[$0B9B]
 INCLUDE "src/Bank0/clear_work_start.inc"         ;; ROM0[$0BA7]
-;INCLUDE "src/Bank0/FUN_0BB4.inc"                 ;; ROM0[$0BB4]
-;INCLUDE "src/Bank0/FUN_0BCC.inc"                 ;; ROM0[$0BCC]
+INCLUDE "src/Bank0/FUN_0BB4.inc"                 ;; ROM0[$0BB4]
+INCLUDE "src/Bank0/FUN_0BCC.inc"                 ;; ROM0[$0BCC]
 ;INCLUDE "src/Bank0/FUN_0C5A.inc"                 ;; ROM0[$0C5A]
 ;INCLUDE "src/Bank0/FUN_0C69.inc"                 ;; ROM0[$0C69]
 ;INCLUDE "src/Bank0/FUN_0DA8.inc"                 ;; ROM0[$0DA8]

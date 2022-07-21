@@ -1,5 +1,77 @@
 
 
+FUN_0BCC :: proc() {
+	ptr1: byte^ = [UNK_C0C0]; //DE
+	if ptr1 == 0 do return;
+
+	val1: byte  = [UNK_C0C3]; //B
+	ptr2: byte^ = UNK_C0C4;   //HL
+
+	if [UNK_C0C2] != 0 {
+		val2 = ptr1^ & $00E0; //C
+
+		for val1 != 0 {
+			ptr1   = &ptr2;
+			ptr1^ += 1;
+			ptr1^  = (ptr1^ & $FF1F) | val2;
+			val1  -= 1;
+		}
+	} else {
+		for val1 != 0 {
+			ptr1   = &ptr2;
+			ptr1^ += 20;
+			ptr1^  = ptr1^ & $FFFD;
+			val1  -= 1;
+		}
+	}
+
+	[UNK_C0C0] = 0;
+	[UNK_C0C1] = 0;
+
+	if ![IsGBC] do return;
+
+	[rVBK] = 1;
+
+	ptr1 = [UNK_C0D8]; //DE
+	if ptr1 == 0 do return;
+
+	val1 = [UNK_C0DB]; //B
+	ptr2 = UNK_C0DC;   //HL
+
+	if [UNK_C0DA] == 0 {
+		val2 = ptr1^ & $00E0; //C
+
+		for val1 != 0 {
+			ptr1   = &ptr2;
+			ptr1^ += 1;
+			ptr1^  = (ptr1^ & $FF1F) | val2;
+			val1  -= 1;
+		}
+	} else {
+		for val1 != 0 {
+			ptr1   = &ptr2;
+			ptr1^ += 20;
+			ptr1^  = ptr1^ & $FFFD;
+			val1  -= 1;
+		}
+	}
+
+	[rVBK] = 0;
+
+	[UNK_C0D8] = 0;
+	[UNK_C0D9] = 0;
+}
+
+
+
+
+
+
+
+
+
+
+
 
 
 FUN_0A8D :: proc() {
