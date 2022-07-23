@@ -211,3 +211,6 @@ DEF UNK_FFA5_SH EQU $A5
 
 ; FUN_0BB4 - If == $28, return early
 DEF UNK_FFB1_SH EQU $B1
+
+; FUN_0C5A - If != 0, loop
+DEF UNK_FFD6_SH EQU $D6

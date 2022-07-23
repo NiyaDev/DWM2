@@ -1,0 +1,7 @@
+
+SECTION "0C69", ROM0[$0C69]
+
+;; 
+FUN_0C69: ;;0C69
+	
+	ret
